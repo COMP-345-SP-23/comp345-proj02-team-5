@@ -39,5 +39,9 @@ class BankAccountTest {
         //check for exception thrown correctly
         assertThrows(IllegalArgumentException.class, ()-> new BankAccount("", 100));
     }
+    @Test
+    void testCommit(){
+
+    }
 
 }
