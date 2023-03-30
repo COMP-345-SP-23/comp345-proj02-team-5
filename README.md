@@ -12,6 +12,10 @@ Link to UML Use Case Diagram:
 Link to UML Class Diagram:
 << add link here >>
 Blqh
+
+First Sprint Goal:
+Create libraian/admin & let them interact with books
+
 Three Use Cases that you will implement first:
 1. -
 2. - 
