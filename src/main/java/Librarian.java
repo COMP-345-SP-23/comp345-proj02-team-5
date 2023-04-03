@@ -5,7 +5,7 @@ public class Librarian {
 
     private int id;
     private String title;
-    private ArrayList<Book> bookList = new ArrayList<Book>();
+    private ArrayList<Book> bookList = new ArrayList<>();
 
     public Librarian(int id){
         this.id = id;
@@ -37,16 +37,21 @@ public class Librarian {
      */
     public void removeBook(Book book){
 //      used on type library
-        int i;
-        boolean there = false;
-        for(i = 0; i < bookList.size(); i++){
+//        int i;
+//        boolean there = false;
+//        for(i = 0; i < bookList.size(); i++){
+//            if(bookList.get(i) == book){
+//                book.copies--;
+//                there = true;
+//            }
+//        }
+//        if(book.copies == 0){
+//            bookList.remove(book);
+//        }
+        for(int i = 0; i < bookList.size(); i++){
             if(bookList.get(i) == book){
-                book.copies--;
-                there = true;
+                bookList.remove(book);
             }
-        }
-        if(!there){
-            bookList.remove(book);
         }
     }
 

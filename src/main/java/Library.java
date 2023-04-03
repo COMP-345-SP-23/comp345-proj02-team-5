@@ -43,16 +43,10 @@ public class Library {
      */
     public void removeBook(Book book){
     //      used on type library
-        int i;
-        boolean there = false;
-        for(i = 0; i < bookList.size(); i++){
-            if(bookList.get(i) == book){
-                book.copies--;
-                there = true;
-            }
-        }
-        if(!there){
+    for(int i = 0; i < bookList.size(); i++){
+        if(bookList.get(i) == book){
             bookList.remove(book);
         }
+    }
     }
 }
