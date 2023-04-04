@@ -30,7 +30,7 @@ public class Book {
         return author;
     }
 
-    public void returnInfo(){
-        //implement
+    public String returnInfo(){
+        return "ID: "+id+", Title: "+title+", Author: "+author+", Number of Copies: "+numCopies;
     }
 }

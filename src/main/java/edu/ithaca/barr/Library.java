@@ -8,9 +8,11 @@ public class Library {
     //ArrayList<Author> authors = new ArrayList<>();
     //ArrayList<Account> accounts = new ArrayList<>();
     //ArrayList<Librarian> librarians = new ArrayList<>();
+    
     public Library(){
 
     }
+
     /* 
     public ArrayList<Book> getBookList(){
         return books;
@@ -27,10 +29,16 @@ public class Library {
     public ArrayList<Book> getLibrariansList(){
         return librarians;
     }
-    */
-    
-    public boolean createAccount(){
+
+    public boolean closeAccount(){
         //implement
+    }
+
+    */
+
+    public boolean createAccount(String username, String password){
+        //create a new Account using username and password
+        //add it to accounts list so long as it is valid
         return false;
     }
 
