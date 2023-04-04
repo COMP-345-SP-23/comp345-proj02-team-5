@@ -5,13 +5,13 @@
 Names:
 << add 3-4 names here >>
 Vicky C.
+Giovanni Cioffi
 
 Link to UML Use Case Diagram:
 << add linkk here >>
 
 Link to UML Class Diagram:
 << add link here >>
-Blqh
 
 First Sprint Goal:
 Create libraian/admin & let them interact with books
