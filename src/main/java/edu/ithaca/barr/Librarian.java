@@ -1,3 +1,5 @@
+package edu.ithaca.barr;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +24,7 @@ public class Librarian {
         boolean there = false;
         for(i = 0; i < bookList.size(); i++){
             if(bookList.get(i) == book){
-                book.copies++;
+                book.numCopies++;
                 there = true;
             }
         }
@@ -56,8 +58,8 @@ public class Librarian {
 
         for(int i = 0; i < bookList.size(); i++){
             if(bookList.get(i) == book){
-                if(bookList.get(i).copies > 0){
-                    book.copies--;
+                if(bookList.get(i).numCopies > 0){
+                    book.numCopies--;
                 }
                 bookList.remove(book);
             }

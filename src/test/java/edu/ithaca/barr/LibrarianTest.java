@@ -1,3 +1,6 @@
+package edu.ithaca.barr;
+
+import edu.ithaca.barr.Librarian;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -13,9 +16,9 @@ public class LibrarianTest {
         Librarian barrLibrarian = new Librarian(12345);
         ArrayList<Book> bookList = new ArrayList<>();
 
-        Book book1 = new Book("Book1");
-        Book book2 = new Book("Book2");
-        Book book3 = new Book("Book3");
+        Book book1 = new Book(1, "Book1", "John Barr", 3);
+        Book book2 = new Book(2,"Book2", "Johnny Barr", 2);
+        Book book3 = new Book(3,"Book3", "Jo Bar", 1);
 
 
         // assertEquals(bookList, barrLib.getBookList());  //Test list is empty
@@ -41,9 +44,9 @@ public class LibrarianTest {
         Librarian barrLibrarian = new Librarian(12345);
         ArrayList<Book> bookList = new ArrayList<>();
 
-        Book book1 = new Book("Book1");
-        Book book2 = new Book("Book2");
-        Book book3 = new Book("Book3");
+        Book book1 = new Book(1, "Book1", "John Barr", 3);
+        Book book2 = new Book(2,"Book2", "Johnny Barr", 2);
+        Book book3 = new Book(3,"Book3", "Jo Bar", 1);
 
         barrLibrarian.addBook(book1);
         barrLibrarian.addBook(book2);

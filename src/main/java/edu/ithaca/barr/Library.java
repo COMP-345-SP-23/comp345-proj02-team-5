@@ -7,10 +7,11 @@ public class Library {
     ArrayList<Book> books = new ArrayList<>();
     //ArrayList<Author> authors = new ArrayList<>();
     //ArrayList<Account> accounts = new ArrayList<>();
-    //ArrayList<Librarian> librarians = new ArrayList<>();
+    //ArrayList<edu.ithaca.barr.Librarian> librarians = new ArrayList<>();
+    private String name;
     
-    public Library(){
-
+    public Library(String name){
+        this.name = name;
     }
 
     /* 

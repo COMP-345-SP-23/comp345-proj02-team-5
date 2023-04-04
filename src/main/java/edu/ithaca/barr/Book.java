@@ -5,7 +5,7 @@ public class Book {
     private int id;
     private String title;
     private String author;
-    private int numCopies;
+    public int numCopies;
 
     public Book(int id, String title, String author, int numCopies){
         this.id=id;
