@@ -43,10 +43,26 @@ public class Library {
      */
     public void removeBook(Book book){
     //      used on type library
-    for(int i = 0; i < bookList.size(); i++){
-        if(bookList.get(i) == book){
-            bookList.remove(book);
+        for(int i = 0; i < bookList.size(); i++){
+            if(bookList.get(i) == book){
+                bookList.remove(book);
+            }
         }
     }
-    }
+
+    /**
+     * Gets a list of books currently checked out
+     * return: list of books checked out
+     */
+//    public List<Book> getCheckedOutList(){
+//      used on type library
+//    }
+
+    /**
+     * Gets a list of books the library has
+     * return: list of books at the library
+     */
+//    public List<Book> getBookList(){
+//        used on type library
+//    }
 }

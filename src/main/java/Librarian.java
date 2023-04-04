@@ -53,6 +53,15 @@ public class Librarian {
                 bookList.remove(book);
             }
         }
+
+        for(int i = 0; i < bookList.size(); i++){
+            if(bookList.get(i) == book){
+                if(bookList.get(i).copies > 0){
+                    book.copies--;
+                }
+                bookList.remove(book);
+            }
+        }
     }
 
     /**
