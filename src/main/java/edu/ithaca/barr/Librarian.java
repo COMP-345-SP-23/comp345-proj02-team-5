@@ -68,18 +68,30 @@ public class Librarian {
 
     /**
      * Freezes an account
+     * @param account the account being frozen
      * return: True if successful, false if unsuccessful
      */
-//    public boolean freezeAccount(){
+    public boolean freezeAccount(User account){
 //      used on type user? or library?
-//    }
+        return false;
+    }
 
     /**
      * Unfreezes an account
+     * @param account the account being unfrozen
      * return: True if successful, false if unsuccessful
      */
-//    public boolean unfreezeAccount(){
+    public boolean unfreezeAccount(User account){
 //      used on type user? or library?
+        return false;
+    }
+
+//    /**
+//     * Checks to see if an account is frozen
+//     * return: True if frozen, false if unfrozen
+//     */
+//    public boolean isFrozen(){
+//        return false;
 //    }
 
     /**

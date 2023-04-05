@@ -77,12 +77,30 @@ public class LibrarianTest {
 
     @Test
     void freezeAccountTest(){
+        Librarian barr = new Librarian(1);
+        User user1 = new User(1, "Barr1", "jbarr", "password");
+        User user2 = new User(2, "Barr2", "barr", "psswrd");
+        user2.frozen = true;
 
+        assertFalse(user1.isFrozen());
+        assertTrue(user2.isFrozen());
+
+        assertTrue(barr.freezeAccount(user1));
+        assertTrue(barr.freezeAccount(user2));
     }
 
     @Test
     void unfreezeAccountTest(){
+        Librarian barr = new Librarian(1);
+        User user1 = new User(1, "Barr1", "jbarr", "password");
+        User user2 = new User(2, "Barr2", "barr", "psswrd");
+        user2.frozen = true;
 
+        assertFalse(user1.isFrozen());
+        assertTrue(user2.isFrozen());
+
+        assertFalse(barr.unfreezeAccount(user1));
+        assertFalse(barr.unfreezeAccount(user2));
     }
 
     @Test
