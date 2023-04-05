@@ -72,8 +72,8 @@ public class Librarian {
      * return: True if successful, false if unsuccessful
      */
     public boolean freezeAccount(User account){
-//      used on type user? or library?
-        return false;
+        account.frozen = true;
+        return account.isFrozen();
     }
 
     /**
@@ -82,8 +82,8 @@ public class Librarian {
      * return: True if successful, false if unsuccessful
      */
     public boolean unfreezeAccount(User account){
-//      used on type user? or library?
-        return false;
+        account.frozen = false;
+        return account.isFrozen();
     }
 
 //    /**

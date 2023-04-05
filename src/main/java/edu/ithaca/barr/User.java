@@ -21,6 +21,6 @@ public class User {
      * return: True if frozen, false if unfrozen
      */
     public boolean isFrozen(){
-        return false;
+        return frozen;
     }
 }
