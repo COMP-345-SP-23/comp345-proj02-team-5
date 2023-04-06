@@ -10,11 +10,17 @@ public class Library {
     //ArrayList<Author> authors = new ArrayList<>();
     //ArrayList<Account> accounts = new ArrayList<>();
     //ArrayList<edu.ithaca.barr.Librarian> librarians = new ArrayList<>();
+
     private String name;
     
     public Library(String name){
         this.name = name;
         this.CheckedOutBooks = new HashMap<>();
+
+
+    public Library(){
+
+
     }
 
     /* 

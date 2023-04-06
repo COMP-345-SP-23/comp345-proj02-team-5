@@ -12,7 +12,7 @@ public class LibrarianTest {
 
     @Test
     void addBookTest(){
-        Library barrLib = new Library("Barr");
+        Library barrLib = new Library();
         Librarian barrLibrarian = new Librarian(12345);
         ArrayList<Book> bookList = new ArrayList<>();
 
@@ -40,7 +40,7 @@ public class LibrarianTest {
 
     @Test
     void removeBookTest(){
-        Library barrLib = new Library("Barr");
+        Library barrLib = new Library();
         Librarian barrLibrarian = new Librarian(12345);
         ArrayList<Book> bookList = new ArrayList<>();
 
