@@ -2,35 +2,30 @@ package edu.ithaca.barr;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Library {
     
-    ArrayList<Book> books = new ArrayList<>();
+    ArrayList<Book> AllBooks = new ArrayList<>();
     HashMap<Integer, Book> CheckedOutBooks;
     //ArrayList<Author> authors = new ArrayList<>();
     //ArrayList<Account> accounts = new ArrayList<>();
     //ArrayList<edu.ithaca.barr.Librarian> librarians = new ArrayList<>();
 
-    private String name;
+    //private String name;
     
-    public Library(String name){
-        this.name = name;
-<<<<<<< HEAD
-=======
-        this.CheckedOutBooks = new HashMap<>();
-
-
     public Library(){
-
-
->>>>>>> 0be9dee9a87e92687bfd0a1166f4c1158e6e01b6
+       // this.name = name;
+        this.CheckedOutBooks = new HashMap<>();
     }
 
-    /* 
+  
+
+    
     public ArrayList<Book> getBookList(){
-        return books;
+        return AllBooks;
     }
-
+   /*
     public ArrayList<Book> getAuthorList(){
         return authors;
     }
@@ -55,21 +50,32 @@ public class Library {
         return false;
     }
 
-    public Book searchByTitle(){
-        //implement
-        return null;
-    }
+    
 
-    public Book searchByAuthor(){
-        //implement
-        return null;
-    }
-
-    public boolean checkOutBook(){
-        //implement
+    public boolean searchBook(Book book){
+        for( int i=0; i<AllBooks.size(); i++){
+            if(AllBooks.get(i) == book && book.getNumCopies() > 0){
+                return true;
+            }
+        }
         return false;
-    }
 
+    }
+    public void checkOutBook(User user, Book book){
+        // method to be implemented
+        if(searchBook(book) == true){
+            System.out.println("book checked out");
+            book.setNumCopies(book);
+            int userID = user.getID();
+            CheckedOutBooks.put(userID, book);
+        }
+
+        else{
+            throw new IllegalArgumentException("book is not available for check out");
+        }
+        
+       
+    }
     public boolean returnBook(){
         //implement
         return false;

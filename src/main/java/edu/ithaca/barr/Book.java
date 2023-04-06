@@ -37,6 +37,7 @@ public class Book {
 
     public int setNumCopies(Book book){
         int currNumCopies = book.getNumCopies() - 1;
+        numCopies = currNumCopies;
         return currNumCopies;
     }
 }
