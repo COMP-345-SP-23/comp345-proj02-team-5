@@ -34,4 +34,9 @@ public class Book {
     public String returnInfo(){
         return "ID: "+id+", Title: "+title+", Author: "+author+", Number of Copies: "+numCopies;
     }
+
+    public int setNumCopies(Book book){
+        int currNumCopies = book.getNumCopies() - 1;
+        return currNumCopies;
+    }
 }

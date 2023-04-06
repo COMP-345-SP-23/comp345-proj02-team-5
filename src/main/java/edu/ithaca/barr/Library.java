@@ -1,15 +1,25 @@
 package edu.ithaca.barr;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Library {
     
     ArrayList<Book> books = new ArrayList<>();
+    HashMap<Integer, Book> CheckedOutBooks;
     //ArrayList<Author> authors = new ArrayList<>();
     //ArrayList<Account> accounts = new ArrayList<>();
     //ArrayList<edu.ithaca.barr.Librarian> librarians = new ArrayList<>();
 
+    private String name;
+    
+    public Library(String name){
+        this.name = name;
+        this.CheckedOutBooks = new HashMap<>();
+
+
     public Library(){
+
 
     }
 
