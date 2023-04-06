@@ -56,7 +56,7 @@ public class Library {
 
     public List<Book> searchByTitle(String title){
         List<Book> titleResults = new ArrayList<Book>();
-        for (Book book : this.books) {
+        for (Book book : this.AllBooks) {
             if (book.getTitle().equalsIgnoreCase(title)) {
                 titleResults.add(book);
             }
@@ -66,7 +66,7 @@ public class Library {
 
     public List<Book> searchByAuthor(String author){
         List<Book> authorResult = new ArrayList<Book>();
-        for (Book book : this.books) {
+        for (Book book : this.AllBooks) {
             if (book.getAuthor().equalsIgnoreCase(author)) {
                 authorResult.add(book);
             }
@@ -100,6 +100,9 @@ public class Library {
     }
     public boolean returnBook(){
         //implement
+        return false;
+    }
+
     public boolean returnBook(Book book) {
         return false;
         
