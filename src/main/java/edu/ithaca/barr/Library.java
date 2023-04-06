@@ -1,8 +1,10 @@
 package edu.ithaca.barr;
 
 import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.List;
+
 
 public class Library {
     
@@ -52,6 +54,26 @@ public class Library {
 
     
 
+    public List<Book> searchByTitle(String title){
+        List<Book> titleResults = new ArrayList<Book>();
+        for (Book book : this.books) {
+            if (book.getTitle().equalsIgnoreCase(title)) {
+                titleResults.add(book);
+            }
+        }
+        return titleResults;
+    }
+
+    public List<Book> searchByAuthor(String author){
+        List<Book> authorResult = new ArrayList<Book>();
+        for (Book book : this.books) {
+            if (book.getAuthor().equalsIgnoreCase(author)) {
+                authorResult.add(book);
+            }
+        }
+        return authorResult;
+    }
+
     public boolean searchBook(Book book){
         for( int i=0; i<AllBooks.size(); i++){
             if(AllBooks.get(i) == book && book.getNumCopies() > 0){
@@ -78,6 +100,8 @@ public class Library {
     }
     public boolean returnBook(){
         //implement
+    public boolean returnBook(Book book) {
         return false;
+        
     }
 }
