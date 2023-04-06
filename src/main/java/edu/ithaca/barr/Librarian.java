@@ -125,4 +125,8 @@ public class Librarian {
     public List<Book> getBookList(){
         return bookList;
     }
+
+    public void checkOutBook(User user, Book book){
+        // method to be implemented
+    }
 }

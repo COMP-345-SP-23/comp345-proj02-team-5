@@ -108,9 +108,35 @@ public class LibrarianTest {
 
     }
 
+    @Test
+    void checkOutTest(){
+        Book book1 = new Book(2537, "Feminists", "bell hooks", 10);
+        Book book2 = new Book(2587, "The Da Vinci Code", "Dan Brown", 5);
+        Book book3 = new Book(7659, "Divergent", "Veronica Roth", 2);
+        Book book4 = new Book(8302, "The Maze Runner", "James Dashner", 0);
+        // make a librarian object
+        // create user objects
+        User user1 = new User(237, "Vanessa", "vmpofu", "vmpofu_21");
+        User user3 = new User(268, "Vanessa", "vmpofu", "vmpofu_21");
+
+        Librarian librarian = new Librarian(3);
+        librarian.checkOutBook(user1, book2);
+        librarian.checkOutBook(user3, book3);
+        // make user object
+        //make a Library object
+        Library library = new Library("bell hooks");
+        assertEquals(2, library.CheckedOutBooks.size());
+        //assertEquals("DivergentVR" , CheckedOutBooks.get(user3));
+        assertEquals(4, book2.getNumCopies());
+        assertThrows(IllegalArgumentException.class, ()->   librarian.checkOutBook(user3, book3));
+    }
+
+}
+
 //    @Test
 //    void getCheckedOutListTest(){
 //      This is for library now
 //    }
 
-}
+
+
