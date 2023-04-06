@@ -14,7 +14,6 @@ public class Library {
     
     public Library(String name){
         this.name = name;
-        this.CheckedOutBooks = new HashMap<>();
     }
 
     /* 
