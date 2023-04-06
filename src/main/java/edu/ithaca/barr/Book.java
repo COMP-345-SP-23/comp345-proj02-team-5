@@ -6,6 +6,7 @@ public class Book {
     private String title;
     private String author;
     public int numCopies;
+    public int durationRentalDays = 21;
 
     public Book(int id, String title, String author, int numCopies){
         this.id=id;
@@ -32,5 +33,10 @@ public class Book {
 
     public String returnInfo(){
         return "ID: "+id+", Title: "+title+", Author: "+author+", Number of Copies: "+numCopies;
+    }
+
+    public int setNumCopies(Book book){
+        int currNumCopies = book.getNumCopies() - 1;
+        return currNumCopies;
     }
 }

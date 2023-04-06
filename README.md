@@ -16,6 +16,12 @@ Link to UML Class Diagram:
 First Sprint Goal:
 Create libraian/admin & let them interact with books
 
+UML Diagrams:
+https://drive.google.com/file/d/1LpurxKAzJfNdzVh3yEDezRr2TdapfyVQ/view?usp=sharing
+
+Sprint Review/Demo Agenda:
+https://docs.google.com/document/d/1CT6NtQoia1ecd_oiOJAngURfnX38v3GLP-_SpLcjAh0/edit?usp=sharing
+
 Three Use Cases that you will implement first:
 1. -
 2. - 
