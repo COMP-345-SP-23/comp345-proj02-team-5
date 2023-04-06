@@ -9,7 +9,7 @@ public class User {
     private String username;
     private String password;
     public boolean frozen;
-    ArrayList<User> user = new ArrayList<>();
+    ArrayList<User> userList = new ArrayList<>();
 
 
     public User(int id, String name, String username, String password){
@@ -17,7 +17,7 @@ public class User {
         this.name = name;
         this.username = username;
         this.password = password;
-        this.user = new ArrayList<>();
+        this.userList = new ArrayList<>();
         boolean frozen = false;
     }
 
@@ -27,5 +27,24 @@ public class User {
      */
     public boolean isFrozen(){
         return frozen;
+    }
+    public int getID(){
+        return id;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public String getUserName(){
+        return username;
+    }
+
+    public String getPassword(){
+        return password;
+    }
+
+    public ArrayList<User> getUserList(){
+        return userList;
     }
 }
