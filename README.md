@@ -7,17 +7,22 @@ Vicky C.
 Giovanni Cioffi
 Christian Leach
 
-First Sprint Goal:
-Create libraian/admin & let them interact with books
-
+Sprint 1:
+Goal: Create libraian/admin & let them interact with books
 UML Diagrams:
 https://drive.google.com/file/d/1LpurxKAzJfNdzVh3yEDezRr2TdapfyVQ/view?usp=sharing
-
 Sprint Review/Demo Agenda:
 https://docs.google.com/document/d/1CT6NtQoia1ecd_oiOJAngURfnX38v3GLP-_SpLcjAh0/edit?usp=sharing
-
 Sprint Retrospective Template:
 https://docs.google.com/document/d/1bluNRueDa0TBjoVPJMxpzsLpZUnEP_4GrBKBVs10rtU/edit?usp=sharing
+Narratives & Scenarios:
+https://docs.google.com/document/d/1uqIaWaLWBkG7PSU-wWAxLCe2uZ50a8cRq4SBYp7PpWk/edit?usp=sharing
+
+Sprint 2: 
+UML Diagrams:
+Previous: https://drive.google.com/file/d/1LpurxKAzJfNdzVh3yEDezRr2TdapfyVQ/view?usp=sharing
+Updated: //updated diagrams
+
 
 Three Use Cases that you will implement first:
 1. - Checking out a book
