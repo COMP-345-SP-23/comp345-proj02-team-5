@@ -3,15 +3,9 @@
 ## Project 01 - Library Software
 
 Names:
-<< add 3-4 names here >>
 Vicky C.
 Giovanni Cioffi
-
-Link to UML Use Case Diagram:
-<< add linkk here >>
-
-Link to UML Class Diagram:
-<< add link here >>
+Christian Leach
 
 First Sprint Goal:
 Create libraian/admin & let them interact with books
@@ -26,17 +20,16 @@ Sprint Retrospective Template:
 https://docs.google.com/document/d/1bluNRueDa0TBjoVPJMxpzsLpZUnEP_4GrBKBVs10rtU/edit?usp=sharing
 
 Three Use Cases that you will implement first:
-1. -
-2. - 
-3. - 
+1. - Checking out a book
+2. - Returning a book
+3. - Search
 
 Which classes & methods do you need to implement for these use cases?
 (Indicated which team member is responsible for the implemenation)
-1. -
-2. -
-3. -
-4. -
-5. << add more as needed >>
+1. - Library - Giovanni, Christain, Vanessa
+2. - Book - Giovanni
+3. - Librarian - Vicky
+4. - User - Vicky
 
 Don't forget to use Test-Driven Development (TDD)
 1. Write Class and Method Function Headers
