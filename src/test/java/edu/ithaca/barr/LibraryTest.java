@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 public class LibraryTest {
     
     @Test
@@ -19,13 +21,13 @@ public class LibraryTest {
 
     @Test
     void searchByTitleTest(){
-        Library library = new Library("My Library");
+        Library library = new Library();
         Book book1 = new Book(0, "Title 1", "Author 1", 0);
         Book book2 = new Book(0, "Title 2", "Author 2", 0);
         Book book3 = new Book(0, "Title 1", "Author 3", 0);
-        library.books.add(book1);
-        library.books.add(book2);
-        library.books.add(book3);
+        library.AllBooks.add(book1);
+        library.AllBooks.add(book2);
+        library.AllBooks.add(book3);
 
         // Test search with existing title
         List<Book> result1 = library.searchByTitle("Title 1");
@@ -42,13 +44,13 @@ public class LibraryTest {
 
     @Test
     void searchByAuthorTest(){
-        Library library = new Library("My Library");
+        Library library = new Library();
         Book book1 = new Book(0, "Title 1", "Author 1", 0);
         Book book2 = new Book(0, "Title 2", "Author 2", 0);
         Book book3 = new Book(0, "Title 3", "Author 1", 0);
-        library.books.add(book1);
-        library.books.add(book2);
-        library.books.add(book3);
+        library.AllBooks.add(book1);
+        library.AllBooks.add(book2);
+        library.AllBooks.add(book3);
 
         // Test search with existing author
         List<Book> result1 = library.searchByAuthor("Author 1");
