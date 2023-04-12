@@ -19,6 +19,7 @@ Narratives & Scenarios:
 https://docs.google.com/document/d/1uqIaWaLWBkG7PSU-wWAxLCe2uZ50a8cRq4SBYp7PpWk/edit?usp=sharing
 
 Sprint 2: 
+Goal: A UI and a working product
 UML Diagrams:
 Previous: https://drive.google.com/file/d/1LpurxKAzJfNdzVh3yEDezRr2TdapfyVQ/view?usp=sharing
 Updated: //updated diagrams
