@@ -84,10 +84,9 @@ public class Librarian {
     /**
      * Removes an account from the system
      * @param account the account being removed
-     * @return True if successful, false if unsuccessful
      */
-    public boolean removeAccount(User account){
-      return false;
+    public void removeAccount(User account){
+      Library.userList.remove(account);
     }
 
     /**
