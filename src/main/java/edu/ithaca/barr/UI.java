@@ -17,7 +17,7 @@ public class UI{
                     System.out.println("Please enter your password\n");
                     String pass = reader.readLine();
                     boolean confirmed = Library.confirmCredentials(user,pass);
-                    if (confirmed==true){
+                    if (confirmed){
                         //other menu
                         System.out.println("balls");
                     }
@@ -37,7 +37,7 @@ public class UI{
                             flag = true;
                         }
                     }
-                } while(flag==true);
+                } while(flag);
                 break;
             }
             else if (ans.equalsIgnoreCase("a")){
