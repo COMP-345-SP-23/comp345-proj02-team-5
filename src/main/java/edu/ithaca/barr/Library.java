@@ -23,7 +23,6 @@ public class Library {
         this.CheckedOutBooks = new HashMap<>();
     }
 
-  
 
     
     public ArrayList<Book> getBookList(){
