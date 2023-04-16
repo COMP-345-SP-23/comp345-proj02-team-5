@@ -127,7 +127,12 @@ public class Librarian {
      * @return the account if found, null if account not found
      */
     public User searchAccount(User account){
-        return account;
+        for(User u : Library.userList){
+            if(u.equals(account)){
+                return account;
+            }
+        }
+        return null;
     }
 
 }

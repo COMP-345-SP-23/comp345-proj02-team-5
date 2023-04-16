@@ -141,7 +141,13 @@ public class LibrarianTest {
 
         assertEquals(user1, barr.searchAccount(user1));  //Tests that an account that is in the list is found
 
-        assertNull(barr.searchAccount(user1));  //Tests that an account that is not in the list is not found
+        barr.removeAccount(user2);
+
+        assertNull(barr.searchAccount(user2));  //Tests that an account that is not in the list is not found
+
+        barr.removeAccount(user1);
+
+        assertNull(barr.searchAccount(user1));  //Tests that an account that has been removed is not found
 
     }
 }
