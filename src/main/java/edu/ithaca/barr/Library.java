@@ -10,6 +10,8 @@ public class Library {
     
     ArrayList<Book> AllBooks = new ArrayList<>();
     HashMap<Integer, Book> CheckedOutBooks;
+    public static List<User> userList = new ArrayList<>();
+
     //ArrayList<Author> authors = new ArrayList<>();
     //ArrayList<Account> accounts = new ArrayList<>();
     //ArrayList<edu.ithaca.barr.Librarian> librarians = new ArrayList<>();
@@ -55,7 +57,7 @@ public class Library {
     
 
     public List<Book> searchByTitle(String title){
-        List<Book> titleResults = new ArrayList<Book>();
+        List<Book> titleResults = new ArrayList<>();
         for (Book book : this.AllBooks) {
             if (book.getTitle().equalsIgnoreCase(title)) {
                 titleResults.add(book);
@@ -65,7 +67,7 @@ public class Library {
     }
 
     public List<Book> searchByAuthor(String author){
-        List<Book> authorResult = new ArrayList<Book>();
+        List<Book> authorResult = new ArrayList<>();
         for (Book book : this.AllBooks) {
             if (book.getAuthor().equalsIgnoreCase(author)) {
                 authorResult.add(book);
@@ -85,7 +87,7 @@ public class Library {
     }
     public void checkOutBook(User user, Book book){
         // method to be implemented
-        if(searchBook(book) == true){
+        if(searchBook(book)){
             System.out.println("book checked out");
             book.setNumCopies(book);
             int userID = user.getID();
