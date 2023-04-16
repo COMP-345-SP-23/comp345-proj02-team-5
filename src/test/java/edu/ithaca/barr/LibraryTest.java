@@ -25,9 +25,9 @@ public class LibraryTest {
         Book book1 = new Book(0, "Title 1", "Author 1", 0);
         Book book2 = new Book(0, "Title 2", "Author 2", 0);
         Book book3 = new Book(0, "Title 1", "Author 3", 0);
-        library.AllBooks.add(book1);
-        library.AllBooks.add(book2);
-        library.AllBooks.add(book3);
+        library.allBooks.add(book1);
+        library.allBooks.add(book2);
+        library.allBooks.add(book3);
 
         // Test search with existing title
         List<Book> result1 = library.searchByTitle("Title 1");
@@ -48,9 +48,9 @@ public class LibraryTest {
         Book book1 = new Book(0, "Title 1", "Author 1", 0);
         Book book2 = new Book(0, "Title 2", "Author 2", 0);
         Book book3 = new Book(0, "Title 3", "Author 1", 0);
-        library.AllBooks.add(book1);
-        library.AllBooks.add(book2);
-        library.AllBooks.add(book3);
+        library.allBooks.add(book1);
+        library.allBooks.add(book2);
+        library.allBooks.add(book3);
 
         // Test search with existing author
         List<Book> result1 = library.searchByAuthor("Author 1");
@@ -78,18 +78,18 @@ public class LibraryTest {
         User user3 = new User(268, "Vanessa", "vmpofu", "vmpofu_21");
 
         Library library = new Library();
-        library.AllBooks.add(book1);
-        library.AllBooks.add(book2);
-        library.AllBooks.add(book3);
-        library.AllBooks.add(book4);
+        library.allBooks.add(book1);
+        library.allBooks.add(book2);
+        library.allBooks.add(book3);
+        library.allBooks.add(book4);
 
         library.checkOutBook(user1, book2);
         library.checkOutBook(user3, book3);
 
         // make user object
         //make a Library object
-        assertEquals(2, library.CheckedOutBooks.size());
-        assertEquals(book3 , library.CheckedOutBooks.get(user3.getID()));
+        assertEquals(2, library.checkedOutBooks.size());
+        assertEquals(book3 , library.checkedOutBooks.get(user3.getID()));
         assertEquals(4, book2.getNumCopies());
         assertThrows(IllegalArgumentException.class, ()->   library.checkOutBook(user3, book4));
     }

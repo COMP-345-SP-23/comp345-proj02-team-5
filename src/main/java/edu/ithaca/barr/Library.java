@@ -8,8 +8,8 @@ import java.util.List;
 
 public class Library {
     
-    ArrayList<Book> AllBooks = new ArrayList<>();
-    HashMap<Integer, Book> CheckedOutBooks;
+    ArrayList<Book> allBooks = new ArrayList<>();
+    HashMap<Integer, Book> checkedOutBooks;
     public static List<User> userList = new ArrayList<>();
 
     //ArrayList<Author> authors = new ArrayList<>();
@@ -20,13 +20,13 @@ public class Library {
     
     public Library(){
        // this.name = name;
-        this.CheckedOutBooks = new HashMap<>();
+        this.checkedOutBooks = new HashMap<>();
     }
 
 
     
     public ArrayList<Book> getBookList(){
-        return AllBooks;
+        return allBooks;
     }
    /*
     public ArrayList<Book> getAuthorList(){
@@ -57,7 +57,7 @@ public class Library {
 
     public List<Book> searchByTitle(String title){
         List<Book> titleResults = new ArrayList<>();
-        for (Book book : this.AllBooks) {
+        for (Book book : this.allBooks) {
             if (book.getTitle().equalsIgnoreCase(title)) {
                 titleResults.add(book);
             }
@@ -67,7 +67,7 @@ public class Library {
 
     public List<Book> searchByAuthor(String author){
         List<Book> authorResult = new ArrayList<>();
-        for (Book book : this.AllBooks) {
+        for (Book book : this.allBooks) {
             if (book.getAuthor().equalsIgnoreCase(author)) {
                 authorResult.add(book);
             }
@@ -76,8 +76,8 @@ public class Library {
     }
 
     public boolean searchBook(Book book){
-        for( int i=0; i<AllBooks.size(); i++){
-            if(AllBooks.get(i) == book && book.getNumCopies() > 0){
+        for( int i=0; i<allBooks.size(); i++){
+            if(allBooks.get(i) == book && book.getNumCopies() > 0){
                 return true;
             }
         }
@@ -90,7 +90,7 @@ public class Library {
             System.out.println("book checked out");
             book.setNumCopies(book);
             int userID = user.getID();
-            CheckedOutBooks.put(userID, book);
+            checkedOutBooks.put(userID, book);
         }
 
         else{
