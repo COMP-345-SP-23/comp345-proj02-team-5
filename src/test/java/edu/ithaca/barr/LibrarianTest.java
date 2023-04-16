@@ -11,15 +11,13 @@ import static org.junit.jupiter.api.Assertions.*;
 public class LibrarianTest {
 
     @Test
-    void addBookTest(){
-        Library barrLib = new Library();
+    void addBookTest() {
         Librarian barrLibrarian = new Librarian(12345);
         ArrayList<Book> bookList = new ArrayList<>();
 
         Book book1 = new Book(1, "Book1", "John Barr", 3);
-        Book book2 = new Book(2,"Book2", "Johnny Barr", 2);
-        Book book3 = new Book(3,"Book3", "Jo Bar", 1);
-
+        Book book2 = new Book(2, "Book2", "Johnny Barr", 2);
+        Book book3 = new Book(3, "Book3", "Jo Bar", 1);
 
         assertEquals(bookList, barrLibrarian.getBookList());  //Test list is empty
         bookList.add(book1);
@@ -34,18 +32,16 @@ public class LibrarianTest {
         barrLibrarian.addBook(book3);
 
         assertEquals(bookList, barrLibrarian.getBookList());  //Test another copy of a book is added
-
     }
 
     @Test
-    void removeBookTest(){
-        Library barrLib = new Library();
+    void removeBookTest() {
         Librarian barrLibrarian = new Librarian(12345);
         ArrayList<Book> bookList = new ArrayList<>();
 
         Book book1 = new Book(1, "Book1", "John Barr", 3);
-        Book book2 = new Book(2,"Book2", "Johnny Barr", 2);
-        Book book3 = new Book(3,"Book3", "Jo Bar", 1);
+        Book book2 = new Book(2, "Book2", "Johnny Barr", 2);
+        Book book3 = new Book(3, "Book3", "Jo Bar", 1);
 
         barrLibrarian.addBook(book1);
         barrLibrarian.addBook(book2);
@@ -69,12 +65,10 @@ public class LibrarianTest {
         barrLibrarian.removeBook(book3);
 
         assertEquals(bookList, barrLibrarian.getBookList());  //list remains empty when trying to remove a book from empty list
-
-
     }
 
     @Test
-    void freezeAccountTest(){
+    void freezeAccountTest() {
         Librarian barr = new Librarian(1);
         User user1 = new User(1, "Barr1", "jbarr", "password");
         User user2 = new User(2, "Barr2", "barr", "psswrd");
@@ -88,7 +82,7 @@ public class LibrarianTest {
     }
 
     @Test
-    void unfreezeAccountTest(){
+    void unfreezeAccountTest() {
         Librarian barr = new Librarian(1);
         User user1 = new User(1, "Barr1", "jbarr", "password");
         User user2 = new User(2, "Barr2", "barr", "psswrd");
@@ -102,7 +96,7 @@ public class LibrarianTest {
     }
 
     @Test
-    void removeAccountTest(){
+    void removeAccountTest() {
         Librarian barr = new Librarian(1);
         ArrayList<User> userList = new ArrayList<>();
 
@@ -129,17 +123,28 @@ public class LibrarianTest {
         barr.removeAccount(user1);
         userList.remove(user1);
         assertEquals(userList, barr.getUserList()); //Tests that a specific account (in this case the first account) can be removed
-
     }
 
-   
 
+    @Test
+    void searchAccountTest() {
+        Librarian barr = new Librarian(1);
+        ArrayList<User> userList = new ArrayList<>();
+
+        User user1 = new User(1, "Barr1", "jbarr", "password");
+        User user2 = new User(2, "Barr2", "barr", "psswrd");
+
+        userList.add(user1);
+        userList.add(user2);
+
+        assertEquals(userList, barr.getUserList()); //Tests that accounts are added when created
+
+        assertEquals(user1, barr.searchAccount(user1));  //Tests that an account that is in the list is found
+
+        assertNull(barr.searchAccount(user1));  //Tests that an account that is not in the list is not found
+
+    }
 }
-
-//    @Test
-//    void getCheckedOutListTest(){
-//      This is for library now
-//    }
 
 
 

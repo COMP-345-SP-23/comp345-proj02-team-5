@@ -121,6 +121,13 @@ public class Librarian {
         return Library.userList;
     }
 
-
+    /**
+     * searches userlist for a specific user
+     * @param account that is being searched for
+     * @return the account if found, null if account not found
+     */
+    public User searchAccount(User account){
+        return account;
+    }
 
 }
