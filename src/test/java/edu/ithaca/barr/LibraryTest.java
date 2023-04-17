@@ -26,21 +26,12 @@ public class LibraryTest {
     @Test
     void searchByTitleTest(){
         Library library = new Library();
-<<<<<<< HEAD
         Book book1 = new Book(54, "Hunger Games", "Suzanne Collins", 3);
         Book book2 = new Book(123, "To Kill a Mockingbird", "Harper Lee", 5);
         Book book3 = new Book(987, "1984", "George Orwell", 5);
-        library.AllBooks.add(book1);
-        library.AllBooks.add(book2);
-        library.AllBooks.add(book3);
-=======
-        Book book1 = new Book(0, "Title 1", "Author 1", 0);
-        Book book2 = new Book(0, "Title 2", "Author 2", 0);
-        Book book3 = new Book(0, "Title 1", "Author 3", 0);
         library.allBooks.add(book1);
         library.allBooks.add(book2);
         library.allBooks.add(book3);
->>>>>>> main
 
         // Test search with existing title
         ArrayList<Book> result1 = (ArrayList<Book>) library.searchByTitle("Title 1");
@@ -58,21 +49,12 @@ public class LibraryTest {
     @Test
     void searchByAuthorTest(){
         Library library = new Library();
-<<<<<<< HEAD
-        Book book1 = new Book(54, "Hunger Games", "Suzanne Collins", 3);
-        Book book2 = new Book(123, "To Kill a Mockingbird", "Harper Lee", 5);
-        Book book3 = new Book(987, "1984", "George Orwell", 5);
-        library.AllBooks.add(book1);
-        library.AllBooks.add(book2);
-        library.AllBooks.add(book3);
-=======
         Book book1 = new Book(0, "Title 1", "Author 1", 0);
         Book book2 = new Book(0, "Title 2", "Author 2", 0);
         Book book3 = new Book(0, "Title 3", "Author 1", 0);
         library.allBooks.add(book1);
         library.allBooks.add(book2);
         library.allBooks.add(book3);
->>>>>>> main
 
         // Test search with existing author
         ArrayList<Book> result1 = (ArrayList<Book>) library.searchByAuthor("Author 1");
@@ -126,8 +108,8 @@ public class LibraryTest {
         Library library = new Library();
         Book book1 = new Book(7659, "Divergent", "Veronica Roth", 2);
         Book book2 = new Book(8302, "The Maze Runner", "James Dashner", 0);
-        library.AllBooks.add(book1);
-        library.AllBooks.add(book2);
+        library.allBooks.add(book1);
+        library.allBooks.add(book2);
 
         // Test return of checked-out book
         book1.checkOutBook(false);
