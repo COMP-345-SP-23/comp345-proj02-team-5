@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 public class LibraryTest {
     
     @Test
@@ -24,12 +26,21 @@ public class LibraryTest {
     @Test
     void searchByTitleTest(){
         Library library = new Library();
+<<<<<<< HEAD
         Book book1 = new Book(54, "Hunger Games", "Suzanne Collins", 3);
         Book book2 = new Book(123, "To Kill a Mockingbird", "Harper Lee", 5);
         Book book3 = new Book(987, "1984", "George Orwell", 5);
         library.AllBooks.add(book1);
         library.AllBooks.add(book2);
         library.AllBooks.add(book3);
+=======
+        Book book1 = new Book(0, "Title 1", "Author 1", 0);
+        Book book2 = new Book(0, "Title 2", "Author 2", 0);
+        Book book3 = new Book(0, "Title 1", "Author 3", 0);
+        library.allBooks.add(book1);
+        library.allBooks.add(book2);
+        library.allBooks.add(book3);
+>>>>>>> main
 
         // Test search with existing title
         ArrayList<Book> result1 = (ArrayList<Book>) library.searchByTitle("Title 1");
@@ -47,12 +58,21 @@ public class LibraryTest {
     @Test
     void searchByAuthorTest(){
         Library library = new Library();
+<<<<<<< HEAD
         Book book1 = new Book(54, "Hunger Games", "Suzanne Collins", 3);
         Book book2 = new Book(123, "To Kill a Mockingbird", "Harper Lee", 5);
         Book book3 = new Book(987, "1984", "George Orwell", 5);
         library.AllBooks.add(book1);
         library.AllBooks.add(book2);
         library.AllBooks.add(book3);
+=======
+        Book book1 = new Book(0, "Title 1", "Author 1", 0);
+        Book book2 = new Book(0, "Title 2", "Author 2", 0);
+        Book book3 = new Book(0, "Title 3", "Author 1", 0);
+        library.allBooks.add(book1);
+        library.allBooks.add(book2);
+        library.allBooks.add(book3);
+>>>>>>> main
 
         // Test search with existing author
         ArrayList<Book> result1 = (ArrayList<Book>) library.searchByAuthor("Author 1");
@@ -80,18 +100,18 @@ public class LibraryTest {
         User user3 = new User(268, "Vanessa", "vmpofu", "vmpofu_21");
 
         Library library = new Library();
-        library.AllBooks.add(book1);
-        library.AllBooks.add(book2);
-        library.AllBooks.add(book3);
-        library.AllBooks.add(book4);
+        library.allBooks.add(book1);
+        library.allBooks.add(book2);
+        library.allBooks.add(book3);
+        library.allBooks.add(book4);
 
         library.checkOutBook(user1, book2);
         library.checkOutBook(user3, book3);
 
         // make user object
         //make a Library object
-        assertEquals(2, library.CheckedOutBooks.size());
-        assertEquals(book3 , library.CheckedOutBooks.get(user3.getID()));
+        assertEquals(2, library.checkedOutBooks.size());
+        assertEquals(book3 , library.checkedOutBooks.get(user3.getID()));
         assertEquals(4, book2.getNumCopies());
         assertThrows(IllegalArgumentException.class, ()->   library.checkOutBook(user3, book4));
     }
