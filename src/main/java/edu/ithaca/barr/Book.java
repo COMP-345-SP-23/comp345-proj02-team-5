@@ -40,4 +40,9 @@ public class Book {
         numCopies = currNumCopies;
         return currNumCopies;
     }
+
+    public void checkOutBook(boolean b) {
+    }
+
+
 }

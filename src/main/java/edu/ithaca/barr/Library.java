@@ -99,13 +99,16 @@ public class Library {
         
        
     }
-    public boolean returnBook(){
-        //implement
-        return false;
+    public boolean returnBook(User user, Book book) {
+        int userId = user.getID();
+        if (checkedOutBooks.containsKey(userId) && checkedOutBooks.get(userId) == book) {
+            checkedOutBooks.remove(userId);
+            book.returnInfo();
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public boolean returnBook(Book book) {
-        return false;
-        
-    }
+
 }
