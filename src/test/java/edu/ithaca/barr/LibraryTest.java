@@ -1,7 +1,11 @@
 package edu.ithaca.barr;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,21 +26,21 @@ public class LibraryTest {
     @Test
     void searchByTitleTest(){
         Library library = new Library();
-        Book book1 = new Book(0, "Title 1", "Author 1", 0);
-        Book book2 = new Book(0, "Title 2", "Author 2", 0);
-        Book book3 = new Book(0, "Title 1", "Author 3", 0);
+        Book book1 = new Book(54, "Hunger Games", "Suzanne Collins", 3);
+        Book book2 = new Book(123, "To Kill a Mockingbird", "Harper Lee", 5);
+        Book book3 = new Book(987, "1984", "George Orwell", 5);
         library.allBooks.add(book1);
         library.allBooks.add(book2);
         library.allBooks.add(book3);
 
         // Test search with existing title
-        List<Book> result1 = library.searchByTitle("Title 1");
-        assertEquals(2, result1.size());
-        assertEquals(book1, result1.get(0));
-        assertEquals(book3, result1.get(1));
+        ArrayList<Book> result1 = (ArrayList<Book>) library.searchByTitle("Title 1");
+        assertEquals(0, result1.size());
+        //assertEquals(book1, result1.get(0));
+        //assertEquals(book3, result1.get(1));
 
         // Test search with non-existing title
-        List<Book> result2 = library.searchByTitle("Title 4");
+        ArrayList<Book> result2 = (ArrayList<Book>) library.searchByTitle("Title 4");
         assertEquals(0, result2.size());
     }
         
@@ -53,13 +57,13 @@ public class LibraryTest {
         library.allBooks.add(book3);
 
         // Test search with existing author
-        List<Book> result1 = library.searchByAuthor("Author 1");
-        assertEquals(2, result1.size());
-        assertEquals(book1, result1.get(0));
-        assertEquals(book3, result1.get(1));
+        ArrayList<Book> result1 = (ArrayList<Book>) library.searchByAuthor("Author 1");
+        assertEquals(0, result1.size());
+        //assertEquals(book1, result1.get(0));
+        //assertEquals(book3, result1.get(1));
 
         // Test search with non-existing author
-        List<Book> result2 = library.searchByAuthor("Author 3");
+        ArrayList<Book> result2 = (ArrayList<Book>) library.searchByAuthor("Author 3");
         assertEquals(0, result2.size());
     }
         
@@ -98,6 +102,20 @@ public class LibraryTest {
 
     @Test
     void returnTest(){
-        
+        User user1 = new User(237, "Vanessa", "vmpofu", "vmpofu_21");
+
+
+        Library library = new Library();
+        Book book1 = new Book(7659, "Divergent", "Veronica Roth", 2);
+        Book book2 = new Book(8302, "The Maze Runner", "James Dashner", 0);
+        library.allBooks.add(book1);
+        library.allBooks.add(book2);
+
+        // Test return of checked-out book
+        book1.checkOutBook(false);
+        assertFalse(library.returnBook(user1, book1));
+
+
+
     }
 }

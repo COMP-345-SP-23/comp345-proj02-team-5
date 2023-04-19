@@ -23,7 +23,6 @@ public class Library {
         this.checkedOutBooks = new HashMap<>();
     }
 
-  
 
     
     public ArrayList<Book> getBookList(){
@@ -77,7 +76,7 @@ public class Library {
     }
 
     public boolean searchBook(Book book){
-        for(int i = 0; i< allBooks.size(); i++){
+        for( int i=0; i<allBooks.size(); i++){
             if(allBooks.get(i) == book && book.getNumCopies() > 0){
                 return true;
             }
@@ -100,13 +99,16 @@ public class Library {
         
        
     }
-    public boolean returnBook(){
-        //implement
-        return false;
+    public boolean returnBook(User user, Book book) {
+        int userId = user.getID();
+        if (checkedOutBooks.containsKey(userId) && checkedOutBooks.get(userId) == book) {
+            checkedOutBooks.remove(userId);
+            book.returnInfo();
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public boolean returnBook(Book book) {
-        return false;
-        
-    }
+
 }
