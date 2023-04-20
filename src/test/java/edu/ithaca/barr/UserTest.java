@@ -17,15 +17,15 @@ public class UserTest {
 
         User user1 = new User(1, "John", "abc", "123"); //Tests when there is a single user
         userList.add(user1);
-//        assertEquals(userList, barrj.getUserList());
+        assertEquals(userList, barrj.getUserList());
 
         User user2 = new User(2, "Barr", "def", "456"); //Tests when there are two users
         userList.add(user2);
-//        assertEquals(userList, barrj.getUserList());
+        assertEquals(userList, barrj.getUserList());
 
         User user3 = new User(3, "jBarr", "ghi", "789"); //Test when there are three user
         userList.add(user3);
-//        assertEquals(userList, barrj.getUserList());
+        assertEquals(userList, barrj.getUserList());
 
     }
 
@@ -35,9 +35,9 @@ public class UserTest {
         User user1 = new User(1, "John", "abc", "123");
         User user2 = new User(2, "Barr", "def", "456"); //Tests when there are two users
 
-        Book book1 = new Book(0, "Title 1", "Author 1", 1);
-        Book book2 = new Book(0, "Title 2", "Author 2", 2);
-        Book book3 = new Book(0, "Title 3", "Author 1", 3);
+        Book book1 = new Book(1, "Title 1", "Author 1", 1);
+        Book book2 = new Book(2, "Title 2", "Author 2", 2);
+        Book book3 = new Book(3, "Title 3", "Author 1", 3);
         List<Book> checkedOut = new ArrayList<>();
 
         barr.allBooks.add(book1);
@@ -55,8 +55,7 @@ public class UserTest {
         barr.checkOutBook(user2, book2);
         assertEquals(checkedOut, user2.getCheckedOutList()); //Test books are checked out only for the specific user
 
-        barr.checkOutBook(user2, book1);
-        assertEquals(checkedOut, user2.getCheckedOutList()); //Test list does not change if user tries to check out a book with no copies left
+        assertThrows(IllegalArgumentException.class, ()->   barr.checkOutBook(user2, book1));   //Test list does not change if user tries to check out a book with no copies left
 
 
     }
