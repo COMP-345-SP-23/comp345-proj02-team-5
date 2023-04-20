@@ -103,7 +103,7 @@ public class LibraryTest {
     @Test
     void returnTest(){
         User user1 = new User(237, "Vanessa", "vmpofu", "vmpofu_21");
-    
+
 
         Library library = new Library();
         Book book1 = new Book(7659, "Divergent", "Veronica Roth", 2);
@@ -114,8 +114,8 @@ public class LibraryTest {
         // Test return of checked-out book
         book1.checkOutBook(false);
         assertFalse(library.returnBook(user1, book1));
-    
 
-        
+
+
     }
 }
