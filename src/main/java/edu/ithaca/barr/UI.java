@@ -18,8 +18,39 @@ public class UI{
                     String pass = reader.readLine();
                     boolean confirmed = Library.confirmCredentials(user,pass);
                     if (confirmed){
-                        //other menu
-                        System.out.println("balls");
+                        //admin menu
+                        System.out.println("Enter the corresponding number for which action you would like to take");
+                        System.out.println("(1) Add Book");
+                        System.out.println("(2) Remove Book");
+                        System.out.println("(3) Close Account");
+                        System.out.println("(4) Open Account");
+                        System.out.println("(5) Freeze Account");
+                        System.out.println("(6) Unfreeze Account");
+                        System.out.println("(7) View Checked Out Books");
+                        String ansMenu  = reader.readLine();
+                        //need to continue error checking
+                        if (ansMenu=="1"){
+
+                        }
+                        else if (ansMenu=="2"){
+
+                        }
+                        else if (ansMenu=="3"){
+
+                        }
+                        else if (ansMenu=="4"){
+
+                        }
+                        else if (ansMenu=="5"){
+
+                        }
+                        else if (ansMenu=="7"){
+
+                        }
+                        else{
+                            System.out.println("Invalid input. Please try again");
+                            ansMenu  = reader.readLine();
+                        }
                     }
                     
                     else{
@@ -41,11 +72,34 @@ public class UI{
                 break;
             }
             else if (ans.equalsIgnoreCase("a")){
-                System.out.println("Please enter your admin username");
-                String user = reader.readLine();
-                System.out.println("Please enter your admin password");
-                String pass = reader.readLine();
-                //boolean confirmed = Library.confirmCredentials(user,pass)
+                boolean flag = false;
+                do{
+                    System.out.println("Please enter your admin username\n");
+                    String user = reader.readLine();
+                    System.out.println("Please enter your admin password\n");
+                    String pass = reader.readLine();
+                    boolean confirmed = Library.confirmCredentials(user,pass);
+                    if (confirmed){
+                        //other menu
+                        System.out.println("");
+                    }
+                    
+                    else{
+                        System.out.println("Username/password not found. To enter again, type e, or to quit, type q\n");
+                        String incorrect = reader.readLine();
+                        while ((!incorrect.equalsIgnoreCase("e")) && (!incorrect.equalsIgnoreCase("q"))) {
+                            System.out.println("Incorrect input. Try again\n");
+                            incorrect = reader.readLine();
+                        }
+                        if (incorrect.equalsIgnoreCase("q")){
+                            System.out.println("Thanks for visiting the online library!\n");
+                            break;
+                        }
+                        else{
+                            flag = true;
+                        }
+                    }
+                } while(flag);
                 break;
             }
             else if (ans.equalsIgnoreCase("q")){
