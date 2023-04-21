@@ -30,6 +30,5 @@ public class JsonUtil {
         //found this fix here: https://stackoverflow.com/questions/11659844/jackson-deserialize-generic-class-variable
         return  mapper.readValue(new File(filename), mapper.getTypeFactory().constructParametricType(List.class, classToBeCreated));
     }
-} {
     
 }
