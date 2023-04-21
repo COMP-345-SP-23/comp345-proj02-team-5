@@ -18,39 +18,44 @@ public class UI{
                     String pass = reader.readLine();
                     boolean confirmed = Library.confirmCredentials(user,pass);
                     if (confirmed){
-                        //admin menu
+                        //customer menu
                         System.out.println("Enter the corresponding number for which action you would like to take");
-                        System.out.println("(1) Add Book");
-                        System.out.println("(2) Remove Book");
-                        System.out.println("(3) Close Account");
-                        System.out.println("(4) Open Account");
-                        System.out.println("(5) Freeze Account");
-                        System.out.println("(6) Unfreeze Account");
-                        System.out.println("(7) View Checked Out Books");
+                        System.out.println("(1) Search Title");
+                        System.out.println("(2) Search Author");
+                        System.out.println("(3) Return Book");
+                        System.out.println("(4) Checkout Book");
+                        System.out.println("(5) Checked Out Books List");
+                        System.out.println("(6) Sign Out");
                         String ansMenu  = reader.readLine();
+                        boolean flag2=true;
                         //need to continue error checking
+                        do{
+                        flag2=true;
                         if (ansMenu=="1"){
-
+                            //search title
                         }
                         else if (ansMenu=="2"){
-
+                            //search author
                         }
                         else if (ansMenu=="3"){
-
+                            //return book
                         }
                         else if (ansMenu=="4"){
-
+                            //checkout book
                         }
                         else if (ansMenu=="5"){
-
+                            //checked out books list
                         }
-                        else if (ansMenu=="7"){
-
+                        else if (ansMenu=="6"){
+                            //sign out
                         }
                         else{
                             System.out.println("Invalid input. Please try again");
+                            flag2=false;
                             ansMenu  = reader.readLine();
                         }
+                    }
+                    while(flag2==false);
                     }
                     
                     else{
@@ -80,9 +85,50 @@ public class UI{
                     String pass = reader.readLine();
                     boolean confirmed = Library.confirmCredentials(user,pass);
                     if (confirmed){
-                        //other menu
-                        System.out.println("");
+                        //admin menu
+                        System.out.println("Enter the corresponding number for which action you would like to take");
+                        System.out.println("(1) Add Book");
+                        System.out.println("(2) Remove Book");
+                        System.out.println("(3) Close Account");
+                        System.out.println("(4) Open Account");
+                        System.out.println("(5) Freeze Account");
+                        System.out.println("(6) Unfreeze Account");
+                        System.out.println("(7) View Checked Out Books");
+                        String ansMenu  = reader.readLine();
+                        boolean flag2=true;
+                        //need to continue error checking
+                        do{
+                        flag2=true;
+                        if (ansMenu=="1"){
+                            //add book
+                        }
+                        else if (ansMenu=="2"){
+                            //remove book
+                        }
+                        else if (ansMenu=="3"){
+                            //close account
+                        }
+                        else if (ansMenu=="4"){
+                            //open account
+                        }
+                        else if (ansMenu=="5"){
+                            //freeze account
+                        }
+                        else if (ansMenu=="6"){
+                            //unfreeze account
+                        }
+                        else if (ansMenu=="7"){
+                            //view checked out books
+                        }
+                        else{
+                            System.out.println("Invalid input. Please try again");
+                            flag2=false;
+                            ansMenu  = reader.readLine();
+                        }
                     }
+                    while(flag2==false);
+                    }
+                    
                     
                     else{
                         System.out.println("Username/password not found. To enter again, type e, or to quit, type q\n");
