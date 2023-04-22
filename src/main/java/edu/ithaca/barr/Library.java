@@ -74,6 +74,43 @@ public class Library {
         return authorResult;
     }
 
+    /**
+     * method checks the reservation status of a book 
+     * @param book
+     * @return boolean
+     */
+    public boolean checkStatus(Book book){
+        if(book.getStatus().equals("unreserved")){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+     /**
+     * if the reservation status of a book is false
+     * the book can be reserved
+     * @param book
+     * @return 
+     */
+    public User reserveBook(User user, Book book){
+        if(!checkStatus(book)){
+            book.setStatus("reserved");
+            return user;             
+        }
+        else{
+            throw new IllegalArgumentException("book is already reserved");
+        }
+        
+    }
+
+   
+
+    /**
+     * method checks to see if the library has a certain book 
+     * @param book
+     * @return boolean
+     */
     public boolean searchBook(Book book){
         for( int i=0; i<AllBooks.size(); i++){
             if(AllBooks.get(i) == book && book.getNumCopies() > 0){
@@ -83,9 +120,16 @@ public class Library {
         return false;
 
     }
+
+    /**
+     * method checks out a book
+     * and adds it to list of all checked out books
+     * @param user
+     * @param book
+     */
     public void checkOutBook(User user, Book book){
         // method to be implemented
-        if(searchBook(book) == true){
+        if(searchBook(book) == true && reserveBook(user, book) == user){
             System.out.println("book checked out");
             book.setNumCopies(book);
             int userID = user.getID();
@@ -95,13 +139,21 @@ public class Library {
         else{
             throw new IllegalArgumentException("book is not available for check out");
         }
-        
+    
        
     }
     public boolean returnBook(){
         //implement
+    }
+    
     public boolean returnBook(Book book) {
         return false;
         
     }
+   
+
+    public List<Book> getCheckedOutList(){
+        return null;
+    }
+
 }
