@@ -11,7 +11,6 @@ public class Library {
     ArrayList<Book> allBooks = new ArrayList<>();
     HashMap<Integer, Book> checkedOutBooks;
     public static List<User> userList = new ArrayList<>();
-    public static List<Integer> idList = new ArrayList<>();
     public static List<String> usernameList = new ArrayList<>();
     public static List<String> passwordList = new ArrayList<>();
 
@@ -52,13 +51,17 @@ public class Library {
 
     /**
      * creates an account
-     * @param id the user's id
      * @param name the user's name
      * @param username the user's username
      * @param password the user's password
      * @return true if account created, false if not
      */
-    public boolean createAccount(int id, String name, String username, String password){
+    public boolean createAccount(String name, String username, String password){
+        if(!Library.usernameList.contains(username) && !Library.passwordList.contains(password)){
+            int id = (int)Math.ceil(Math.random());
+            User newUser = new User(id, name, username, password);
+            return true;
+        }
         return false;
     }
 
@@ -85,8 +88,8 @@ public class Library {
     }
 
     public boolean searchBook(Book book){
-        for( int i=0; i<allBooks.size(); i++){
-            if(allBooks.get(i) == book && book.getNumCopies() > 0){
+        for (Book allBook : allBooks) {
+            if (allBook == book && book.getNumCopies() > 0) {
                 return true;
             }
         }

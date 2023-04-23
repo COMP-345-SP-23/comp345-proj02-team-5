@@ -18,13 +18,15 @@ public class LibraryTest {
         //create users and passwords, assert they are in the system and have correct values
         Library barr = new Library();
 
-        assertTrue(barr.createAccount(1, "John", "code", "123"));   //Account can be created
+        assertTrue(barr.createAccount("John", "code", "123"));   //Account can be created
 
-        assertFalse(barr.createAccount(2, "Barr", "code", "456"));  //Account not created when same username
+        assertFalse(barr.createAccount("Barr", "code", "456"));  //Account not created when same username
 
-        assertFalse(barr.createAccount(3, "Barr", "coding", "101"));    //Account not created when same password
+        assertFalse(barr.createAccount("Barr", "coding", "123"));    //Account not created when same password
 
-        assertTrue(barr.createAccount(4, "John", "username", "password"));   //Another account can be created
+        assertTrue(barr.createAccount("John", "username", "password"));   //Another account can be created
+
+        assertTrue(barr.createAccount("Barr", "pass", "word"));   //Another account can be created
 
     }
 
