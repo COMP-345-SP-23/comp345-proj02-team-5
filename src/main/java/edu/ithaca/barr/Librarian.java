@@ -97,13 +97,6 @@ public class Librarian {
 //      used on type library
 //    }
 
-    /**
-     * Gets a list of books the library has
-     * @return list of books at the library
-     */
-//    public List<Book> getBookList(){
-//        used on type library
-//    }
 
   /**
      * Gets a list of books the library has
