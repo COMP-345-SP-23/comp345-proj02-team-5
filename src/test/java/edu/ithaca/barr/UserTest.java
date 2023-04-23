@@ -1,14 +1,29 @@
 package edu.ithaca.barr;
 
-import edu.ithaca.barr.Librarian;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 public class UserTest {
+
+    @Test
+    void changePasswordUsernameTest(){
+        //create a bunch of user objects
+        User user1 = new User(237, "Vanessa", "vmpofu", "vmpofU_21");
+        User user3 = new User(268, "Vicky ", "Conrad", "Vconrad/25");
+        User user2 = new User(123, "Cody", "Carnes", "Ccordy74");
+
+        assertEquals("Vanessa99", user1.changePassword(user1, "Vanessa99", "vmpofU_21"));
+        assertEquals("VictoriaConrad", user3.changeUsername(user3, "VictoriaConrad", "Conrad"));
+        assertEquals("Ccordy74", user2.changePassword(user2, "Cordy2022", "CCarnes74"));
+        assertEquals("vmpofu", user1.changeUsername(user1, "VanessaMpofu", "VMpofu"));
+
+    }
+
 
     @Test
     public void getUserListTest(){
@@ -35,9 +50,9 @@ public class UserTest {
         User user1 = new User(1, "John", "abc", "123");
         User user2 = new User(2, "Barr", "def", "456"); //Tests when there are two users
 
-        Book book1 = new Book(1, "Title 1", "Author 1", 1);
-        Book book2 = new Book(2, "Title 2", "Author 2", 2);
-        Book book3 = new Book(3, "Title 3", "Author 1", 3);
+        Book book1 = new Book(1, "Title 1", "Author 1", 1,"unreserved");
+        Book book2 = new Book(2, "Title 2", "Author 2", 2,"unreserved");
+        Book book3 = new Book(3, "Title 3", "Author 1", 3,"unreserved");
         List<Book> checkedOut = new ArrayList<>();
 
         barr.allBooks.add(book1);
@@ -65,9 +80,9 @@ public class UserTest {
         User user1 = new User(1, "John", "abc", "123");
         User user2 = new User(2, "Barr", "def", "456"); //Tests when there are two users
 
-        Book book1 = new Book(1, "Title 1", "Author 1", 1);
-        Book book2 = new Book(2, "Title 2", "Author 2", 0);
-        Book book3 = new Book(3, "Title 3", "Author 1", 0);
+        Book book1 = new Book(1, "Title 1", "Author 1", 1,"unreserved");
+        Book book2 = new Book(2, "Title 2", "Author 2", 0,"reserved");
+        Book book3 = new Book(3, "Title 3", "Author 1", 0,"reserved");
         List<Book> reserved = new ArrayList<>();
 
         barr.allBooks.add(book1);

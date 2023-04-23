@@ -73,6 +73,53 @@ public class User {
         return checkedOutList;
     }
 
+    public void setPassword(String newPassword){
+        this.password = newPassword;
+    }
+
+    public void setUsername(String newUsername){
+        this.username = newUsername;
+    }
+
+    public String changePassword(User user, String newPassword, String oldPassword){
+        if(user.getPassword().equals(oldPassword)){
+            user.setPassword(newPassword);
+            if(user.getPassword().equals(newPassword)){
+                System.out.println("password changed");
+                return newPassword;
+            }
+
+            else{
+                System.out.println("password change failed!!");
+            }
+        }
+
+
+        System.out.println("Old password is wrong!!");
+        String password = user.getPassword();
+        return password;
+
+    }
+
+    public String changeUsername(User user, String newUsername, String oldUsername){
+        if(user.getUserName().equals(oldUsername)){
+            setUsername(newUsername);
+            if(user.getPassword().equals(newUsername)){
+                System.out.println("username changed");
+                return newUsername;
+            }
+
+            else{
+                System.out.println("username change failed!!");
+            }
+        }
+
+
+        System.out.println("Old username is wrong!!");
+        String username = user.getUserName();
+        return username;
+    }
+
     /**
      * gets User's list of reserved books
      * @return list of reserved books

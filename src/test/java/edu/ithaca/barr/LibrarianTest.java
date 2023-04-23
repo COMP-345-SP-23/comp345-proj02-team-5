@@ -16,9 +16,9 @@ public class LibrarianTest {
         Librarian barrLibrarian = new Librarian(12345);
         ArrayList<Book> bookList = new ArrayList<>();
 
-        Book book1 = new Book(1, "Book1", "John Barr", 3);
-        Book book2 = new Book(2, "Book2", "Johnny Barr", 2);
-        Book book3 = new Book(3, "Book3", "Jo Bar", 1);
+        Book book1 = new Book(1, "Book1", "John Barr", 3, "unreserved");
+        Book book2 = new Book(2, "Book2", "Johnny Barr", 2,"unreserved");
+        Book book3 = new Book(3, "Book3", "Jo Bar", 1,"unreserved");
 
         assertEquals(bookList, barrLibrarian.getBookList());  //Test list is empty
         bookList.add(book1);
@@ -40,9 +40,9 @@ public class LibrarianTest {
         Librarian barrLibrarian = new Librarian(12345);
         ArrayList<Book> bookList = new ArrayList<>();
 
-        Book book1 = new Book(1, "Book1", "John Barr", 3);
-        Book book2 = new Book(2, "Book2", "Johnny Barr", 2);
-        Book book3 = new Book(3, "Book3", "Jo Bar", 1);
+        Book book1 = new Book(1, "Book1", "John Barr", 3, "unreserved");
+        Book book2 = new Book(2, "Book2", "Johnny Barr", 2, "unreserved");
+        Book book3 = new Book(3, "Book3", "Jo Bar", 1, "unreserved");
 
         barrLibrarian.addBook(book1);
         barrLibrarian.addBook(book2);
