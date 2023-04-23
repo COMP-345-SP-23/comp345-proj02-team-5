@@ -11,6 +11,7 @@ public class User {
     private String password;
     public boolean frozen;
     public List<Book> checkedOutList = new ArrayList<>();
+    public List<Book> reservedList = new ArrayList<>();
 
 
     public User(int id, String name, String username, String password){
@@ -68,5 +69,13 @@ public class User {
      */
     public List<Book> getCheckedOutList(){
         return checkedOutList;
+    }
+
+    /**
+     * gets User's list of reserved books
+     * @return list of reserved books
+     */
+    public List<Book> getReservedList(){
+        return reservedList;
     }
 }
