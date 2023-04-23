@@ -8,8 +8,10 @@ import java.util.List;
 
 public class Library {
     
-    ArrayList<Book> AllBooks = new ArrayList<>();
-    HashMap<Integer, Book> CheckedOutBooks;
+    ArrayList<Book> allBooks = new ArrayList<>();
+    HashMap<Integer, Book> checkedOutBooks;
+    public static List<User> userList = new ArrayList<>();
+
     //ArrayList<Author> authors = new ArrayList<>();
     //ArrayList<Account> accounts = new ArrayList<>();
     //ArrayList<edu.ithaca.barr.Librarian> librarians = new ArrayList<>();
@@ -18,14 +20,13 @@ public class Library {
     
     public Library(){
        // this.name = name;
-        this.CheckedOutBooks = new HashMap<>();
+        this.checkedOutBooks = new HashMap<>();
     }
 
-  
 
     
     public ArrayList<Book> getBookList(){
-        return AllBooks;
+        return allBooks;
     }
    /*
     public ArrayList<Book> getAuthorList(){
@@ -55,8 +56,8 @@ public class Library {
     
 
     public List<Book> searchByTitle(String title){
-        List<Book> titleResults = new ArrayList<Book>();
-        for (Book book : this.books) {
+        List<Book> titleResults = new ArrayList<>();
+        for (Book book : this.allBooks) {
             if (book.getTitle().equalsIgnoreCase(title)) {
                 titleResults.add(book);
             }
@@ -65,8 +66,8 @@ public class Library {
     }
 
     public List<Book> searchByAuthor(String author){
-        List<Book> authorResult = new ArrayList<Book>();
-        for (Book book : this.books) {
+        List<Book> authorResult = new ArrayList<>();
+        for (Book book : this.allBooks) {
             if (book.getAuthor().equalsIgnoreCase(author)) {
                 authorResult.add(book);
             }
@@ -112,8 +113,8 @@ public class Library {
      * @return boolean
      */
     public boolean searchBook(Book book){
-        for( int i=0; i<AllBooks.size(); i++){
-            if(AllBooks.get(i) == book && book.getNumCopies() > 0){
+        for( int i=0; i<allBooks.size(); i++){
+            if(allBooks.get(i) == book && book.getNumCopies() > 0){
                 return true;
             }
         }
@@ -130,10 +131,12 @@ public class Library {
     public void checkOutBook(User user, Book book){
         // method to be implemented
         if(searchBook(book) == true && reserveBook(user, book) == user){
+
+        if(searchBook(book)){
             System.out.println("book checked out");
             book.setNumCopies(book);
             int userID = user.getID();
-            CheckedOutBooks.put(userID, book);
+            checkedOutBooks.put(userID, book);
         }
 
         else{
@@ -155,5 +158,18 @@ public class Library {
     public List<Book> getCheckedOutList(){
         return null;
     }
+
+}
+    public boolean returnBook(User user, Book book) {
+        int userId = user.getID();
+        if (checkedOutBooks.containsKey(userId) && checkedOutBooks.get(userId) == book) {
+            checkedOutBooks.remove(userId);
+            book.returnInfo();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
 }

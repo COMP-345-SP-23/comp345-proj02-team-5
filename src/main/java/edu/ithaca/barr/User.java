@@ -1,6 +1,7 @@
 package edu.ithaca.barr;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class User {
 
@@ -9,7 +10,7 @@ public class User {
     private String username;
     private String password;
     public boolean frozen;
-    ArrayList<User> userList = new ArrayList<>();
+    public List<Book> checkedOutList = new ArrayList<>();
 
 
     public User(int id, String name, String username, String password){
@@ -17,8 +18,8 @@ public class User {
         this.name = name;
         this.username = username;
         this.password = password;
-        this.userList = new ArrayList<>();
         boolean frozen = false;
+        Library.userList.add(this);
     }
 
     /**
@@ -28,24 +29,45 @@ public class User {
     public boolean isFrozen(){
         return frozen;
     }
+
+    /**
+     * gets the id
+     * @return id of the user
+     */
     public int getID(){
         return id;
     }
 
+    /**
+     * gets the name
+     * @return name of the user
+     */
     public String getName(){
         return name;
     }
 
+    /**
+     * gets the username
+     * @return username of the user
+     */
     public String getUserName(){
         return username;
     }
 
+    /**
+     * gets the password
+     * @return password of the user
+     */
     public String getPassword(){
         return password;
     }
 
-    public ArrayList<User> getUserList(){
-        return userList;
+    /**
+     * gets User's list of checked out books
+     * @return list of checked out books
+     */
+    public List<Book> getCheckedOutList(){
+        return checkedOutList;
     }
 
     public void setPassword(String newPassword){

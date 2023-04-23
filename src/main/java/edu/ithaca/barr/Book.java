@@ -49,4 +49,8 @@ public class Book {
     public void setStatus(String newStatus){
         this.status  = newStatus;  
     }
+    public void checkOutBook(boolean b) {
+    }
+
+
 }
