@@ -48,14 +48,6 @@ public class User {
     }
 
     /**
-     * gets the username
-     * @return username of the user
-     */
-    public String getUserName(){
-        return username;
-    }
-
-    /**
      * changes the username of a user
      * @param newUsername the new username
      * @return true if changed, false if not changed

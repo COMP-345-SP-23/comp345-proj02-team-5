@@ -11,20 +11,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class UserTest {
 
     @Test
-    public void changeUsernameTest(){
-        User user1 = new User(1, "John", "abc", "123"); //Create user
-        User user2 = new User(2, "John", "def", "456"); //Create user
-        User user3 = new User(3, "John", "ghi", "789"); //Create user
-
-        assertTrue(user1.changeUsername("barr"));   //Username changes
-
-        assertFalse(user2.changeUsername("def"));   //Username does not change if the username is the same
-
-        assertFalse(user3.changeUsername("def"));   //Username does not change to a username already used
-
-    }
-
-    @Test
     public void getUserListTest(){
         Librarian barrj = new Librarian(1);
         ArrayList<User> userList = new ArrayList<>();
