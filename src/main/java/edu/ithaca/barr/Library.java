@@ -11,6 +11,9 @@ public class Library {
     ArrayList<Book> allBooks = new ArrayList<>();
     HashMap<Integer, Book> checkedOutBooks;
     public static List<User> userList = new ArrayList<>();
+    public static List<Integer> idList = new ArrayList<>();
+    public static List<String> usernameList = new ArrayList<>();
+    public static List<String> passwordList = new ArrayList<>();
 
     //ArrayList<Author> authors = new ArrayList<>();
     //ArrayList<Account> accounts = new ArrayList<>();
@@ -47,9 +50,15 @@ public class Library {
 
     */
 
-    public boolean createAccount(String username, String password){
-        //create a new Account using username and password
-        //add it to accounts list so long as it is valid
+    /**
+     * creates an account
+     * @param id the user's id
+     * @param name the user's name
+     * @param username the user's username
+     * @param password the user's password
+     * @return true if account created, false if not
+     */
+    public boolean createAccount(int id, String name, String username, String password){
         return false;
     }
 

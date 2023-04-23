@@ -21,6 +21,9 @@ public class User {
         this.password = password;
         boolean frozen = false;
         Library.userList.add(this);
+        Library.idList.add(id);
+        Library.usernameList.add(username);
+        Library.passwordList.add(password);
     }
 
     /**

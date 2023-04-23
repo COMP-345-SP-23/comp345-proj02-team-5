@@ -16,6 +16,16 @@ public class LibraryTest {
     @Test
     void createAccountTest(){
         //create users and passwords, assert they are in the system and have correct values
+        Library barr = new Library();
+
+        assertTrue(barr.createAccount(1, "John", "code", "123"));   //Account can be created
+
+        assertFalse(barr.createAccount(2, "Barr", "code", "456"));  //Account not created when same username
+
+        assertFalse(barr.createAccount(3, "Barr", "coding", "101"));    //Account not created when same password
+
+        assertTrue(barr.createAccount(4, "John", "username", "password"));   //Another account can be created
+
     }
 
     @Test
@@ -79,7 +89,7 @@ public class LibraryTest {
         // make a librarian object
         // create user objects
         User user1 = new User(237, "Vanessa", "vmpofu", "vmpofu_21");
-        User user3 = new User(268, "Vanessa", "vmpofu", "vmpofu_21");
+        User user3 = new User(268, "Vanessa", "mpofu", "mpofu_21");
 
         Library library = new Library();
         library.allBooks.add(book1);
@@ -104,7 +114,6 @@ public class LibraryTest {
     void returnTest(){
         User user1 = new User(237, "Vanessa", "vmpofu", "vmpofu_21");
 
-
         Library library = new Library();
         Book book1 = new Book(7659, "Divergent", "Veronica Roth", 2);
         Book book2 = new Book(8302, "The Maze Runner", "James Dashner", 0);
@@ -115,7 +124,6 @@ public class LibraryTest {
         book1.checkOutBook(false);
         assertFalse(library.returnBook(user1, book1));
 
-
-
     }
+
 }
