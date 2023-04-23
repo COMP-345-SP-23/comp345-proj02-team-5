@@ -56,6 +56,15 @@ public class User {
     }
 
     /**
+     * changes the username of a user
+     * @param newUsername the new username
+     * @return true if changed, false if not changed
+     */
+    public boolean changeUsername(String newUsername){
+        return false;
+    }
+
+    /**
      * gets the password
      * @return password of the user
      */
