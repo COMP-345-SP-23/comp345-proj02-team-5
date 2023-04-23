@@ -1,9 +1,8 @@
+package edu.ithaca.barr;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
-
-import edu.ithaca.barr.User;
 
 public class UserTest {
 
