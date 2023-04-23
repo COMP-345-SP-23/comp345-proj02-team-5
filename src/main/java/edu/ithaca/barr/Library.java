@@ -94,7 +94,7 @@ public class Library {
      * @return 
      */
     public User reserveBook(User user, Book book){
-        if(!checkStatus(book)){
+        if(!checkStatus(book) &&  book.getNumCopies() > 0){
             book.setStatus("reserved");
             return user;             
         }
@@ -152,8 +152,13 @@ public class Library {
     }
    
 
+     /**
+     * Gets a list of books currently checked out
+     * return: list of books checked out
+     */
     public List<Book> getCheckedOutList(){
-        return null;
+        return new ArrayList<>(CheckedOutBooks.values());
     }
+
 
 }

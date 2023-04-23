@@ -98,10 +98,10 @@ public class LibraryTest {
 
     @Test
     void getCheckedOutListTest(){
-        Book book1 = new Book(2537, "Feminists", "bell hooks", 10, null);
-        Book book2 = new Book(2587, "The Da Vinci Code", "Dan Brown", 5, null);
-        Book book3 = new Book(7659, "Divergent", "Veronica Roth", 2, null);
-        Book book4 = new Book(8302, "The Maze Runner", "James Dashner", 0, null);
+        Book book1 = new Book(2537, "Feminists", "bell hooks", 10, "unreserved");
+        Book book2 = new Book(2587, "The Da Vinci Code", "Dan Brown", 5, "unreserved");
+        Book book3 = new Book(7659, "Divergent", "Veronica Roth", 2, "unreserved");
+        Book book4 = new Book(8302, "The Maze Runner", "James Dashner", 0, "unreserved");
 
         User user1 = new User(237, "Vanessa", "vmpofu", "vmpofu_21");
         User user3 = new User(268, "Vanessa", "vmpofu", "vmpofu_21");
@@ -117,8 +117,7 @@ public class LibraryTest {
 
         library.checkOutBook(user1, book2);
         library.checkOutBook(user3, book3);
-        library.checkOutBook(user1, book3);
-        library.checkOutBook(user34, book1);
+         library.checkOutBook(user34, book1);
         library.checkOutBook(user5, book2);
         library.checkOutBook(user2, book1);
         

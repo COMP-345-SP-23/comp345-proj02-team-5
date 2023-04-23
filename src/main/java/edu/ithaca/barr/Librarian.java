@@ -102,13 +102,7 @@ public class Librarian {
 //      used on type user
 //    }
 
-    /**
-     * Gets a list of books currently checked out
-     * return: list of books checked out
-     */
-//    public List<Book> getCheckedOutList(){
-//      used on type library
-//    }
+    
 
     /**
      * Gets a list of books the library has
