@@ -178,4 +178,9 @@ public class Library {
     }
 
 
+
+    public static void addUser(String user, String pass) {
+    }
+
+
 }
