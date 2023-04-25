@@ -2,12 +2,14 @@ package edu.ithaca.barr;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 public class UI{
     public static void main(String[] args) throws IOException{
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Welcome to the Online Library\n");
         System.out.println("Type c if you would like to log in as a customer, a if you would like to log in as an admin, or q to quit\n");
         String ans = reader.readLine();//need to error check
+        Library lib = new Library();
         do{
             if (ans.equalsIgnoreCase("c")){
                 boolean flag = false;
@@ -18,6 +20,12 @@ public class UI{
                     String pass = reader.readLine();
                     boolean confirmed = Library.confirmCredentials(user,pass);
                     if (confirmed){
+                        User user1;
+                        for (int i=0;i<Library.userList.size();i++){
+                            if ((Library.userList.get(i).getName().equals(user)) && (Library.userList.get(i).getPassword().equals(pass))){
+                                user1 = Library.userList.get(i);
+                            }
+                        }
                         //customer menu
                         System.out.println("Enter the corresponding number for which action you would like to take");
                         System.out.println("(1) Search Title");
@@ -33,18 +41,106 @@ public class UI{
                         flag2=true;
                         if (ansMenu=="1"){
                             //search title
+                            boolean exit = true;
+                            do{
+                            System.out.println("Enter the book title:");
+                            String title = reader.readLine();
+                            List<Book> answer = lib.searchByTitle(title);
+                            if (answer==null){
+                                System.out.println("Book not found.");
+                            }
+                            else{
+                                for (int i=0; i<answer.size();i++){
+                                    System.out.println(answer.get(i));
+                                }
+                            }
+                            System.out.println("Would you like to search again? Enter y if yes, or any other character if not");
+                            String goagain = reader.readLine();
+                            if (!goagain.equals("y")){
+                                exit=false;
+                            }
+                            }
+                            while (exit==true);
                         }
                         else if (ansMenu=="2"){
                             //search author
+                            boolean exit = true;
+                            do{
+                            System.out.println("Enter the book author:");
+                            String title = reader.readLine();
+                            List<Book> answer = lib.searchByAuthor(title);
+                            if (answer==null){
+                                System.out.println("Author not found.");
+                            }
+                            else{
+                                for (int i=0; i<answer.size();i++){
+                                    System.out.println(answer.get(i));
+                                }
+                            }
+                            System.out.println("Would you like to search again? Enter y if yes, or any other character if not");
+                            String goagain = reader.readLine();
+                            if (!goagain.equals("y")){
+                                exit=false;
+                            }
+                            }
+                            while (exit==true);
                         }
                         else if (ansMenu=="3"){
                             //return book
+                            boolean cont=true;
+                            do{
+                                System.out.println("Enter the title of the book you would like to return");
+                                String title = reader.readLine();
+                                System.out.println("Enter the author of the book you would like to return");
+                                String author = reader.readLine();
+                                boolean found = false;
+                                for (int i=0;i<user1.checkedOutList.size();i++){
+                                    if ((user1.checkedOutList.get(i).getTitle().equals(title)) && (user1.checkedOutList.get(i).getAuthor().equals(author))){
+                                        lib.returnBook(user1, user1.checkedOutList.get(i));
+                                        System.out.println("Book returned.");
+                                        found = true;
+                                        break;
+                                        }
+                                }
+                                if (found==false) System.out.println("Book not found.");
+                                System.out.println("Would you like to try entering another book to return? Enter y if so, any other character if not");
+                                String l = reader.readLine();
+                                if (!l.equals("y")){
+                                    cont = false;
+                                }
+                            } while(cont==true);
                         }
                         else if (ansMenu=="4"){
                             //checkout book
+                            boolean cont=true;
+                            do{
+                                System.out.println("Enter the title of the book you would like to check out");
+                                String title = reader.readLine();
+                                System.out.println("Enter the author of the book you would like to check out");
+                                String author = reader.readLine();
+                                boolean found = false;
+                                for (int i=0;i<lib.allBooks.size();i++){
+                                    if ((lib.allBooks.get(i).getTitle().equals(title)) && (lib.allBooks.get(i).getAuthor().equals(author))){
+                                        lib.checkOutBook(user1, lib.allBooks.get(i));
+                                        //reserve book?
+                                        System.out.println("Book checked out.");
+                                        found = true;
+                                        break;
+                                        }
+                                }
+                                if (found==false) System.out.println("Book not found.");
+                                System.out.println("Would you like to try entering another book to check out? Enter y if so, any other character if not");
+                                String l = reader.readLine();
+                                if (!l.equals("y")){
+                                    cont = false;
+                                }
+                            } while(cont==true);
                         }
                         else if (ansMenu=="5"){
                             //checked out books list
+                            for (int i=0;i<user1.checkedOutList.size();i++){
+                                System.out.println(user1.checkedOutList.get(i));
+                            }
                         }
                         else if (ansMenu=="6"){
                             System.out.println("Thanks for visiting the online library!\n");
@@ -263,6 +359,9 @@ public class UI{
                         }
                         else if (ansMenu=="7"){
                             //view checked out books
+                            for (int i=0;i<lib.checkedOutBooks.size();i++){
+                                System.out.println(lib.checkedOutBooks.get(i));
+                            }
                         }
                         else if (ansMenu=="8"){
                             //sign out
