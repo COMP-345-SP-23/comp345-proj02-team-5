@@ -8,6 +8,9 @@ public class BookTest {
     
     @Test
     void returnInfoTest(){
+        Book book =new Book(0, "A", "B", 0, null);
+        Book book2 =new Book(1, "C", "D", 1, null);
+        Book book3 =new Book(3, "E", "F", 5, null);
         Book book = new Book(0, "A", "B", 0, "unreserved");
         Book book2 = new Book(1, "C", "D", 1, "unreserved");
         Book book3 = new Book(3, "E", "F", 5, "unreserved");
