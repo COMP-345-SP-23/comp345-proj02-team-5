@@ -7,12 +7,15 @@ public class Book {
     private String author;
     public int numCopies;
     public int durationRentalDays = 21;
+    public String status;
+    public int time;
 
     public Book(int id, String title, String author, int numCopies){
         this.id=id;
         this.title=title;
         this.author=author;
         this.numCopies=numCopies;
+        int time = 7;
     }
 
     public int getNumCopies(){
