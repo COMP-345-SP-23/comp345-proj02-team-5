@@ -19,7 +19,7 @@ public class User {
         this.username = username;
         this.password = password;
         boolean frozen = false;
-        Library.userList.add(this);
+        // Library.userList.add(this);
     }
 
     /**
@@ -77,6 +77,8 @@ public class User {
     public void setUsername(String newUsername){
         this.username = newUsername;
     }
+
+    
     
     public String changePassword(User user, String newPassword, String oldPassword){
         if(user.getPassword().equals(oldPassword)){
@@ -98,7 +100,7 @@ public class User {
        
     }
     
-    public String changeUsername(User user, String newUsername, String oldUsername){
+    public String changUsername(User user, String newUsername, String oldUsername){
         if(user.getUserName() == oldUsername){
             setUsername(newUsername);
             if(user.getPassword() == newUsername){
@@ -116,4 +118,8 @@ public class User {
         String username = user.getUserName();
         return username;        
     }
+
+
 }
+
+

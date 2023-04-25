@@ -2,6 +2,8 @@ package edu.ithaca.barr;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 
 public class UserTest {
@@ -14,22 +16,13 @@ public class UserTest {
         User user2 = new User(123, "Cody", "Carnes", "Ccordy74");
 
         assertEquals("Vanessa99", user1.changePassword(user1, "Vanessa99", "vmpofU_21"));
-        assertEquals("VictoriaConrad", user3.changeUsername(user3, "VictoriaConrad", "Conrad"));
+        assertEquals("VictoriaConrad", user3.changUsername(user3, "VictoriaConrad", "Conrad"));
         assertEquals("Ccordy74", user2.changePassword(user2, "Cordy2022", "CCarnes74"));
-        assertEquals("vmpofu", user1.changeUsername(user1, "VanessaMpofu", "VMpofu"));
+        assertEquals("vmpofu", user1.changUsername(user1, "VanessaMpofu", "VMpofu"));
 
     }
 
 
-import edu.ithaca.barr.Librarian;
-import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
-
-public class UserTest {
 
     @Test
     public void getUserListTest(){
