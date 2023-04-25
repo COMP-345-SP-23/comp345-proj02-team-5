@@ -38,6 +38,15 @@ public class LibraryTest {
     @Test
     public void searchByTitleTest(){
         Library library = new Library();
+        Book book1 = new Book(0, "Title 1", "Author 1", 0);
+        Book book2 = new Book(0, "Title 2", "Author 2", 0);
+        Book book3 = new Book(0, "Title 1", "Author 3", 0);
+        library.books.add(book1);
+        library.books.add(book2);
+        library.books.add(book3);
+        Book book1 = new Book(54, "Hunger Games", "Suzanne Collins", 3);
+        Book book2 = new Book(123, "To Kill a Mockingbird", "Harper Lee", 5);
+        Book book3 = new Book(987, "1984", "George Orwell", 5);
         Book book1 = new Book(0, "Title 1", "Author 1", 0, null);
         Book book2 = new Book(0, "Title 2", "Author 2", 0, null);
         Book book3 = new Book(0, "Title 1", "Author 3", 0, null);
@@ -67,6 +76,15 @@ public class LibraryTest {
     @Test
     public void searchByAuthorTest(){
         Library library = new Library();
+        Book book1 = new Book(0, "Title 1", "Author 1", 0);
+        Book book2 = new Book(0, "Title 2", "Author 2", 0);
+        Book book3 = new Book(0, "Title 3", "Author 1", 0);
+        library.books.add(book1);
+        library.books.add(book2);
+        library.books.add(book3);
+        Book book1 = new Book(0, "Title 1", "Author 1", 0);
+        Book book2 = new Book(0, "Title 2", "Author 2", 0);
+        Book book3 = new Book(0, "Title 3", "Author 1", 0);
         Book book1 = new Book(0, "Title 1", "Author 1", 0, null);
         Book book2 = new Book(0, "Title 2", "Author 2", 0, null);
         Book book3 = new Book(0, "Title 3", "Author 1", 0, null);
@@ -94,6 +112,11 @@ public class LibraryTest {
     
 
     @Test
+    void checkOutTest(){
+        Book book1 = new Book(2537, "Feminists", "bell hooks", 10);
+        Book book2 = new Book(2587, "The Da Vinci Code", "Dan Brown", 5);
+        Book book3 = new Book(7659, "Divergent", "Veronica Roth", 2);
+        Book book4 = new Book(8302, "The Maze Runner", "James Dashner", 0);
     public void checkOutTest(){
         Book book1 = new Book(2537, "Feminists", "bell hooks", 10, null);
         Book book2 = new Book(2587, "The Da Vinci Code", "Dan Brown", 5, null);
@@ -127,6 +150,12 @@ public class LibraryTest {
     
 
     @Test
+    void getCheckedOutListTest(){
+        Book book1 = new Book(2537, "Feminists", "bell hooks", 10);
+        Book book2 = new Book(2587, "The Da Vinci Code", "Dan Brown", 5);
+        Book book3 = new Book(7659, "Divergent", "Veronica Roth", 2);
+        Book book4 = new Book(8302, "The Maze Runner", "James Dashner", 0);
+
     public void getCheckedOutListTest(){
         Book book1 = new Book(2537, "Feminists", "bell hooks", 10, null);
         Book book2 = new Book(2587, "The Da Vinci Code", "Dan Brown", 5, null);
@@ -147,7 +176,6 @@ public class LibraryTest {
 
         library.checkOutBook(user1, book2);
         library.checkOutBook(user3, book3);
-        library.checkOutBook(user1, book3);
         library.checkOutBook(user34, book1);
         library.checkOutBook(user5, book2);
         library.checkOutBook(user2, book1);
@@ -157,6 +185,10 @@ public class LibraryTest {
     }
 
     @Test
+    void reserveBookTest(){
+        Book book1 = new Book(2537, "Feminists", "bell hooks", 10);
+        Book book2 = new Book(2587, "The Da Vinci Code", "Dan Brown", 5);
+        Book book3 = new Book(7659, "Divergent", "Veronica Roth", 2);
     public void reserveBookTest() {
         Book book1 = new Book(2537, "Feminists", "bell hooks", 10, "reserved");
         Book book2 = new Book(2587, "The Da Vinci Code", "Dan Brown", 5, "reserved");
@@ -171,6 +203,11 @@ public class LibraryTest {
         library.allBooks.add(book3);
 
         assertEquals(user5, library.reserveBook(user5, book3));
+        assertEquals(user1, library.reserveBook(user1, book2));
+
+    }
+        
+        void returnTest(){
         assertThrows(IllegalArgumentException.class, () -> library.reserveBook(user1, book2));
     }
     @Test
