@@ -6,13 +6,16 @@ public class Book {
     private String title;
     private String author;
     public int numCopies;
-    public int durationRentalDays = 21;
+    public String status;
+    public int time;
 
-    public Book(int id, String title, String author, int numCopies){
+    public Book(int id, String title, String author, int numCopies, String status){
         this.id=id;
         this.title=title;
         this.author=author;
+        this.status = status;
         this.numCopies=numCopies;
+        int time = 7;
     }
 
     public int getNumCopies(){
@@ -31,6 +34,9 @@ public class Book {
         return author;
     }
 
+    public String getStatus(){
+        return status;
+    }
     public String returnInfo(){
         return "ID: "+id+", Title: "+title+", Author: "+author+", Number of Copies: "+numCopies;
     }
@@ -41,6 +47,9 @@ public class Book {
         return currNumCopies;
     }
 
+    public void setStatus(String newStatus){
+        this.status  = newStatus;  
+    }
     public void checkOutBook(boolean b) {
     }
 

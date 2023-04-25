@@ -11,6 +11,8 @@ public class Library {
     ArrayList<Book> allBooks = new ArrayList<>();
     HashMap<Integer, Book> checkedOutBooks;
     public static List<User> userList = new ArrayList<>();
+    public static List<String> usernameList = new ArrayList<>();
+    public static List<String> passwordList = new ArrayList<>();
 
     //ArrayList<Author> authors = new ArrayList<>();
     //ArrayList<Account> accounts = new ArrayList<>();
@@ -47,9 +49,19 @@ public class Library {
 
     */
 
-    public boolean createAccount(String username, String password){
-        //create a new Account using username and password
-        //add it to accounts list so long as it is valid
+    /**
+     * creates an account
+     * @param name the user's name
+     * @param username the user's username
+     * @param password the user's password
+     * @return true if account created, false if not
+     */
+    public boolean createAccount(String name, String username, String password){
+        if(!Library.usernameList.contains(username) && !Library.passwordList.contains(password)){
+            int id = (int)Math.ceil(Math.random());
+            User newUser = new User(id, name, username, password);
+            return true;
+        }
         return false;
     }
 
@@ -75,17 +87,58 @@ public class Library {
         return authorResult;
     }
 
+    /**
+     * method checks the reservation status of a book 
+     * @param book book to be checekd
+     * @return boolean
+     */
+    public boolean checkStatus(Book book){
+        return !book.getStatus().equals("unreserved");
+    }
+     /**
+     * if the reservation status of a book is false
+     * the book can be reserved
+     * @param book book being reserved
+     * @return user if reserved, throws illegal argument exception if already reserved
+     */
+    public User reserveBook(User user, Book book){
+        if(!checkStatus(book)){
+            book.setStatus("reserved");
+            return user;             
+        }
+        else{
+            throw new IllegalArgumentException("book is already reserved");
+        }
+        
+    }
+
+   
+
+    /**
+     * method checks to see if the library has a certain book 
+     * @param book book being searched for
+     * @return true if found and a copy is available
+     */
     public boolean searchBook(Book book){
-        for( int i=0; i<allBooks.size(); i++){
-            if(allBooks.get(i) == book && book.getNumCopies() > 0){
+        for (Book allBook : allBooks) {
+            if (allBook == book && book.getNumCopies() > 0) {
                 return true;
             }
         }
         return false;
 
     }
+
+    /**
+     * method checks out a book
+     * and adds it to list of all checked out books
+     * @param user user checking out
+     * @param book book being checked out
+     */
     public void checkOutBook(User user, Book book){
         // method to be implemented
+        if(searchBook(book) && reserveBook(user, book) == user){
+
         if(searchBook(book)){
             System.out.println("book checked out");
             book.setNumCopies(book);
@@ -96,9 +149,16 @@ public class Library {
         else{
             throw new IllegalArgumentException("book is not available for check out");
         }
-        
+    
        
     }
+   
+
+//    public List<Book> getCheckedOutList(){
+//        return null;
+//    }
+
+}
     public boolean returnBook(User user, Book book) {
         int userId = user.getID();
         if (checkedOutBooks.containsKey(userId) && checkedOutBooks.get(userId) == book) {
@@ -108,6 +168,18 @@ public class Library {
         } else {
             return false;
         }
+    }
+
+    /**
+     * A day passes so the time for all books currently checked out decreases by 1
+     */
+    public void passTime(){
+
+    }
+
+
+
+    public static void addUser(String user, String pass) {
     }
 
 

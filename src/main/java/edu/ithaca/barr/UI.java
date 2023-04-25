@@ -6,6 +6,9 @@ import java.util.List;
 public class UI{
     public static void main(String[] args) throws IOException{
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        boolean loggedIn = false;
+        String currentUser = "";
+
         System.out.println("Welcome to the Online Library\n");
         System.out.println("Type c if you would like to log in as a customer, a if you would like to log in as an admin, or q to quit\n");
         String ans = reader.readLine();//need to error check
@@ -13,7 +16,7 @@ public class UI{
         do{
             if (ans.equalsIgnoreCase("c")){
                 boolean flag = false;
-                do{
+                do {
                     System.out.println("Please enter your username\n");
                     String user = reader.readLine();
                     System.out.println("Please enter your password\n");
@@ -162,11 +165,10 @@ public class UI{
                             System.out.println("Incorrect input. Try again\n");
                             incorrect = reader.readLine();
                         }
-                        if (incorrect.equalsIgnoreCase("q")){
+                        if (incorrect.equalsIgnoreCase("q")) {
                             System.out.println("Thanks for visiting the online library!\n");
-                            break;
-                        }
-                        else{
+                            System.exit(0);
+                        } else {
                             flag = true;
                         }
                     }
@@ -395,15 +397,12 @@ public class UI{
                     }
                 } while(flag);
                 break;
-            }
-            else if (ans.equalsIgnoreCase("q")){
+            } else if (ans.equalsIgnoreCase("q")) {
                 System.out.println("Thanks for visiting the online library!\n");
-                break;
-            }
-            else{
+                System.exit(0);
+            } else {
                 System.out.println("Invalid input. Please enter again\n");
-                ans = reader.readLine();
             }
-        } while((!ans.equalsIgnoreCase("c")) || (!ans.equalsIgnoreCase("a")) || (!ans.equalsIgnoreCase("q")));
+        } while (true);
     }
 }

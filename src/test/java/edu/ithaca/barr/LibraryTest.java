@@ -14,24 +14,42 @@ import java.util.List;
 public class LibraryTest {
     
     @Test
-    void createAccountTest(){
+    public void createAccountTest(){
         //create users and passwords, assert they are in the system and have correct values
+        Library barr = new Library();
+
+        assertTrue(barr.createAccount("John", "code", "123"));   //Account can be created
+
+        assertFalse(barr.createAccount("Barr", "code", "456"));  //Account not created when same username
+
+        assertFalse(barr.createAccount("Barr", "coding", "123"));    //Account not created when same password
+
+        assertTrue(barr.createAccount("John", "username", "password"));   //Another account can be created
+
+        assertTrue(barr.createAccount("Barr", "pass", "word"));   //Another account can be created
+
     }
 
     @Test
-    void closeAccountTest(){
+    public void closeAccountTest(){
         //close out accounts using usernames and passwords and assure they are removed.
     }
 
     @Test
-    void searchByTitleTest(){
+    public void searchByTitleTest(){
         Library library = new Library();
-        Book book1 = new Book(54, "Hunger Games", "Suzanne Collins", 3);
-        Book book2 = new Book(123, "To Kill a Mockingbird", "Harper Lee", 5);
-        Book book3 = new Book(987, "1984", "George Orwell", 5);
+        Book book1 = new Book(0, "Title 1", "Author 1", 0, null);
+        Book book2 = new Book(0, "Title 2", "Author 2", 0, null);
+        Book book3 = new Book(0, "Title 1", "Author 3", 0, null);
         library.allBooks.add(book1);
         library.allBooks.add(book2);
         library.allBooks.add(book3);
+        Book book4 = new Book(54, "Hunger Games", "Suzanne Collins", 3, "unreserved");
+        Book book5 = new Book(123, "To Kill a Mockingbird", "Harper Lee", 5,"unreserved");
+        Book book6 = new Book(987, "1984", "George Orwell", 5,"unreserved");
+        library.allBooks.add(book4);
+        library.allBooks.add(book5);
+        library.allBooks.add(book6);
 
         // Test search with existing title
         ArrayList<Book> result1 = (ArrayList<Book>) library.searchByTitle("Title 1");
@@ -47,14 +65,20 @@ public class LibraryTest {
     
 
     @Test
-    void searchByAuthorTest(){
+    public void searchByAuthorTest(){
         Library library = new Library();
-        Book book1 = new Book(0, "Title 1", "Author 1", 0);
-        Book book2 = new Book(0, "Title 2", "Author 2", 0);
-        Book book3 = new Book(0, "Title 3", "Author 1", 0);
+        Book book1 = new Book(0, "Title 1", "Author 1", 0, null);
+        Book book2 = new Book(0, "Title 2", "Author 2", 0, null);
+        Book book3 = new Book(0, "Title 3", "Author 1", 0, null);
         library.allBooks.add(book1);
         library.allBooks.add(book2);
         library.allBooks.add(book3);
+        Book book4 = new Book(0, "Title 4", "Author 4", 0, "reserved");
+        Book book5 = new Book(0, "Title 5", "Author 5", 0,"unreserved");
+        Book book6 = new Book(0, "Title 6", "Author 6", 0,"unreserved");
+        library.allBooks.add(book4);
+        library.allBooks.add(book5);
+        library.allBooks.add(book6);
 
         // Test search with existing author
         ArrayList<Book> result1 = (ArrayList<Book>) library.searchByAuthor("Author 1");
@@ -70,16 +94,17 @@ public class LibraryTest {
     
 
     @Test
-    void checkOutTest(){
-        Book book1 = new Book(2537, "Feminists", "bell hooks", 10);
-        Book book2 = new Book(2587, "The Da Vinci Code", "Dan Brown", 5);
-        Book book3 = new Book(7659, "Divergent", "Veronica Roth", 2);
-        Book book4 = new Book(8302, "The Maze Runner", "James Dashner", 0);
+    public void checkOutTest(){
+        Book book1 = new Book(2537, "Feminists", "bell hooks", 10, null);
+        Book book2 = new Book(2587, "The Da Vinci Code", "Dan Brown", 5, null);
+        Book book3 = new Book(7659, "Divergent", "Veronica Roth", 2, null);
+        Book book4 = new Book(8302, "The Maze Runner", "James Dashner", 0, null);
 
         // make a librarian object
         // create user objects
         User user1 = new User(237, "Vanessa", "vmpofu", "vmpofu_21");
         User user3 = new User(268, "Vanessa", "vmpofu", "vmpofu_21");
+
 
         Library library = new Library();
         library.allBooks.add(book1);
@@ -89,6 +114,7 @@ public class LibraryTest {
 
         library.checkOutBook(user1, book2);
         library.checkOutBook(user3, book3);
+
 
         // make user object
         //make a Library object
@@ -101,13 +127,60 @@ public class LibraryTest {
     
 
     @Test
-    void returnTest(){
+    public void getCheckedOutListTest(){
+        Book book1 = new Book(2537, "Feminists", "bell hooks", 10, null);
+        Book book2 = new Book(2587, "The Da Vinci Code", "Dan Brown", 5, null);
+        Book book3 = new Book(7659, "Divergent", "Veronica Roth", 2, null);
+        Book book4 = new Book(8302, "The Maze Runner", "James Dashner", 0, null);
+
+        User user1 = new User(237, "Vanessa", "vmpofu", "vmpofu_21");
+        User user3 = new User(268, "Vanessa", "vmpofu", "vmpofu_21");
+        User user2 = new User(123, "Vee", "vmpofu", "vmpofu_21");
+        User user34 = new User(456, "Vane", "vmpofu", "vmpofu_21");
+        User user5= new User(2638, "Vanessah", "vmpofu", "vmpofu_21");
+
+        Library library = new Library();
+        library.allBooks.add(book1);
+        library.allBooks.add(book2);
+        library.allBooks.add(book3);
+        library.allBooks.add(book4);
+
+        library.checkOutBook(user1, book2);
+        library.checkOutBook(user3, book3);
+        library.checkOutBook(user1, book3);
+        library.checkOutBook(user34, book1);
+        library.checkOutBook(user5, book2);
+        library.checkOutBook(user2, book1);
+
+        assertEquals(6, library.checkedOutBooks.size());
+
+    }
+
+    @Test
+    public void reserveBookTest() {
+        Book book1 = new Book(2537, "Feminists", "bell hooks", 10, "reserved");
+        Book book2 = new Book(2587, "The Da Vinci Code", "Dan Brown", 5, "reserved");
+        Book book3 = new Book(7659, "Divergent", "Veronica Roth", 2, "unreserved");
+
+        User user1 = new User(237, "Vanessa", "vmpofu", "vmpofu_21");
+        User user5 = new User(2638, "Vanessah", "vmpofu", "vmpofu_21");
+
+        Library library = new Library();
+        library.allBooks.add(book1);
+        library.allBooks.add(book2);
+        library.allBooks.add(book3);
+
+        assertEquals(user5, library.reserveBook(user5, book3));
+        assertThrows(IllegalArgumentException.class, () -> library.reserveBook(user1, book2));
+    }
+    @Test
+    public void returnTest(){
         User user1 = new User(237, "Vanessa", "vmpofu", "vmpofu_21");
 
 
         Library library = new Library();
-        Book book1 = new Book(7659, "Divergent", "Veronica Roth", 2);
-        Book book2 = new Book(8302, "The Maze Runner", "James Dashner", 0);
+        Book book1 = new Book(7659, "Divergent", "Veronica Roth", 2,"unreserved");
+        Book book2 = new Book(8302, "The Maze Runner", "James Dashner", 0, "reserved");
         library.allBooks.add(book1);
         library.allBooks.add(book2);
 
@@ -115,7 +188,66 @@ public class LibraryTest {
         book1.checkOutBook(false);
         assertFalse(library.returnBook(user1, book1));
 
+    }
+
+    @Test
+    public void passTimeTest(){
+        Library barr = new Library();   //Make library
+        Book book1 = new Book(1, "Book1", "Author1", 2, "unreserved");  //Make book
+        Book book2 = new Book(2, "Book2", "Author1", 1, "unreserved");  //Make book
+        Book book3 = new Book(3, "Book3", "Author2", 3, "unreserved");  //Make book
+
+        barr.allBooks.add(book1);   //Add book
+        barr.allBooks.add(book2);   //Add book
+        barr.allBooks.add(book3);   //Add book
+
+        User user1 = new User(1,"John", "jbarr", "barrj");
+        User user2 = new User(2,"Barr", "barro", "obarr");
+
+        barr.checkOutBook(user1, book1);
+
+        assertEquals(7, book1.time);
+
+        barr.passTime();
+        assertEquals(6, book1.time);
+
+        barr.passTime();
+        assertEquals(5, book1.time);
+
+        barr.checkOutBook(user2, book2);
+        barr.checkOutBook(user2, book3);
+        assertEquals(7, book2.time);
+        assertEquals(7, book3.time);
 
 
+        barr.passTime();
+        assertEquals(4, book1.time);
+        assertEquals(6, book2.time);
+        assertEquals(6, book3.time);
+
+        barr.passTime();
+        assertEquals(3, book1.time);
+        assertEquals(5, book2.time);
+        assertEquals(5, book3.time);
+
+        barr.passTime();
+        assertEquals(2, book1.time);
+        assertEquals(4, book2.time);
+        assertEquals(4, book3.time);
+
+        barr.passTime();
+        assertEquals(1, book1.time);
+        assertEquals(3, book2.time);
+        assertEquals(3, book3.time);
+
+        barr.passTime();
+        assertEquals(0, book1.time);
+        assertEquals(2, book2.time);
+        assertEquals(2, book3.time);
+
+        barr.passTime();
+        assertEquals(-1, book1.time);
+        assertEquals(1, book2.time);
+        assertEquals(1, book3.time);
     }
 }
