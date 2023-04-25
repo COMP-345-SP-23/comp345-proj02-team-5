@@ -170,5 +170,12 @@ public class Library {
         }
     }
 
+    /**
+     * A day passes so the time for all books currently checked out decreases by 1
+     */
+    public void passTime(){
+
+    }
+
 
 }

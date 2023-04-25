@@ -14,7 +14,7 @@ import java.util.List;
 public class LibraryTest {
     
     @Test
-    void createAccountTest(){
+    public void createAccountTest(){
         //create users and passwords, assert they are in the system and have correct values
         Library barr = new Library();
 
@@ -31,12 +31,12 @@ public class LibraryTest {
     }
 
     @Test
-    void closeAccountTest(){
+    public void closeAccountTest(){
         //close out accounts using usernames and passwords and assure they are removed.
     }
 
     @Test
-    void searchByTitleTest(){
+    public void searchByTitleTest(){
         Library library = new Library();
         Book book1 = new Book(0, "Title 1", "Author 1", 0, null);
         Book book2 = new Book(0, "Title 2", "Author 2", 0, null);
@@ -65,7 +65,7 @@ public class LibraryTest {
     
 
     @Test
-    void searchByAuthorTest(){
+    public void searchByAuthorTest(){
         Library library = new Library();
         Book book1 = new Book(0, "Title 1", "Author 1", 0, null);
         Book book2 = new Book(0, "Title 2", "Author 2", 0, null);
@@ -94,7 +94,7 @@ public class LibraryTest {
     
 
     @Test
-    void checkOutTest(){
+    public void checkOutTest(){
         Book book1 = new Book(2537, "Feminists", "bell hooks", 10, null);
         Book book2 = new Book(2587, "The Da Vinci Code", "Dan Brown", 5, null);
         Book book3 = new Book(7659, "Divergent", "Veronica Roth", 2, null);
@@ -127,7 +127,7 @@ public class LibraryTest {
     
 
     @Test
-    void getCheckedOutListTest(){
+    public void getCheckedOutListTest(){
         Book book1 = new Book(2537, "Feminists", "bell hooks", 10, null);
         Book book2 = new Book(2587, "The Da Vinci Code", "Dan Brown", 5, null);
         Book book3 = new Book(7659, "Divergent", "Veronica Roth", 2, null);
@@ -157,7 +157,7 @@ public class LibraryTest {
     }
 
     @Test
-    void reserveBookTest() {
+    public void reserveBookTest() {
         Book book1 = new Book(2537, "Feminists", "bell hooks", 10, "reserved");
         Book book2 = new Book(2587, "The Da Vinci Code", "Dan Brown", 5, "reserved");
         Book book3 = new Book(7659, "Divergent", "Veronica Roth", 2, "unreserved");
@@ -188,7 +188,66 @@ public class LibraryTest {
         book1.checkOutBook(false);
         assertFalse(library.returnBook(user1, book1));
 
+    }
+
+    @Test
+    public void passTimeTest(){
+        Library barr = new Library();   //Make library
+        Book book1 = new Book(1, "Book1", "Author1", 2, "unreserved");  //Make book
+        Book book2 = new Book(2, "Book2", "Author1", 1, "unreserved");  //Make book
+        Book book3 = new Book(3, "Book3", "Author2", 3, "unreserved");  //Make book
+
+        barr.allBooks.add(book1);   //Add book
+        barr.allBooks.add(book2);   //Add book
+        barr.allBooks.add(book3);   //Add book
+
+        User user1 = new User(1,"John", "jbarr", "barrj");
+        User user2 = new User(2,"Barr", "barro", "obarr");
+
+        barr.checkOutBook(user1, book1);
+
+        assertEquals(7, book1.time);
+
+        barr.passTime();
+        assertEquals(6, book1.time);
+
+        barr.passTime();
+        assertEquals(5, book1.time);
+
+        barr.checkOutBook(user2, book2);
+        barr.checkOutBook(user2, book3);
+        assertEquals(7, book2.time);
+        assertEquals(7, book3.time);
 
 
+        barr.passTime();
+        assertEquals(4, book1.time);
+        assertEquals(6, book2.time);
+        assertEquals(6, book3.time);
+
+        barr.passTime();
+        assertEquals(3, book1.time);
+        assertEquals(5, book2.time);
+        assertEquals(5, book3.time);
+
+        barr.passTime();
+        assertEquals(2, book1.time);
+        assertEquals(4, book2.time);
+        assertEquals(4, book3.time);
+
+        barr.passTime();
+        assertEquals(1, book1.time);
+        assertEquals(3, book2.time);
+        assertEquals(3, book3.time);
+
+        barr.passTime();
+        assertEquals(0, book1.time);
+        assertEquals(2, book2.time);
+        assertEquals(2, book3.time);
+
+        barr.passTime();
+        assertEquals(-1, book1.time);
+        assertEquals(1, book2.time);
+        assertEquals(1, book3.time);
     }
 }
