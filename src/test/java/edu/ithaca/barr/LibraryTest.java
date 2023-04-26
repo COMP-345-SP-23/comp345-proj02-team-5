@@ -6,10 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 public class LibraryTest {
     
@@ -28,11 +27,6 @@ public class LibraryTest {
 
         assertTrue(barr.createAccount("Barr", "pass", "word"));   //Another account can be created
 
-    }
-
-    @Test
-    public void closeAccountTest(){
-        //close out accounts using usernames and passwords and assure they are removed.
     }
 
     @Test
@@ -61,8 +55,6 @@ public class LibraryTest {
         ArrayList<Book> result2 = (ArrayList<Book>) library.searchByTitle("Title 4");
         assertEquals(0, result2.size());
     }
-        
-    
 
     @Test
     public void searchByAuthorTest(){
@@ -90,8 +82,6 @@ public class LibraryTest {
         ArrayList<Book> result2 = (ArrayList<Book>) library.searchByAuthor("Author 3");
         assertEquals(0, result2.size());
     }
-        
-    
 
     @Test
     public void checkOutTest(){
@@ -128,10 +118,10 @@ public class LibraryTest {
 
     @Test
     public void getCheckedOutListTest(){
-        Book book1 = new Book(2537, "Feminists", "bell hooks", 10, null);
-        Book book2 = new Book(2587, "The Da Vinci Code", "Dan Brown", 5, null);
-        Book book3 = new Book(7659, "Divergent", "Veronica Roth", 2, null);
-        Book book4 = new Book(8302, "The Maze Runner", "James Dashner", 0, null);
+        Book book1 = new Book(2537, "Feminists", "bell hooks", 10, "unreserved");
+        Book book2 = new Book(2587, "The Da Vinci Code", "Dan Brown", 5, "unreserved");
+        Book book3 = new Book(7659, "Divergent", "Veronica Roth", 2, "unreserved");
+        Book book4 = new Book(8302, "The Maze Runner", "James Dashner", 0, "unreserved");
 
         User user1 = new User(237, "Vanessa", "vmpofu", "vmpofu_21");
         User user3 = new User(268, "Vanessa", "vmpofu", "vmpofu_21");
@@ -173,6 +163,7 @@ public class LibraryTest {
         assertEquals(user5, library.reserveBook(user5, book3));
         assertThrows(IllegalArgumentException.class, () -> library.reserveBook(user1, book2));
     }
+
     @Test
     public void returnTest(){
         User user1 = new User(237, "Vanessa", "vmpofu", "vmpofu_21");
@@ -190,64 +181,4 @@ public class LibraryTest {
 
     }
 
-    @Test
-    public void passTimeTest(){
-        Library barr = new Library();   //Make library
-        Book book1 = new Book(1, "Book1", "Author1", 2, "unreserved");  //Make book
-        Book book2 = new Book(2, "Book2", "Author1", 1, "unreserved");  //Make book
-        Book book3 = new Book(3, "Book3", "Author2", 3, "unreserved");  //Make book
-
-        barr.allBooks.add(book1);   //Add book
-        barr.allBooks.add(book2);   //Add book
-        barr.allBooks.add(book3);   //Add book
-
-        User user1 = new User(1,"John", "jbarr", "barrj");  //Create user
-        User user2 = new User(2,"Barr", "barro", "obarr");  //Create user
-
-        barr.checkOutBook(user1, book1);    //User checks out a book
-
-        assertEquals(7, book1.time);    //Test that a newly checked out book has 7 days left
-
-        barr.passTime();    //A day passes
-        assertEquals(6, book1.time);    //Test that after a day, the book has 6 days left
-
-        barr.passTime();    //A day passes
-        assertEquals(5, book1.time);    //Test that after another day, the book has 5 days left
-
-        barr.checkOutBook(user2, book2);    //A different user checks out a book
-        barr.checkOutBook(user2, book3);    //A user who has checked out a book before checks out another
-        assertEquals(7, book2.time);    //Newly checked out book has 7 days left
-        assertEquals(7, book3.time);    //Newly checked out book has 7 days left
-
-
-        barr.passTime();    //A day passes
-        assertEquals(4, book1.time);    //Tests that after a day a book checked out a bit ago is at its correct time for days left
-        assertEquals(6, book2.time);    //Tests that after a day, newly checked out book has 6 days left
-        assertEquals(6, book3.time);    //Tests that after a day, newly checked out book has 6 days left
-
-        barr.passTime();    //A day passes
-        assertEquals(3, book1.time);    //Test time decreases after a day
-        assertEquals(5, book2.time);    //Test time decreases after a day
-        assertEquals(5, book3.time);    //Test time decreases after a day
-
-        barr.passTime();    //A day passes
-        assertEquals(2, book1.time);    //Test time decreases after a day
-        assertEquals(4, book2.time);    //Test time decreases after a day
-        assertEquals(4, book3.time);    //Test time decreases after a day
-
-        barr.passTime();    //A day passes
-        assertEquals(1, book1.time);    //Test time decreases after a day
-        assertEquals(3, book2.time);    //Test time decreases after a day
-        assertEquals(3, book3.time);    //Test time decreases after a day
-
-        barr.passTime();    //A day passes
-        assertEquals(0, book1.time);    //Test time decreases after a day
-        assertEquals(2, book2.time);    //Test time decreases after a day
-        assertEquals(2, book3.time);    //Test time decreases after a day
-
-        barr.passTime();    //A day passes
-        assertEquals(-1, book1.time);   //Test that when a book is overdue, time is the negative amount of days overdue
-        assertEquals(1, book2.time);    //Test time decreases after a day
-        assertEquals(1, book3.time);    //Test time decreases after a day
-    }
 }

@@ -8,8 +8,8 @@ import java.util.List;
 
 public class Library {
     
-    ArrayList<Book> allBooks = new ArrayList<>();
-    HashMap<Integer, Book> checkedOutBooks;
+    public ArrayList<Book> allBooks = new ArrayList<>();
+    public static HashMap<Integer, Book> checkedOutBooks;
     public static List<User> userList = new ArrayList<>();
     public static List<String> usernameList = new ArrayList<>();
     public static List<String> passwordList = new ArrayList<>();
@@ -135,30 +135,27 @@ public class Library {
      * @param user user checking out
      * @param book book being checked out
      */
-    public void checkOutBook(User user, Book book){
+    public void checkOutBook(User user, Book book) {
         // method to be implemented
-        if(searchBook(book) && reserveBook(user, book) == user){
+        if (searchBook(book) && reserveBook(user, book) == user) {
 
-        if(searchBook(book)){
-            System.out.println("book checked out");
-            book.setNumCopies(book);
-            int userID = user.getID();
-            checkedOutBooks.put(userID, book);
+            if (searchBook(book)) {
+                System.out.println("book checked out");
+                book.setNumCopies(book);
+                int userID = user.getID();
+                checkedOutBooks.put(userID, book);
+            } else {
+                throw new IllegalArgumentException("book is not available for check out");
+            }
         }
-
-        else{
-            throw new IllegalArgumentException("book is not available for check out");
-        }
-    
-       
     }
-   
 
-//    public List<Book> getCheckedOutList(){
-//        return null;
-//    }
-
-}
+    /**
+     * returns the book checked out by the user
+     * @param user the user returning the book
+     * @param book the book being returned
+     * @return true if successful, false if not successful
+     */
     public boolean returnBook(User user, Book book) {
         int userId = user.getID();
         if (checkedOutBooks.containsKey(userId) && checkedOutBooks.get(userId) == book) {
@@ -169,18 +166,4 @@ public class Library {
             return false;
         }
     }
-
-    /**
-     * A day passes so the time for all books currently checked out decreases by 1
-     */
-    public void passTime(){
-
-    }
-
-
-
-    public static void addUser(String user, String pass) {
-    }
-
-
 }

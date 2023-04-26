@@ -7,7 +7,6 @@ public class Book {
     private String author;
     public int numCopies;
     public String status;
-    public int time;
 
     public Book(int id, String title, String author, int numCopies, String status){
         this.id=id;
@@ -15,7 +14,6 @@ public class Book {
         this.author=author;
         this.status = status;
         this.numCopies=numCopies;
-        int time = 7;
     }
 
     public int getNumCopies(){
