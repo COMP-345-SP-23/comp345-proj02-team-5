@@ -84,20 +84,11 @@ public class Library {
         return false;
     }
 
-    public static boolean confirmCredentials(User user, String password, String username){
+    public static boolean confirmCredentials(String password, String username){
         // for loop to itereate through userlist
         for(int i =0; i<userList.size();){
-            if(userList.get(i) == user){
-                if(user.getPassword().equals(password) && user.getUserName().equals(username)){
-                    return true;
-                }
-                else{
-                    return false;
-                }
-            }
-            else{
-                throw new IllegalArgumentException("user is not in our systems");
-    
+            if ((userList.get(i).getName().equals(username)) && (userList.get(i).getPassword().equals(password))){
+                return true;
             }
         }
         return false;
@@ -177,7 +168,7 @@ public class Library {
         // method to be implemented
             if (reserveBook(user, book) == user) {
                 if(reservedBooks.get(user)== book){
-                    System.out.println("book checked out");
+                    System.out.println("Book checked out.");
                     book.setNumCopies(book);
                     int userID = user.getID();
                     checkedOutBooks.put(userID, book);
