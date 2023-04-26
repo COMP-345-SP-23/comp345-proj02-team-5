@@ -249,7 +249,7 @@ public class UI{
                                             flagAdd=false;
                                         }
                                         else{
-                                            flagAdd=false;s
+                                            flagAdd=false;
                                         }
                                 //}
                             }
