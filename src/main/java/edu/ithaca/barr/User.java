@@ -103,9 +103,7 @@ public class User {
 
     }
     
-    public String changUsername(User user, String newUsername, String oldUsername){
-        if(user.getUserName() == oldUsername){
-
+    
     public String changeUsername(User user, String newUsername, String oldUsername){
         if(user.getUserName().equals(oldUsername)){
             setUsername(newUsername);
