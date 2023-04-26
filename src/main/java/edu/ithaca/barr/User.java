@@ -82,6 +82,7 @@ public class User {
         this.username = newUsername;
     }
 
+    
 
     public String changePassword(User user, String newPassword, String oldPassword){
         if(user.getPassword().equals(oldPassword)){
