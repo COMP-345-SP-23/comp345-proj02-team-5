@@ -84,7 +84,25 @@ public class Library {
         return false;
     }
 
+    public static boolean confirmCredentials(User user, String password, String username){
+        // for loop to itereate through userlist
+        for(int i =0; i<userList.size();){
+            if(userList.get(i) == user){
+                if(user.getPassword().equals(password) && user.getUserName().equals(username)){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+            else{
+                throw new IllegalArgumentException("user is not in our systems");
     
+            }
+        }
+        return false;
+        
+    }
 
     public List<Book> searchByTitle(String title) {
         List<Book> titleResults = new ArrayList<>();

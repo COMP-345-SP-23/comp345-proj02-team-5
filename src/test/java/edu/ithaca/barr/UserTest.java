@@ -27,20 +27,7 @@ public class UserTest {
     }
 
 
-    @Test
-    void confirmCredentialsTest(){
-        User user1 = new User(237, "Vanessa", "vmpofu", "vmpofU_21");
-        User user3 = new User(268, "Vicky ", "Conrad", "Vconrad/25");
-        User user2 = new User(123, "Cody", "Carnes", "Ccordy74");
-        Library library1 = new Library();
-        Library.userList.add(user1);
-        Library.userList.add(user2);
-        Library.userList.add(user3);
-
-        assertFalse(library.confirmCredentials(user1, "vmpofu", "vmpofU_21"));
-
-    }
-
+   
     @Test
     public void getUserListTest(){
         Librarian barrj = new Librarian(1);

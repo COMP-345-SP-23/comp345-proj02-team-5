@@ -254,4 +254,19 @@ public class LibraryTest {
         assertEquals(1, book2.time);
         assertEquals(1, book3.time);
     }
+
+    @Test
+    void confirmCredentialsTest(){
+        User user1 = new User(237, "Vanessa", "vmpofu", "vmpofU_21");
+        User user3 = new User(268, "Vicky ", "Conrad", "Vconrad/25");
+        User user2 = new User(123, "Cody", "Carnes", "Ccordy74");
+        //Library library1 = new Library();
+        Library.userList.add(user1);
+        Library.userList.add(user2);
+        Library.userList.add(user3);
+
+        assertTrue(Library.confirmCredentials(user1, "vmpofU_21", "vmpofu"));
+
+    }
+
 }
