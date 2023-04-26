@@ -50,9 +50,9 @@ public class UserTest {
         User user1 = new User(1, "John", "abc", "123");
         User user2 = new User(2, "Barr", "def", "456"); //Tests when there are two users
 
-        Book book1 = new Book(1, "Title 1", "Author 1", 1,"unreserved");
-        Book book2 = new Book(2, "Title 2", "Author 2", 2,"unreserved");
-        Book book3 = new Book(3, "Title 3", "Author 1", 3,"unreserved");
+        Book book1 = new Book(1, "Title 1", "Author 1", 1);
+        Book book2 = new Book(2, "Title 2", "Author 2", 2);
+        Book book3 = new Book(3, "Title 3", "Author 1", 3);
         List<Book> checkedOut = new ArrayList<>();
 
         barr.allBooks.add(book1);
@@ -80,9 +80,9 @@ public class UserTest {
         User user1 = new User(1, "John", "abc", "123");
         User user2 = new User(2, "Barr", "def", "456"); //Tests when there are two users
 
-        Book book1 = new Book(1, "Title 1", "Author 1", 1,"unreserved");
-        Book book2 = new Book(2, "Title 2", "Author 2", 0,"reserved");
-        Book book3 = new Book(3, "Title 3", "Author 1", 0,"reserved");
+        Book book1 = new Book(1, "Title 1", "Author 1", 1);
+        Book book2 = new Book(2, "Title 2", "Author 2", 0);
+        Book book3 = new Book(3, "Title 3", "Author 1", 0);
         List<Book> reserved = new ArrayList<>();
 
         barr.allBooks.add(book1);

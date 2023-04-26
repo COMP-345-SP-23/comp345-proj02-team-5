@@ -8,9 +8,9 @@ public class TimeTest {
     @Test
     public void passTimeTest(){
         Library barr = new Library();   //Make library
-        Book book1 = new Book(1, "Book1", "Author1", 2, "unreserved");  //Make book
-        Book book2 = new Book(2, "Book2", "Author1", 1, "unreserved");  //Make book
-        Book book3 = new Book(3, "Book3", "Author2", 3, "unreserved");  //Make book
+        Book book1 = new Book(1, "Book1", "Author1", 2);  //Make book
+        Book book2 = new Book(2, "Book2", "Author1", 1);  //Make book
+        Book book3 = new Book(3, "Book3", "Author2", 3);  //Make book
 
         barr.allBooks.add(book1);   //Add book
         barr.allBooks.add(book2);   //Add book
