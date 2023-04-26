@@ -201,53 +201,53 @@ public class LibraryTest {
         barr.allBooks.add(book2);   //Add book
         barr.allBooks.add(book3);   //Add book
 
-        User user1 = new User(1,"John", "jbarr", "barrj");
-        User user2 = new User(2,"Barr", "barro", "obarr");
+        User user1 = new User(1,"John", "jbarr", "barrj");  //Create user
+        User user2 = new User(2,"Barr", "barro", "obarr");  //Create user
 
-        barr.checkOutBook(user1, book1);
+        barr.checkOutBook(user1, book1);    //User checks out a book
 
-        assertEquals(7, book1.time);
+        assertEquals(7, book1.time);    //Test that a newly checked out book has 7 days left
 
-        barr.passTime();
-        assertEquals(6, book1.time);
+        barr.passTime();    //A day passes
+        assertEquals(6, book1.time);    //Test that after a day, the book has 6 days left
 
-        barr.passTime();
-        assertEquals(5, book1.time);
+        barr.passTime();    //A day passes
+        assertEquals(5, book1.time);    //Test that after another day, the book has 5 days left
 
-        barr.checkOutBook(user2, book2);
-        barr.checkOutBook(user2, book3);
-        assertEquals(7, book2.time);
-        assertEquals(7, book3.time);
+        barr.checkOutBook(user2, book2);    //A different user checks out a book
+        barr.checkOutBook(user2, book3);    //A user who has checked out a book before checks out another
+        assertEquals(7, book2.time);    //Newly checked out book has 7 days left
+        assertEquals(7, book3.time);    //Newly checked out book has 7 days left
 
 
-        barr.passTime();
-        assertEquals(4, book1.time);
-        assertEquals(6, book2.time);
-        assertEquals(6, book3.time);
+        barr.passTime();    //A day passes
+        assertEquals(4, book1.time);    //Tests that after a day a book checked out a bit ago is at its correct time for days left
+        assertEquals(6, book2.time);    //Tests that after a day, newly checked out book has 6 days left
+        assertEquals(6, book3.time);    //Tests that after a day, newly checked out book has 6 days left
 
-        barr.passTime();
-        assertEquals(3, book1.time);
-        assertEquals(5, book2.time);
-        assertEquals(5, book3.time);
+        barr.passTime();    //A day passes
+        assertEquals(3, book1.time);    //Test time decreases after a day
+        assertEquals(5, book2.time);    //Test time decreases after a day
+        assertEquals(5, book3.time);    //Test time decreases after a day
 
-        barr.passTime();
-        assertEquals(2, book1.time);
-        assertEquals(4, book2.time);
-        assertEquals(4, book3.time);
+        barr.passTime();    //A day passes
+        assertEquals(2, book1.time);    //Test time decreases after a day
+        assertEquals(4, book2.time);    //Test time decreases after a day
+        assertEquals(4, book3.time);    //Test time decreases after a day
 
-        barr.passTime();
-        assertEquals(1, book1.time);
-        assertEquals(3, book2.time);
-        assertEquals(3, book3.time);
+        barr.passTime();    //A day passes
+        assertEquals(1, book1.time);    //Test time decreases after a day
+        assertEquals(3, book2.time);    //Test time decreases after a day
+        assertEquals(3, book3.time);    //Test time decreases after a day
 
-        barr.passTime();
-        assertEquals(0, book1.time);
-        assertEquals(2, book2.time);
-        assertEquals(2, book3.time);
+        barr.passTime();    //A day passes
+        assertEquals(0, book1.time);    //Test time decreases after a day
+        assertEquals(2, book2.time);    //Test time decreases after a day
+        assertEquals(2, book3.time);    //Test time decreases after a day
 
-        barr.passTime();
-        assertEquals(-1, book1.time);
-        assertEquals(1, book2.time);
-        assertEquals(1, book3.time);
+        barr.passTime();    //A day passes
+        assertEquals(-1, book1.time);   //Test that when a book is overdue, time is the negative amount of days overdue
+        assertEquals(1, book2.time);    //Test time decreases after a day
+        assertEquals(1, book3.time);    //Test time decreases after a day
     }
 }
