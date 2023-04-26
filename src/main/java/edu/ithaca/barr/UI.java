@@ -21,7 +21,7 @@ public class UI{
                     String user = reader.readLine();
                     System.out.println("Please enter your password\n");
                     String pass = reader.readLine();
-                    boolean confirmed = Library.confirmCredentials(user,pass);
+                    boolean confirmed = Library.confirmCredentials(null, user,pass);
                     if (confirmed){
                         User user1;
                         for (int i=0;i<Library.userList.size();i++){
@@ -183,7 +183,7 @@ public class UI{
                     String user = reader.readLine();
                     System.out.println("Please enter your admin password\n");
                     String pass = reader.readLine();
-                    boolean confirmed = Library.confirmCredentials(user,pass);
+                    boolean confirmed = Library.confirmCredentials(null, user,pass);
                     if (confirmed){
                         //admin menu
                         System.out.println("Enter the corresponding number for which action you would like to take");
