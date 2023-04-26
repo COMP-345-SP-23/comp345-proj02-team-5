@@ -41,21 +41,14 @@ public class LibraryTest {
         Book book1 = new Book(0, "Title 1", "Author 1", 0);
         Book book2 = new Book(0, "Title 2", "Author 2", 0);
         Book book3 = new Book(0, "Title 1", "Author 3", 0);
-        library.books.add(book1);
-        library.books.add(book2);
-        library.books.add(book3);
-        Book book1 = new Book(54, "Hunger Games", "Suzanne Collins", 3);
-        Book book2 = new Book(123, "To Kill a Mockingbird", "Harper Lee", 5);
-        Book book3 = new Book(987, "1984", "George Orwell", 5);
-        Book book1 = new Book(0, "Title 1", "Author 1", 0, null);
-        Book book2 = new Book(0, "Title 2", "Author 2", 0, null);
-        Book book3 = new Book(0, "Title 1", "Author 3", 0, null);
         library.allBooks.add(book1);
         library.allBooks.add(book2);
         library.allBooks.add(book3);
-        Book book4 = new Book(54, "Hunger Games", "Suzanne Collins", 3, "unreserved");
-        Book book5 = new Book(123, "To Kill a Mockingbird", "Harper Lee", 5,"unreserved");
-        Book book6 = new Book(987, "1984", "George Orwell", 5,"unreserved");
+        
+       
+        Book book4 = new Book(54, "Hunger Games", "Suzanne Collins", 3);
+        Book book5 = new Book(123, "To Kill a Mockingbird", "Harper Lee", 5);
+        Book book6 = new Book(987, "1984", "George Orwell", 5);
         library.allBooks.add(book4);
         library.allBooks.add(book5);
         library.allBooks.add(book6);
@@ -79,21 +72,13 @@ public class LibraryTest {
         Book book1 = new Book(0, "Title 1", "Author 1", 0);
         Book book2 = new Book(0, "Title 2", "Author 2", 0);
         Book book3 = new Book(0, "Title 3", "Author 1", 0);
-        library.books.add(book1);
-        library.books.add(book2);
-        library.books.add(book3);
-        Book book1 = new Book(0, "Title 1", "Author 1", 0);
-        Book book2 = new Book(0, "Title 2", "Author 2", 0);
-        Book book3 = new Book(0, "Title 3", "Author 1", 0);
-        Book book1 = new Book(0, "Title 1", "Author 1", 0, null);
-        Book book2 = new Book(0, "Title 2", "Author 2", 0, null);
-        Book book3 = new Book(0, "Title 3", "Author 1", 0, null);
         library.allBooks.add(book1);
         library.allBooks.add(book2);
         library.allBooks.add(book3);
-        Book book4 = new Book(0, "Title 4", "Author 4", 0, "reserved");
-        Book book5 = new Book(0, "Title 5", "Author 5", 0,"unreserved");
-        Book book6 = new Book(0, "Title 6", "Author 6", 0,"unreserved");
+    
+        Book book4 = new Book(0, "Title 4", "Author 4", 0);
+        Book book5 = new Book(0, "Title 5", "Author 5", 0);
+        Book book6 = new Book(0, "Title 6", "Author 6", 0);
         library.allBooks.add(book4);
         library.allBooks.add(book5);
         library.allBooks.add(book6);
@@ -117,11 +102,7 @@ public class LibraryTest {
         Book book2 = new Book(2587, "The Da Vinci Code", "Dan Brown", 5);
         Book book3 = new Book(7659, "Divergent", "Veronica Roth", 2);
         Book book4 = new Book(8302, "The Maze Runner", "James Dashner", 0);
-    public void checkOutTest(){
-        Book book1 = new Book(2537, "Feminists", "bell hooks", 10, null);
-        Book book2 = new Book(2587, "The Da Vinci Code", "Dan Brown", 5, null);
-        Book book3 = new Book(7659, "Divergent", "Veronica Roth", 2, null);
-        Book book4 = new Book(8302, "The Maze Runner", "James Dashner", 0, null);
+    
 
         // make a librarian object
         // create user objects
@@ -156,12 +137,7 @@ public class LibraryTest {
         Book book3 = new Book(7659, "Divergent", "Veronica Roth", 2);
         Book book4 = new Book(8302, "The Maze Runner", "James Dashner", 0);
 
-    public void getCheckedOutListTest(){
-        Book book1 = new Book(2537, "Feminists", "bell hooks", 10, null);
-        Book book2 = new Book(2587, "The Da Vinci Code", "Dan Brown", 5, null);
-        Book book3 = new Book(7659, "Divergent", "Veronica Roth", 2, null);
-        Book book4 = new Book(8302, "The Maze Runner", "James Dashner", 0, null);
-
+   
         User user1 = new User(237, "Vanessa", "vmpofu", "vmpofu_21");
         User user3 = new User(268, "Vanessa", "vmpofu", "vmpofu_21");
         User user2 = new User(123, "Vee", "vmpofu", "vmpofu_21");
@@ -187,13 +163,9 @@ public class LibraryTest {
     @Test
     void reserveBookTest(){
         Book book1 = new Book(2537, "Feminists", "bell hooks", 10);
-        Book book2 = new Book(2587, "The Da Vinci Code", "Dan Brown", 5);
+        Book book2 = new Book(2587, "The Da Vinci Code", "Dan Brown", 0);
         Book book3 = new Book(7659, "Divergent", "Veronica Roth", 2);
-    public void reserveBookTest() {
-        Book book1 = new Book(2537, "Feminists", "bell hooks", 10, "reserved");
-        Book book2 = new Book(2587, "The Da Vinci Code", "Dan Brown", 5, "reserved");
-        Book book3 = new Book(7659, "Divergent", "Veronica Roth", 2, "unreserved");
-
+  
         User user1 = new User(237, "Vanessa", "vmpofu", "vmpofu_21");
         User user5 = new User(2638, "Vanessah", "vmpofu", "vmpofu_21");
 
@@ -204,20 +176,15 @@ public class LibraryTest {
 
         assertEquals(user5, library.reserveBook(user5, book3));
         assertEquals(user1, library.reserveBook(user1, book2));
-
-    }
-        
-        void returnTest(){
         assertThrows(IllegalArgumentException.class, () -> library.reserveBook(user1, book2));
+
     }
-    @Test
-    public void returnTest(){
-        User user1 = new User(237, "Vanessa", "vmpofu", "vmpofu_21");
-
-
+    @Test   
+    void returnTest(){
+    
         Library library = new Library();
-        Book book1 = new Book(7659, "Divergent", "Veronica Roth", 2,"unreserved");
-        Book book2 = new Book(8302, "The Maze Runner", "James Dashner", 0, "reserved");
+        Book book1 = new Book(7659, "Divergent", "Veronica Roth", 2);
+        Book book2 = new Book(8302, "The Maze Runner", "James Dashner", 0);
         library.allBooks.add(book1);
         library.allBooks.add(book2);
 
@@ -230,9 +197,9 @@ public class LibraryTest {
     @Test
     public void passTimeTest(){
         Library barr = new Library();   //Make library
-        Book book1 = new Book(1, "Book1", "Author1", 2, "unreserved");  //Make book
-        Book book2 = new Book(2, "Book2", "Author1", 1, "unreserved");  //Make book
-        Book book3 = new Book(3, "Book3", "Author2", 3, "unreserved");  //Make book
+        Book book1 = new Book(1, "Book1", "Author1", 2);  //Make book
+        Book book2 = new Book(2, "Book2", "Author1", 1);  //Make book
+        Book book3 = new Book(3, "Book3", "Author2", 3);  //Make book
 
         barr.allBooks.add(book1);   //Add book
         barr.allBooks.add(book2);   //Add book

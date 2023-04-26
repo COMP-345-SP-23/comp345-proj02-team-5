@@ -78,6 +78,7 @@ public class Library {
         if(!Library.usernameList.contains(username) && !Library.passwordList.contains(password)){
             int id = (int)Math.ceil(Math.random());
             User newUser = new User(id, name, username, password);
+            userList.add(newUser);
             return true;
         }
         return false;
@@ -118,17 +119,12 @@ public class Library {
             }
         }
         return false;
-
-     * method checks the reservation status of a book 
-     * @param book book to be checekd
-     * @return boolean
-     */
-    public boolean checkStatus(Book book){
-        return !book.getStatus().equals("unreserved");
     }
+        
+
+  
 
     /**
-     * if the reservation status of a book is false
      * the book can be reserved
      * 
      * @param book
@@ -146,20 +142,9 @@ public class Library {
 
         else{
             throw new IllegalArgumentException("book is not available for reservation");
-
-
-    /**
-     * method checks to see if the library has a certain book 
-     * @param book book being searched for
-     * @return true if found and a copy is available
-     */
-    public boolean searchBook(Book book){
-        for (Book allBook : allBooks) {
-            if (allBook == book && book.getNumCopies() > 0) {
-                return true;
-            }
         }
     }
+ 
 
     /**
      * method checks out a book
@@ -180,7 +165,6 @@ public class Library {
                     checkedOutBooks.put(userID, book);
                 }
             }
-        if(searchBook(book) && reserveBook(user, book) == user){
 
             else {
                 throw new IllegalArgumentException("book is not available for check out");
@@ -197,12 +181,7 @@ public class Library {
     // public List<Book> getCheckedOutList(){
     // return new ArrayList<>(CheckedOutBooks.values());
     // }
-        else{
-            throw new IllegalArgumentException("book is not available for check out");
-        }
-    
-       
-    }
+      
    
 
 //    public List<Book> getCheckedOutList(){
