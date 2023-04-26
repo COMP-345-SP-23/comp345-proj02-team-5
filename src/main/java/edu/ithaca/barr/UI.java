@@ -29,6 +29,7 @@ public class UI{
                                 user1 = Library.userList.get(i);
                             }
                         }
+                        
                         //customer menu
                         System.out.println("Enter the corresponding number for which action you would like to take");
                         System.out.println("(1) Search Title");
