@@ -1,5 +1,8 @@
 package edu.ithaca.barr;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +12,8 @@ public class Librarian {
     private String title;
     private ArrayList<Book> bookList = new ArrayList<>();
 
-    public Librarian(int id){
+    @JsonCreator
+    public Librarian(@JsonProperty("id") int id){
         this.id = id;
     }
 

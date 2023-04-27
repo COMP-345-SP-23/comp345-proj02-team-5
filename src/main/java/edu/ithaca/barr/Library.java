@@ -1,5 +1,8 @@
 package edu.ithaca.barr;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 
 import java.util.HashMap;
@@ -19,9 +22,12 @@ public class Library {
     // ArrayList<edu.ithaca.barr.Librarian> librarians = new ArrayList<>();
 
     // private String name;
+    private int id;
 
-    public Library() {
+    @JsonCreator
+    public Library(@JsonProperty("id") int id) {
         // this.name = name;
+        this.id = id;
         this.checkedOutBooks = new HashMap<>();
         this.reservedBooks = new HashMap<>();
     }

@@ -1,13 +1,16 @@
 package edu.ithaca.barr;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Time {
 
     private User user;
     private Book book;
     public int days_left;
 
-
-    public Time (User user, Book book){
+    @JsonCreator
+    public Time (@JsonProperty("User") User user,@JsonProperty("Book") Book book){
         this.user = user;
         this.book = book;
         days_left = 7;

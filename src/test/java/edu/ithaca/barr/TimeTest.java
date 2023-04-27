@@ -2,25 +2,24 @@ package edu.ithaca.barr;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TimeTest {
     @Test
-    public void passTimeTest(){
-        Library barr = new Library();   //Make library
-        Book book1 = new Book(1, "Book1", "Author1", 2);  //Make book
-        Book book2 = new Book(2, "Book2", "Author1", 1);  //Make book
-        Book book3 = new Book(3, "Book3", "Author2", 3);  //Make book
+    public void passTimeTest() throws IOException {
+        List<Library> jlibraries = JsonUtil.listFromJsonFile("src/test/java/edu/ithaca/barr/libraries.json", Library.class);
+        List<Book> jbooks = JsonUtil.listFromJsonFile("src/test/java/edu/ithaca/barr/books.json", Book.class);
+        List<User> jusers = JsonUtil.listFromJsonFile("src/test/java/edu/ithaca/barr/users.json", User.class);
 
-        barr.allBooks.add(book1);   //Add book
-        barr.allBooks.add(book2);   //Add book
-        barr.allBooks.add(book3);   //Add book
+        jlibraries.get(0).allBooks.add(jbooks.get(10));   //Add book
+        jlibraries.get(0).allBooks.add(jbooks.get(11));   //Add book
+        jlibraries.get(0).allBooks.add(jbooks.get(12));   //Add book
 
-        User user1 = new User(1,"John", "jbarr", "barrj");  //Create user
-        User user2 = new User(2,"Barr", "barro", "obarr");  //Create user
-
-        barr.checkOutBook(user1, book1);    //User checks out a book
-        Time t1 = new Time(user1, book1);
+        jlibraries.get(0).checkOutBook(jusers.get(0), jbooks.get(10));    //User checks out a book
+        Time t1 = new Time(jusers.get(0), jbooks.get(10));
 
         assertEquals(7, t1.days_left);    //Test that a newly checked out book has 7 days left
 
@@ -30,13 +29,12 @@ public class TimeTest {
         t1.passTime();    //A day passes
         assertEquals(5, t1.days_left);    //Test that after another day, the book has 5 days left
 
-        barr.checkOutBook(user2, book2);   //A different user checks out a book
-        Time t2 = new Time(user2, book2);
-        barr.checkOutBook(user2, book1);    //A user who has checked out a book before checks out another
-        Time t3 = new Time(user2, book1);
+        jlibraries.get(0).checkOutBook(jusers.get(1), jbooks.get(11));   //A different user checks out a book
+        Time t2 = new Time(jusers.get(1), jbooks.get(11));
+        jlibraries.get(0).checkOutBook(jusers.get(1), jbooks.get(12));    //A user who has checked out a book before checks out another
+        Time t3 = new Time(jusers.get(1), jbooks.get(10));
         assertEquals(7, t2.days_left);    //Newly checked out book has 7 days left
         assertEquals(7, t3.days_left);    //Newly checked out book has 7 days left
-
 
         t1.passTime();    //A day passes
         t2.passTime();    //A day passes

@@ -1,5 +1,8 @@
 package edu.ithaca.barr;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,8 +17,9 @@ public class User {
     public List<Book> checkedOutList = new ArrayList<>();
 //    public List<Book> reservedList = new ArrayList<>();
 
-
-    public User(int id, String name, String username, String password){
+    @JsonCreator
+    public User(@JsonProperty("id") int id,@JsonProperty("name") String name,
+                @JsonProperty("username") String username,@JsonProperty("password") String password){
         this.id = id;
         this.name = name;
         this.username = username;
@@ -105,7 +109,7 @@ public class User {
     public String changeUsername(User user, String newUsername, String oldUsername){
         if(user.getUserName().equals(oldUsername)){
             setUsername(newUsername);
-            if(user.getPassword().equals(newUsername)){
+            if(user.getUserName().equals(newUsername)){
                 System.out.println("username changed");
                 return newUsername;
             }
