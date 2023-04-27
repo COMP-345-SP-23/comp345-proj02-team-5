@@ -130,16 +130,9 @@ public class LibrarianTest {
     @Test
     void searchAccountTest() {
         Librarian barr = new Librarian(1);
-//        ArrayList<User> usersList = new ArrayList<>();
 
         User user1 = new User(1, "Barr1", "jbarr", "password");
         User user2 = new User(2, "Barr2", "barr", "psswrd");
-//        assertEquals(usersList, barr.getUserList()); //Tests that accounts are added when created
-
-//        usersList.add(user1);
-//        usersList.add(user2);
-
-//        assertEquals(usersList, barr.getUserList()); //Tests that accounts are added when created
 
         assertEquals(user1, barr.searchAccount(user1));  //Tests that an account that is in the list is found
 

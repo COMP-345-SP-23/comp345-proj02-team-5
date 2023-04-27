@@ -104,18 +104,5 @@ public class UserTest {
         barr.reserveBook(user2, book3);
         reserved.put(user2, book3);
         assertEquals(reserved.get(user2), user2.getReservedBooks());  //Tests that the reserved list is only for the specified user
-//        barr.checkOutBook(user1, book2);
-        //Should reserve be a part of the checkOutBook method?
-//      888  barr.reserveBook(user1, book2);
-//    444    assertEquals(reserved1, user1.getReservedList()); //Test list one book when a book is reserved
-
-//      666  assertThrows(IllegalArgumentException.class, ()->   barr.checkOutBook(user2, book1));
-//        barr.checkOutBook(user2, book1);
-        //        barr.reserve(user2, book1);
-
-//    666    assertEquals(reserved2, user2.getReservedList()); //Test books are reserved only for the specific user
-//        assertThrows(IllegalArgumentException.class, ()->   user2.getCheckedOutList());   //Test list does not change if user tries to check out a book with no copies left
-
-//        assertThrows(IllegalArgumentException.class, ()->   barr.reserved(user2, book1));   //Test list does not change if user tries to check out a book with no copies left
     }
 }

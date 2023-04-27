@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-
 public class Library {
 
     public ArrayList<Book> allBooks = new ArrayList<>();
@@ -34,19 +33,19 @@ public class Library {
      * public ArrayList<Book> getAuthorList(){
      * return authors;
      * }
-     *
+     * 
      * public ArrayList<Book> getAccountsList(){
      * return accounts;
      * }
-     *
+     * 
      * public ArrayList<Book> getLibrariansList(){
      * return librarians;
      * }
-     *
+     * 
      * public boolean closeAccount(){
      * //implement
      * }
-     *
+     * 
      */
 
    /*
@@ -85,19 +84,15 @@ public class Library {
         return false;
     }
 
-    public static boolean confirmCredentials(User user, String password, String username){
+    public static boolean confirmCredentials(String password, String username){
         // for loop to itereate through userlist
         for(int i =0; i<userList.size();){
-            if(userList.get(i) == user){
-                return user.getPassword().equals(password) && user.getUserName().equals(username);
-            }
-            else{
-                throw new IllegalArgumentException("user is not in our systems");
-
+            if ((userList.get(i).getName().equals(username)) && (userList.get(i).getPassword().equals(password))){
+                return true;
             }
         }
         return false;
-
+        
     }
 
     public List<Book> searchByTitle(String title) {
@@ -144,12 +139,11 @@ public class Library {
             // int userID = user.getID();
             reservedBooks.put(user, book);
             return user;
-        }
-        else{
+        } else{
             throw new IllegalArgumentException("book is not available for reservation");
         }
     }
-
+ 
 
     /**
      * method checks out a book
@@ -160,8 +154,8 @@ public class Library {
     public void checkOutBook(User user, Book book) {
         // method to be implemented
             if (reserveBook(user, book) == user) {
-                if(reservedBooks.get(user) == book){
-                    System.out.println("book checked out");
+                if(reservedBooks.get(user)== book){
+                    System.out.println("Book checked out.");
                     book.setNumCopies(book);
                     int userID = user.getID();
                     checkedOutBooks.put(userID, book);

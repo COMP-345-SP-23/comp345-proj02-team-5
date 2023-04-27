@@ -6,14 +6,15 @@ import java.util.List;
 public class UI{
     public static void main(String[] args) throws IOException{
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        boolean loggedIn = false;
-        String currentUser = "";
-
         System.out.println("Welcome to the Online Library\n");
         System.out.println("Type c if you would like to log in as a customer, a if you would like to log in as an admin, or q to quit\n");
-        String ans = reader.readLine();//need to error check
         Library lib = new Library();
+        Library.userList.add(0, new User(0, "jeff", "jeff", "jeff"));
+        lib.allBooks.add(new Book(0, "Graphs", "Ali", 5));
+        Librarian librarian = new Librarian(0);
+        User user1 = null;
         do{
+            String ans = reader.readLine();
             if (ans.equalsIgnoreCase("c")){
                 boolean flag = false;
                 do {
@@ -23,12 +24,14 @@ public class UI{
                     String pass = reader.readLine();
                     boolean confirmed = Library.confirmCredentials(user,pass);
                     if (confirmed){
-                        User user1;
                         for (int i=0;i<Library.userList.size();i++){
                             if ((Library.userList.get(i).getName().equals(user)) && (Library.userList.get(i).getPassword().equals(pass))){
                                 user1 = Library.userList.get(i);
                             }
                         }
+                        boolean flag2=true;
+                        //need to continue error checking
+                        do{
                         //customer menu
                         System.out.println("Enter the corresponding number for which action you would like to take");
                         System.out.println("(1) Search Title");
@@ -38,9 +41,6 @@ public class UI{
                         System.out.println("(5) Checked Out Books List");
                         System.out.println("(6) Sign Out");
                         String ansMenu  = reader.readLine();
-                        boolean flag2=true;
-                        //need to continue error checking
-                        do{
                         flag2=true;
                         if (ansMenu.equals("1")){
                             //search title
@@ -53,8 +53,8 @@ public class UI{
                                 System.out.println("Book not found.");
                             }
                             else{
-                                for (Book book : answer) {
-                                    System.out.println(book);
+                                for (int i=0; i<answer.size();i++){
+                                    System.out.println(answer.get(i));
                                 }
                             }
                             System.out.println("Would you like to search again? Enter y if yes, or any other character if not");
@@ -76,8 +76,8 @@ public class UI{
                                 System.out.println("Author not found.");
                             }
                             else{
-                                for (Book book : answer) {
-                                    System.out.println(book);
+                                for (int i=0; i<answer.size();i++){
+                                    System.out.println(answer.get(i));
                                 }
                             }
                             System.out.println("Would you like to search again? Enter y if yes, or any other character if not");
@@ -126,7 +126,7 @@ public class UI{
                                     if ((lib.allBooks.get(i).getTitle().equals(title)) && (lib.allBooks.get(i).getAuthor().equals(author))){
                                         lib.checkOutBook(user1, lib.allBooks.get(i));
                                         //reserve book?
-                                        System.out.println("Book checked out.");
+                                        //System.out.println("Book checked out.");
                                         found = true;
                                         break;
                                         }
@@ -144,6 +144,10 @@ public class UI{
                             for (int i=0;i<user1.checkedOutList.size();i++){
                                 System.out.println(user1.checkedOutList.get(i));
                             }
+                            if (user1.checkedOutList.size()==0){
+                                System.out.println("No checked out books.");
+                            }
+                            flag2=false;
                         }
                         else if (ansMenu.equals("6")){
                             System.out.println("Thanks for visiting the online library!\n");
@@ -213,7 +217,15 @@ public class UI{
                                     System.out.println("ID has to be an integer");
                                     continue;
                                 }
-                                //if (!Library.contains(bookIDC)){
+                                boolean contains = false;
+                                Book book = null;
+                                for (int i=0;i<lib.allBooks.size();i++){
+                                    if (lib.allBooks.get(i).getID()==bookIDC){
+                                        contains=true;
+                                        book = lib.allBooks.get(i);
+                                    }
+                                }
+                                if (!contains){
                                     System.out.println("Enter the title of the book you would like to add");
                                     String title= reader.readLine();
                                     System.out.println("Enter the author of the book you would like to add");
@@ -221,15 +233,17 @@ public class UI{
                                     System.out.println("Enter the number of copies of the book you would like to add");
                                     String numCopies = reader.readLine();
                                     try {
-                                        numCopiesInt = Integer.parseInt(bookID);
+                                        numCopiesInt = Integer.parseInt(numCopies);
                                     } catch (NumberFormatException e) {
                                         System.out.println("Number of copies has to be an integer");
                                         continue;
                                     }
-                                    //Library.addBook(title,author,bookIDC,numCopiesInt);
+                                    Book book2 = new Book(bookIDC, title, author, numCopiesInt);
+                                    librarian.addBook(book2);
+                                    System.out.println("Book added");
                                     flagAdd=false;
-                                //}
-                                //else{
+                                }
+                                else{
                                     System.out.println("Library already contains book with this ID. If you would like to add copies of this book, type a.");
                                     System.out.println("If you would like to try entering the ID again, type y. Otherwise, type any other character to exit.");
                                     String answer = reader.readLine();
@@ -240,18 +254,19 @@ public class UI{
                                             System.out.println("How many copies would you like to add?");
                                             String numCopies = reader.readLine();
                                             try {
-                                                numCopiesInt = Integer.parseInt(bookID);
+                                                numCopiesInt = Integer.parseInt(numCopies);
                                             } catch (NumberFormatException e) {
                                                 System.out.println("Number of copies has to be an integer");
                                                 continue;
                                             }
-                                            //Library.get(BookIDC).updateCopies(numCopiesInt);
+                                            book.numCopies+=numCopiesInt;
+                                            System.out.println("Copies updated");
                                             flagAdd=false;
                                         }
                                         else{
                                             flagAdd=false;
                                         }
-                                //}
+                                }
                             }
                         }
                         else if (ansMenu.equals("2")){
@@ -260,23 +275,33 @@ public class UI{
                             while (!flagRemove){
                                 System.out.println("Enter the ID of the book you would like to remove");
                                 String bookID = reader.readLine();
+                                int bookIDC;
                                 try {
-                                    int bookIDC = Integer.parseInt(bookID);
+                                    bookIDC = Integer.parseInt(bookID);
                                 } catch (NumberFormatException e) {
                                     System.out.println("ID has to be an integer");
                                     continue;
                                 }
-                                //if (Library.contains(bookIDC)){
-                                    //Library.remove(bookIDC);
+                                boolean contains = false;
+                                Book book=null;
+                                for (int i=0;i<lib.allBooks.size();i++){
+                                    if (lib.allBooks.get(i).getID()==bookIDC){
+                                        book = lib.allBooks.get(i);
+                                        contains=true;
+                                    }
+                                }
+                                if (contains){
+                                    librarian.removeBook(book);
+                                    System.out.println("Book removed.");
                                     flagRemove=false;
-                                //}
-                                //else{
+                                }
+                                else{
                                     System.out.println("Book not found. Type y to try again, or any other character to exit");
                                     String answer = reader.readLine();
                                         if (!answer.equalsIgnoreCase("y")){
                                             flagRemove = false;
                                         }
-                                //}
+                                }
                             }
                         }
                         else if (ansMenu.equals("3")){
@@ -285,17 +310,26 @@ public class UI{
                             while (flagAccountDelete){
                                 System.out.println("Enter the username of the account you would like to close");
                                 String username = reader.readLine();
-                                //if (Library.contains(username)){
-                                    //Library.closeAccount(username);
+                                boolean contains = false;
+                                User user3 = null;
+                                for (int i=0;i<Library.userList.size();i++){
+                                    if (Library.userList.get(i).getUserName()==username){
+                                        user3 = Library.userList.get(i);
+                                        contains=true;
+                                    }
+                                }
+                                if (contains){
+                                    librarian.removeAccount(user3);
+                                    System.out.println("Account closed.");
                                     flagAccountDelete= false;
-                                //}
-                                //else{
+                                }
+                                else{
                                     System.out.println("Username not found, type y to try again or any other character to exit");
                                     String answer = reader.readLine();
                                     if (!answer.equalsIgnoreCase("y")){
                                         flagAccountDelete = false;
                                     }
-                                //}
+                                }
                             }  
                         }
                         else if (ansMenu.equals("4")){
@@ -306,17 +340,24 @@ public class UI{
                                 String username = reader.readLine();
                                 System.out.println("Enter the password of the account you would like to open");
                                 String password = reader.readLine();
-                                //if (!Library.contains(username)){
-                                    //Library.addAccount(username, password);
+                                boolean contains = false;
+                                for (int i=0;i<Library.userList.size();i++){
+                                    if (Library.userList.get(i).getUserName()==username){
+                                        contains=true;
+                                    }
+                                }
+                                if (!contains){
+                                    lib.createAccount("Jeff", username, password);
+                                    System.out.println("Account created.");
                                     flagAccountCreation= false;
-                                //}
-                                //else{
+                                }
+                                else{
                                     System.out.println("Username already taken or invalid, type y to try again or any other character to exit");
                                     String answer = reader.readLine();
                                     if (!answer.equalsIgnoreCase("y")){
                                         flagAccountCreation = false;
                                     }
-                                //}
+                                }
                             }  
                         }
                         else if (ansMenu.equals("5")){
@@ -324,40 +365,58 @@ public class UI{
                             System.out.println("Enter the username of the account you would like to freeze");
                             String username = reader.readLine();
                             boolean flagFreeze=true;
-                            while (flag){
-                            //if (username in Library){
-                                //Library.freeze(username);
-                                flagFreeze=false;
-                            //} 
-                            //else{
-                                System.out.println("Username not found or account is already frozen, would you like to try again? ");
-                                System.out.println("Type y to try again or any other character to exit");
-                                String answer = reader.readLine();
-                                if (!answer.equalsIgnoreCase("y")){
-                                    flag = false;
+                            do{
+                                boolean contains = false;
+                                User user3 = null;
+                                for (int i=0;i<Library.userList.size();i++){
+                                    if (Library.userList.get(i).getUserName().equals(username)){
+                                        user3 = Library.userList.get(i);
+                                        contains=true;
+                                    }
                                 }
-                            //} 
-                            }
+                                if (contains){
+                                    librarian.freezeAccount(user3);
+                                    System.out.println(username+" frozen.");
+                                    flagFreeze=false;
+                                } 
+                                else{
+                                    System.out.println("Username not found or account is already frozen, would you like to try again? ");
+                                    System.out.println("Type y to try again or any other character to exit");
+                                    String answer = reader.readLine();
+                                    if (!answer.equalsIgnoreCase("y")){
+                                        flagFreeze = false;
+                                    }
+                                } 
+                            }  while (flagFreeze);
                         }
                         else if (ansMenu.equals("6")){
                             //unfreeze account
                             System.out.println("Enter the username of the account you would like to unfreeze");
                             String username = reader.readLine();
                             boolean flagUnfreeze=true;
-                            while (flag){
-                            //if (username in Library){
-                                //Library.unfreeze(username);
-                                flagUnfreeze=false;
-                            //} 
-                            //else{
-                                System.out.println("Username not found or account is already unfrozen, would you like to try again?");
-                                System.out.println("Type y to try again or any other character to exit");
-                                String answer = reader.readLine();
-                                if (!answer.equalsIgnoreCase("y")){
-                                    flag = false;
+                            do{
+                                boolean contains = false;
+                                User user3 = null;
+                                for (int i=0;i<Library.userList.size();i++){
+                                    if (Library.userList.get(i).getUserName().equals(username)){
+                                        user3 = Library.userList.get(i);
+                                        contains=true;
+                                    }
                                 }
-                            //} 
-                            }
+                                if (contains){
+                                    librarian.unfreezeAccount(user3);
+                                    System.out.println(username+" unfrozen.");
+                                    flagUnfreeze=false;
+                                } 
+                                else{
+                                    System.out.println("Username not found or account is already unfrozen, would you like to try again? ");
+                                    System.out.println("Type y to try again or any other character to exit");
+                                    String answer = reader.readLine();
+                                    if (!answer.equalsIgnoreCase("y")){
+                                        flagUnfreeze = false;
+                                    }
+                                } 
+                            }  while (flagUnfreeze);
                         }
                         else if (ansMenu.equals("7")){
                             //view checked out books
