@@ -6,12 +6,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class UserTest {
 
     @Test
-    void changePasswordUsernameTest(){
+    public void changePasswordUsernameTest(){
         //create a bunch of user objects
         User user1 = new User(237, "Vanessa", "vmpofu", "vmpofU_21");
         User user3 = new User(268, "Vicky ", "Conrad", "Vconrad/25");
@@ -75,34 +76,45 @@ public class UserTest {
 
     @Test
 
-    public void getReservedListTest(){
+    public void getReservedBooksTest(){
         Library barr = new Library();
         User user1 = new User(1, "John", "abc", "123");
         User user2 = new User(2, "Barr", "def", "456"); //Tests when there are two users
 
-        Book book1 = new Book(1, "Title 1", "Author 1", 1);
-        Book book2 = new Book(2, "Title 2", "Author 2", 0);
-        Book book3 = new Book(3, "Title 3", "Author 1", 0);
-        List<Book> reserved = new ArrayList<>();
+        Book book1 = new Book(1, "Title 1", "Author 1", 0);
+        Book book2 = new Book(2, "Title 2", "Author 2", 2);
+        Book book3 = new Book(3, "Title 3", "Author 1", 1);
+        HashMap<User,Book> reserved = new HashMap<>();
+        HashMap<User,Book> reserved2 = new HashMap<>();
 
         barr.allBooks.add(book1);
         barr.allBooks.add(book2);
         barr.allBooks.add(book3);
 
-        assertEquals(reserved, user1.getCheckedOutList()); //Test list is empty when no books reserved
+        assertNull(user1.getReservedBooks()); //Test list is empty when no books reserved
 
-        barr.checkOutBook(user1, book1);
-        assertEquals(reserved, user1.getReservedList()); //Test list is empty when a book was checked out
+        assertThrows(IllegalArgumentException.class, ()->   barr.reserveBook(user1, book1));    //Tests list is empty when a book cannot be reserved
 
+        barr.reserveBook(user1, book2);
+        reserved.put(user1, book2);
+        assertEquals(reserved.get(user1), user1.getReservedBooks());  //Tests list has one book when one book is successfully reserved
+
+        assertThrows(IllegalArgumentException.class, ()->   barr.reserveBook(user2, book1)); //Tests that a book that is already reserved cannot be reserved by another person
+
+        barr.reserveBook(user2, book3);
+        reserved.put(user2, book3);
+        assertEquals(reserved.get(user2), user2.getReservedBooks());  //Tests that the reserved list is only for the specified user
 //        barr.checkOutBook(user1, book2);
         //Should reserve be a part of the checkOutBook method?
-//        barr.reserve(user1, book2);
-        assertEquals(reserved, user1.getCheckedOutList()); //Test list one book when a book is reserved
+//      888  barr.reserveBook(user1, book2);
+//    444    assertEquals(reserved1, user1.getReservedList()); //Test list one book when a book is reserved
 
-        barr.checkOutBook(user2, book1);
+//      666  assertThrows(IllegalArgumentException.class, ()->   barr.checkOutBook(user2, book1));
+//        barr.checkOutBook(user2, book1);
         //        barr.reserve(user2, book1);
 
-        assertEquals(reserved, user2.getCheckedOutList()); //Test books are reserved only for the specific user
+//    666    assertEquals(reserved2, user2.getReservedList()); //Test books are reserved only for the specific user
+//        assertThrows(IllegalArgumentException.class, ()->   user2.getCheckedOutList());   //Test list does not change if user tries to check out a book with no copies left
 
 //        assertThrows(IllegalArgumentException.class, ()->   barr.reserved(user2, book1));   //Test list does not change if user tries to check out a book with no copies left
     }

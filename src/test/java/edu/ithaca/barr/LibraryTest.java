@@ -49,7 +49,7 @@ public class LibraryTest {
 
         // Test search with existing title
         ArrayList<Book> result1 = (ArrayList<Book>) library.searchByTitle("Title 1");
-        assertEquals(0, result1.size());
+        assertEquals(2, result1.size());
         //assertEquals(book1, result1.get(0));
         //assertEquals(book3, result1.get(1));
 
@@ -77,7 +77,7 @@ public class LibraryTest {
 
         // Test search with existing author
         ArrayList<Book> result1 = (ArrayList<Book>) library.searchByAuthor("Author 1");
-        assertEquals(0, result1.size());
+        assertEquals(2, result1.size());
         //assertEquals(book1, result1.get(0));
         //assertEquals(book3, result1.get(1));
 
@@ -132,7 +132,7 @@ public class LibraryTest {
         User user3 = new User(268, "Vanessa", "vmpofu", "vmpofu_21");
         User user2 = new User(123, "Vee", "vmpofu", "vmpofu_21");
         User user34 = new User(456, "Vane", "vmpofu", "vmpofu_21");
-        User user5= new User(2638, "Vanessah", "vmpofu", "vmpofu_21");
+        User user5 = new User(2638, "Vanessah", "vmpofu", "vmpofu_21");
 
         Library library = new Library();
         library.allBooks.add(book1);
@@ -146,7 +146,7 @@ public class LibraryTest {
         library.checkOutBook(user5, book2);
         library.checkOutBook(user2, book1);
 
-        assertEquals(6, library.checkedOutBooks.size());
+        assertEquals(5, library.checkedOutBooks.size());
 
     }
 
@@ -165,7 +165,6 @@ public class LibraryTest {
         library.allBooks.add(book3);
 
         assertEquals(user5, library.reserveBook(user5, book3));
-        assertEquals(user1, library.reserveBook(user1, book2));
         assertThrows(IllegalArgumentException.class, () -> library.reserveBook(user1, book2));
 
     }

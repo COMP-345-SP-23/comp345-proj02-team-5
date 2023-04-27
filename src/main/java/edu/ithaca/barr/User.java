@@ -1,6 +1,7 @@
 package edu.ithaca.barr;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class User {
@@ -11,7 +12,7 @@ public class User {
     private String password;
     public boolean frozen;
     public List<Book> checkedOutList = new ArrayList<>();
-    public List<Book> reservedList = new ArrayList<>();
+//    public List<Book> reservedList = new ArrayList<>();
 
 
     public User(int id, String name, String username, String password){
@@ -124,7 +125,7 @@ public class User {
      * gets User's list of reserved books
      * @return list of reserved books
      */
-    public List<Book> getReservedList(){
-        return reservedList;
+    public Book getReservedBooks(){
+        return Library.reservedBooks.get(this);
     }
 }

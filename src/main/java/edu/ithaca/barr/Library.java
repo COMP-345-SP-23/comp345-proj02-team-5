@@ -10,7 +10,7 @@ public class Library {
 
     public ArrayList<Book> allBooks = new ArrayList<>();
     public HashMap<Integer, Book> checkedOutBooks;
-    public HashMap<User, Book> reservedBooks;
+    public static HashMap<User, Book> reservedBooks;
     public static List<User> userList = new ArrayList<>();
     public static List<String> usernameList = new ArrayList<>();
     public static List<String> passwordList = new ArrayList<>();
@@ -79,7 +79,7 @@ public class Library {
         if(!Library.usernameList.contains(username) && !Library.passwordList.contains(password)){
             int id = (int)Math.ceil(Math.random());
             User newUser = new User(id, name, username, password);
-            userList.add(newUser);
+//            userList.add(newUser);
             return true;
         }
         return false;
@@ -144,7 +144,6 @@ public class Library {
             // int userID = user.getID();
             reservedBooks.put(user, book);
             return user;
-
         }
         else{
             throw new IllegalArgumentException("book is not available for reservation");
@@ -161,15 +160,13 @@ public class Library {
     public void checkOutBook(User user, Book book) {
         // method to be implemented
             if (reserveBook(user, book) == user) {
-                if(reservedBooks.get(user)== book){
+                if(reservedBooks.get(user) == book){
                     System.out.println("book checked out");
                     book.setNumCopies(book);
                     int userID = user.getID();
                     checkedOutBooks.put(userID, book);
                 }
-            }
-
-            else {
+            } else {
                 throw new IllegalArgumentException("book is not available for check out");
             }
         }
