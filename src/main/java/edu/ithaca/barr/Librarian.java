@@ -5,12 +5,15 @@ import java.util.List;
 
 public class Librarian {
 
-    private int id;
+    
+    public String username;
+    public String password;
     private String title;
     private ArrayList<Book> bookList = new ArrayList<>();
 
-    public Librarian(int id){
-        this.id = id;
+    public Librarian(String user, String pass){
+        this.username=user;
+        this.password=pass;
     }
 
 
@@ -30,6 +33,14 @@ public class Librarian {
         if(!there){
             bookList.add(book);
         }
+    }
+
+    public String getName(){
+        return username;
+    }
+
+    public String getPass(){
+        return password;
     }
 
     /**
