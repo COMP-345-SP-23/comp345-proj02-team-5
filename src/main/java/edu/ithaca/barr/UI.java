@@ -249,8 +249,11 @@ public class UI{
                                 String bookID = reader.readLine();
                                 try {
                                     bookIDC = Integer.parseInt(bookID);
+                                    if (bookIDC<0){
+                                        throw new NumberFormatException();
+                                    }
                                 } catch (NumberFormatException e) {
-                                    System.out.println("ID has to be an integer");
+                                    System.out.println("ID has to be a positive integer");
                                     continue;
                                 }
                                 boolean contains = false;
@@ -270,6 +273,9 @@ public class UI{
                                     String numCopies = reader.readLine();
                                     try {
                                         numCopiesInt = Integer.parseInt(numCopies);
+                                        if (numCopiesInt<0){
+                                            throw new NumberFormatException();
+                                        }
                                     } catch (NumberFormatException e) {
                                         System.out.println("Number of copies has to be an integer");
                                         continue;
@@ -289,6 +295,9 @@ public class UI{
                                             String numCopies = reader.readLine();
                                             try {
                                                 numCopiesInt = Integer.parseInt(numCopies);
+                                                if (numCopiesInt<0){
+                                                    throw new NumberFormatException();
+                                                }
                                             } catch (NumberFormatException e) {
                                                 System.out.println("Number of copies has to be an integer");
                                                 continue;
@@ -319,6 +328,9 @@ public class UI{
                                 int bookIDC;
                                 try {
                                     bookIDC = Integer.parseInt(bookID);
+                                    if (bookIDC<0){
+                                        throw new NumberFormatException();
+                                    }
                                 } catch (NumberFormatException e) {
                                     System.out.println("ID has to be an integer");
                                     continue;
@@ -342,6 +354,9 @@ public class UI{
                                         String dec = reader.readLine();
                                         try {
                                             decnum = Integer.parseInt(dec);
+                                            if (decnum<0){
+                                                throw new NumberFormatException();
+                                            }
                                         } catch (NumberFormatException e) {
                                             System.out.println("Decrement number has to be an integer");
                                             continue;
