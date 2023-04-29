@@ -8,7 +8,7 @@ public class UI{
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Welcome to the Online Library\n");
         System.out.println("Type c if you would like to log in as a customer, a if you would like to log in as an admin, or q to quit\n");
-        Library lib = new Library();
+        Library lib = new Library(1);
         Library.userList.add(0, new User(0, "jeff", "jeff", "jeff"));
         lib.allBooks.add(new Book(0, "Graphs", "Ali", 0));
         lib.allBooks.add(new Book(1, "Prim", "Primrose Everdeen", 5));
@@ -70,7 +70,7 @@ public class UI{
                                 exit=false;
                             }
                             }
-                            while (exit==true);
+                            while (exit);
                         }
                         else if (ansMenu.equals("2")){
                             //search author
@@ -93,7 +93,7 @@ public class UI{
                                 exit=false;
                             }
                             }
-                            while (exit==true);
+                            while (exit);
                         }
                         else if (ansMenu.equals("3")){
                             //return book
@@ -112,13 +112,13 @@ public class UI{
                                         break;
                                         }
                                 }
-                                if (found==false) System.out.println("Book not found.");
+                                if (!found) System.out.println("Book not found.");
                                 System.out.println("Would you like to try entering another book to return? Enter y if so, any other character if not");
                                 String l = reader.readLine();
                                 if (!l.equals("y")){
                                     cont = false;
                                 }
-                            } while(cont==true);
+                            } while(cont);
                         }
                         else if (ansMenu.equals("4")){
                             //checkout book
@@ -147,13 +147,13 @@ public class UI{
                                         //reserve book?
                                         }
                                 }
-                                if (found==false) System.out.println("Book not found.");
+                                if (!found) System.out.println("Book not found.");
                                 System.out.println("Would you like to try entering another book to check out? Enter y if so, any other character if not");
                                 String l = reader.readLine();
                                 if (!l.equals("y")){
                                     cont = false;
                                 }
-                            } while(cont==true);
+                            } while(cont);
                         }
                         else if (ansMenu.equals("5")){
                             //checked out books list
@@ -191,7 +191,7 @@ public class UI{
                             //ansMenu  = reader.readLine();
                         }
                     }
-                    while(flag2==false);
+                    while(!flag2);
                     }
                     
                     else{
@@ -244,7 +244,7 @@ public class UI{
                             boolean flagAdd = false;
                             int bookIDC;
                             int numCopiesInt;
-                            while (flagAdd==false){
+                            while (!flagAdd){
                                 System.out.println("Enter the ID of the book you would like to add");
                                 String bookID = reader.readLine();
                                 try {
@@ -261,7 +261,7 @@ public class UI{
                                         book = lib.allBooks.get(i);
                                     }
                                 }
-                                if (contains==false){
+                                if (!contains){
                                     System.out.println("Enter the title of the book you would like to add");
                                     String title= reader.readLine();
                                     System.out.println("Enter the author of the book you would like to add");
@@ -313,7 +313,7 @@ public class UI{
                         else if (ansMenu.equals("2")){
                             //remove book
                             boolean flagRemove = false;
-                            while (flagRemove==false){
+                            while (!flagRemove){
                                 System.out.println("Enter the ID of the book you would like to remove");
                                 String bookID = reader.readLine();
                                 int bookIDC;
@@ -378,7 +378,7 @@ public class UI{
                         else if (ansMenu.equals("3")){
                             //close account
                             boolean flagAccountDelete=true;
-                            while (flagAccountDelete == true){
+                            while (flagAccountDelete){
                                 System.out.println("Enter the username of the account you would like to close");
                                 String username = reader.readLine();
                                 boolean contains = false;
@@ -389,7 +389,7 @@ public class UI{
                                         contains=true;
                                     }
                                 }
-                                if (contains==true){
+                                if (contains){
                                     librarian.removeAccount(user3);
                                     System.out.println("Account closed.");
                                 }
@@ -406,7 +406,7 @@ public class UI{
                         else if (ansMenu.equals("4")){
                             //open account
                             boolean flagAccountCreation=true;
-                            while (flagAccountCreation == true){
+                            while (flagAccountCreation){
                                 System.out.println("Enter the username of the account you would like to open");
                                 String username = reader.readLine();
                                 System.out.println("Enter the password of the account you would like to open");
@@ -417,7 +417,7 @@ public class UI{
                                         contains=true;
                                     }
                                 }
-                                if (contains==false){
+                                if (!contains){
                                     lib.createAccount("Jeff", username, password);
                                     System.out.println("Account created.");
                                 }
@@ -445,7 +445,7 @@ public class UI{
                                         contains=true;
                                     }
                                 }
-                                if (contains==true){
+                                if (contains){
                                     librarian.freezeAccount(user3);
                                     System.out.println(username+" frozen.");
                                 } 
@@ -473,7 +473,7 @@ public class UI{
                                         contains=true;
                                     }
                                 }
-                                if (contains==true){
+                                if (contains){
                                     librarian.unfreezeAccount(user3);
                                     System.out.println(username+" unfrozen.");
                                 } 
@@ -549,7 +549,7 @@ public class UI{
                             //ansMenu  = reader.readLine();
                         }
                     }
-                    while(flag2==false);
+                    while(!flag2);
                     }
                     
                     

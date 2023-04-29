@@ -1,5 +1,8 @@
 package edu.ithaca.barr;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,9 +14,9 @@ public class Librarian {
     private String title;
     private ArrayList<Book> bookList = new ArrayList<>();
 
-    public Librarian(String user, String pass){
-        this.username=user;
-        this.password=pass;
+    @JsonCreator
+    public Librarian(@JsonProperty("id") int id){
+        this.id = id;
     }
 
 
@@ -99,8 +102,6 @@ public class Librarian {
     public void removeAccount(User account){
       Library.userList.remove(account);
     }
-
-    
 
     /**
      * Gets a list of books currently checked out

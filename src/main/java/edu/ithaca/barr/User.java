@@ -1,6 +1,10 @@
 package edu.ithaca.barr;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class User {
@@ -11,19 +15,19 @@ public class User {
     public String password;
     public boolean frozen;
     public List<Book> checkedOutList = new ArrayList<>();
-    public List<Book> reservedList = new ArrayList<>();
+//    public List<Book> reservedList = new ArrayList<>();
 
-
-    public User(int id, String name, String username, String password){
+    @JsonCreator
+    public User(@JsonProperty("id") int id,@JsonProperty("name") String name,
+                @JsonProperty("username") String username,@JsonProperty("password") String password){
         this.id = id;
         this.name = name;
         this.username = username;
         this.password = password;
         boolean frozen = false;
-        // Library.userList.add(this);
-        //Library.userList.add(this);
-       // Library.usernameList.add(username);
-        //Library.passwordList.add(password);
+        Library.userList.add(this);
+        Library.usernameList.add(username);
+        Library.passwordList.add(password);
     }
 
     /**
@@ -82,8 +86,6 @@ public class User {
         this.username = newUsername;
     }
 
-    
-
     public String changePassword(User user, String newPassword, String oldPassword){
         if(user.getPassword().equals(oldPassword)){
             user.setPassword(newPassword);
@@ -103,12 +105,11 @@ public class User {
         return password;
 
     }
-    
-    
+
     public String changeUsername(User user, String newUsername, String oldUsername){
         if(user.getUserName().equals(oldUsername)){
             setUsername(newUsername);
-            if(user.getPassword().equals(newUsername)){
+            if(user.getUserName().equals(newUsername)){
                 System.out.println("username changed");
                 return newUsername;
             }
@@ -128,11 +129,7 @@ public class User {
      * gets User's list of reserved books
      * @return list of reserved books
      */
-    public List<Book> getReservedList(){
-        return reservedList;
+    public Book getReservedBooks(){
+        return Library.reservedBooks.get(this);
     }
-
-
 }
-
-

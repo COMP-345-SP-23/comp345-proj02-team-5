@@ -1,21 +1,23 @@
 package edu.ithaca.barr;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Book {
     
     private int id;
     private String title;
     private String author;
     public int numCopies;
-    public int durationRentalDays = 21;
-    public String status;
-    public int time;
 
-    public Book(int id, String title, String author, int numCopies){
+    @JsonCreator
+    public Book(@JsonProperty("id") int id, @JsonProperty("title") String title,
+                @JsonProperty("author") String author,
+                @JsonProperty("numCopies") int numCopies) {
         this.id=id;
         this.title=title;
         this.author=author;
         this.numCopies=numCopies;
-        int time = 7;
     }
 
     public int getNumCopies(){

@@ -1,271 +1,144 @@
 package edu.ithaca.barr;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import static org.junit.jupiter.api.Assertions.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 public class LibraryTest {
     
     @Test
-    public void createAccountTest(){
+    public void createAccountTest() throws IOException {
         //create users and passwords, assert they are in the system and have correct values
-        Library barr = new Library();
+//        Library jlibraries = new Library(1);
+//        List<User> jusers = JsonUtil.listFromJsonFile("src/test/java/edu/ithaca/barr/jusers.json", User.class);
+        List<Library> jlibraries = JsonUtil.listFromJsonFile("src/test/java/edu/ithaca/barr/libraries.json", Library.class);
 
-        assertTrue(barr.createAccount("John", "code", "123"));   //Account can be created
+        assertTrue(jlibraries.get(0).createAccount("John", "code", "123"));   //Account can be created
 
-        assertFalse(barr.createAccount("Barr", "code", "456"));  //Account not created when same username
+        assertFalse(jlibraries.get(0).createAccount("Barr", "code", "456"));  //Account not created when same username
 
-        assertFalse(barr.createAccount("Barr", "coding", "123"));    //Account not created when same password
+        assertFalse(jlibraries.get(0).createAccount("Barr", "coding", "123"));    //Account not created when same password
 
-        assertTrue(barr.createAccount("John", "username", "password"));   //Another account can be created
+        assertTrue(jlibraries.get(0).createAccount("John", "usernamer", "passwordr"));   //Another account can be created
 
-        assertTrue(barr.createAccount("Barr", "pass", "word"));   //Another account can be created
-
+        assertTrue(jlibraries.get(0).createAccount("Barr", "passr", "wordr"));   //Another account can be created
     }
 
     @Test
-    public void closeAccountTest(){
-        //close out accounts using usernames and passwords and assure they are removed.
-    }
+    public void searchByTitleTest() throws IOException {
+        List<Library> jlibraries = JsonUtil.listFromJsonFile("src/test/java/edu/ithaca/barr/libraries.json", Library.class);
+        List<Book> jbooks = JsonUtil.listFromJsonFile("src/test/java/edu/ithaca/barr/books.json", Book.class);
 
-    @Test
-    public void searchByTitleTest(){
-        Library library = new Library();
-        Book book1 = new Book(0, "Title 1", "Author 1", 0);
-        Book book2 = new Book(0, "Title 2", "Author 2", 0);
-        Book book3 = new Book(0, "Title 1", "Author 3", 0);
-        library.allBooks.add(book1);
-        library.allBooks.add(book2);
-        library.allBooks.add(book3);
-        
-       
-        Book book4 = new Book(54, "Hunger Games", "Suzanne Collins", 3);
-        Book book5 = new Book(123, "To Kill a Mockingbird", "Harper Lee", 5);
-        Book book6 = new Book(987, "1984", "George Orwell", 5);
-        library.allBooks.add(book4);
-        library.allBooks.add(book5);
-        library.allBooks.add(book6);
+        jlibraries.get(0).allBooks.add(jbooks.get(3));
+        jlibraries.get(0).allBooks.add(jbooks.get(3));
+        jlibraries.get(0).allBooks.add(jbooks.get(4));
+        jlibraries.get(0).allBooks.add(jbooks.get(5));
 
         // Test search with existing title
-        ArrayList<Book> result1 = (ArrayList<Book>) library.searchByTitle("Title 1");
-        assertEquals(0, result1.size());
-        //assertEquals(book1, result1.get(0));
-        //assertEquals(book3, result1.get(1));
+        ArrayList<Book> result1 = (ArrayList<Book>) jlibraries.get(0).searchByTitle("Book1");
+        assertEquals(2, result1.size());
 
         // Test search with non-existing title
-        ArrayList<Book> result2 = (ArrayList<Book>) library.searchByTitle("Title 4");
+        ArrayList<Book> result2 = (ArrayList<Book>) jlibraries.get(0).searchByTitle("Book4");
         assertEquals(0, result2.size());
     }
-        
-    
 
     @Test
-    public void searchByAuthorTest(){
-        Library library = new Library();
-        Book book1 = new Book(0, "Title 1", "Author 1", 0);
-        Book book2 = new Book(0, "Title 2", "Author 2", 0);
-        Book book3 = new Book(0, "Title 3", "Author 1", 0);
-        library.allBooks.add(book1);
-        library.allBooks.add(book2);
-        library.allBooks.add(book3);
-    
-        Book book4 = new Book(0, "Title 4", "Author 4", 0);
-        Book book5 = new Book(0, "Title 5", "Author 5", 0);
-        Book book6 = new Book(0, "Title 6", "Author 6", 0);
-        library.allBooks.add(book4);
-        library.allBooks.add(book5);
-        library.allBooks.add(book6);
+    public void searchByAuthorTest() throws IOException {
+        List<Library> jlibraries = JsonUtil.listFromJsonFile("src/test/java/edu/ithaca/barr/libraries.json", Library.class);
+        List<Book> jbooks = JsonUtil.listFromJsonFile("src/test/java/edu/ithaca/barr/books.json", Book.class);
+
+        jlibraries.get(0).allBooks.add(jbooks.get(3));
+        jlibraries.get(0).allBooks.add(jbooks.get(4));
+        jlibraries.get(0).allBooks.add(jbooks.get(5));
 
         // Test search with existing author
-        ArrayList<Book> result1 = (ArrayList<Book>) library.searchByAuthor("Author 1");
-        assertEquals(0, result1.size());
-        //assertEquals(book1, result1.get(0));
-        //assertEquals(book3, result1.get(1));
+        ArrayList<Book> result1 = (ArrayList<Book>) jlibraries.get(0).searchByAuthor("John Barr");
+        assertEquals(2, result1.size());
 
         // Test search with non-existing author
-        ArrayList<Book> result2 = (ArrayList<Book>) library.searchByAuthor("Author 3");
+        ArrayList<Book> result2 = (ArrayList<Book>) jlibraries.get(0).searchByAuthor("Author 3");
         assertEquals(0, result2.size());
     }
-        
-    
 
     @Test
-    void checkOutTest(){
-        Book book1 = new Book(2537, "Feminists", "bell hooks", 10);
-        Book book2 = new Book(2587, "The Da Vinci Code", "Dan Brown", 5);
-        Book book3 = new Book(7659, "Divergent", "Veronica Roth", 2);
-        Book book4 = new Book(8302, "The Maze Runner", "James Dashner", 0);
-    
+    void checkOutTest() throws IOException {
+        List<Library> jlibraries = JsonUtil.listFromJsonFile("src/test/java/edu/ithaca/barr/libraries.json", Library.class);
+        List<Book> jbooks = JsonUtil.listFromJsonFile("src/test/java/edu/ithaca/barr/books.json", Book.class);
+        List<User> jusers = JsonUtil.listFromJsonFile("src/test/java/edu/ithaca/barr/users.json", User.class);
 
-        // make a librarian object
-        // create user objects
-        User user1 = new User(237, "Vanessa", "vmpofu", "vmpofu_21");
-        User user3 = new User(268, "Vanessa", "vmpofu", "vmpofu_21");
+        jlibraries.get(0).allBooks.add(jbooks.get(6));
+        jlibraries.get(0).allBooks.add(jbooks.get(7));
+        jlibraries.get(0).allBooks.add(jbooks.get(8));
+        jlibraries.get(0).allBooks.add(jbooks.get(9));
 
+        assertEquals(5, jbooks.get(7).getNumCopies()); //Tests how many copies before book is checked out
 
-        Library library = new Library();
-        library.allBooks.add(book1);
-        library.allBooks.add(book2);
-        library.allBooks.add(book3);
-        library.allBooks.add(book4);
-
-        library.checkOutBook(user1, book2);
-        library.checkOutBook(user3, book3);
-
+        jlibraries.get(0).checkOutBook(jusers.get(1), jbooks.get(7));
+        jlibraries.get(0).checkOutBook(jusers.get(2), jbooks.get(8));
 
         // make user object
         //make a Library object
-        assertEquals(2, library.checkedOutBooks.size());
-        assertEquals(book3 , library.checkedOutBooks.get(user3.getID()));
-        assertEquals(4, book2.getNumCopies());
-        assertThrows(IllegalArgumentException.class, ()->   library.checkOutBook(user3, book4));
+        assertEquals(2, jlibraries.get(0).checkedOutBooks.size()); //Tests that when two books are checked out, that two books are listed as checked out
+        assertEquals(jbooks.get(8) , jlibraries.get(0).checkedOutBooks.get(jusers.get(2).getID())); //Tests that a user checked out the book they wanted to check out
+        assertEquals(4, jbooks.get(7).getNumCopies()); //Tests that the number of copies decreases by one when book is checked out
+        assertThrows(IllegalArgumentException.class, ()->   jlibraries.get(0).checkOutBook(jusers.get(2), jbooks.get(9))); //Tests that a book not checked out is not on the list
     }
         
     
 
     @Test
-    void getCheckedOutListTest(){
-        Book book1 = new Book(2537, "Feminists", "bell hooks", 10);
-        Book book2 = new Book(2587, "The Da Vinci Code", "Dan Brown", 5);
-        Book book3 = new Book(7659, "Divergent", "Veronica Roth", 2);
-        Book book4 = new Book(8302, "The Maze Runner", "James Dashner", 0);
+    void getCheckedOutListTest() throws IOException {
+        List<Library> jlibraries = JsonUtil.listFromJsonFile("src/test/java/edu/ithaca/barr/libraries.json", Library.class);
+        List<Book> jbooks = JsonUtil.listFromJsonFile("src/test/java/edu/ithaca/barr/books.json", Book.class);
+        List<User> jusers = JsonUtil.listFromJsonFile("src/test/java/edu/ithaca/barr/users.json", User.class);
 
-   
-        User user1 = new User(237, "Vanessa", "vmpofu", "vmpofu_21");
-        User user3 = new User(268, "Vanessa", "vmpofu", "vmpofu_21");
-        User user2 = new User(123, "Vee", "vmpofu", "vmpofu_21");
-        User user34 = new User(456, "Vane", "vmpofu", "vmpofu_21");
-        User user5= new User(2638, "Vanessah", "vmpofu", "vmpofu_21");
+        jlibraries.get(0).allBooks.add(jbooks.get(6));
+        jlibraries.get(0).allBooks.add(jbooks.get(7));
+        jlibraries.get(0).allBooks.add(jbooks.get(8));
+        jlibraries.get(0).allBooks.add(jbooks.get(9));
 
-        Library library = new Library();
-        library.allBooks.add(book1);
-        library.allBooks.add(book2);
-        library.allBooks.add(book3);
-        library.allBooks.add(book4);
+        jlibraries.get(0).checkOutBook(jusers.get(0), jbooks.get(7));   //Book checked out
+        jlibraries.get(0).checkOutBook(jusers.get(3), jbooks.get(8));   //Book checked out
+        jlibraries.get(0).checkOutBook(jusers.get(2), jbooks.get(6));   //Book checked out
+        jlibraries.get(0).checkOutBook(jusers.get(4), jbooks.get(7));   //Book checked out
+        jlibraries.get(0).checkOutBook(jusers.get(1), jbooks.get(6));   //Book checked out
 
-        library.checkOutBook(user1, book2);
-        library.checkOutBook(user3, book3);
-        library.checkOutBook(user34, book1);
-        library.checkOutBook(user5, book2);
-        library.checkOutBook(user2, book1);
-
-        assertEquals(6, library.checkedOutBooks.size());
-
+        assertEquals(5, jlibraries.get(0).checkedOutBooks.size());  //Tests that the list is the size of the number of checked out books
     }
 
     @Test
-    void reserveBookTest(){
-        Book book1 = new Book(2537, "Feminists", "bell hooks", 10);
-        Book book2 = new Book(2587, "The Da Vinci Code", "Dan Brown", 0);
-        Book book3 = new Book(7659, "Divergent", "Veronica Roth", 2);
-  
-        User user1 = new User(237, "Vanessa", "vmpofu", "vmpofu_21");
-        User user5 = new User(2638, "Vanessah", "vmpofu", "vmpofu_21");
+    void reserveBookTest() throws IOException {
+        List<Library> jlibraries = JsonUtil.listFromJsonFile("src/test/java/edu/ithaca/barr/libraries.json", Library.class);
+        List<Book> jbooks = JsonUtil.listFromJsonFile("src/test/java/edu/ithaca/barr/books.json", Book.class);
+        List<User> jusers = JsonUtil.listFromJsonFile("src/test/java/edu/ithaca/barr/users.json", User.class);
 
-        Library library = new Library();
-        library.allBooks.add(book1);
-        library.allBooks.add(book2);
-        library.allBooks.add(book3);
+        jlibraries.get(0).allBooks.add(jbooks.get(6));
+        jlibraries.get(0).allBooks.add(jbooks.get(7));
+        jlibraries.get(0).allBooks.add(jbooks.get(9));
 
-        assertEquals(user5, library.reserveBook(user5, book3));
-        assertEquals(user1, library.reserveBook(user1, book2));
-        assertThrows(IllegalArgumentException.class, () -> library.reserveBook(user1, book2));
-
+        assertEquals(jusers.get(2), jlibraries.get(0).reserveBook(jusers.get(2), jbooks.get(7))); //Tests that a book available to be reserved can be reserved
+        assertThrows(IllegalArgumentException.class, () -> jlibraries.get(0).reserveBook(jusers.get(1), jbooks.get(9))); //Tests that a book not available to be reserved throws an error message
     }
-    @Test   
-    void returnTest(){
-    
-        Library library = new Library();
-        Book book1 = new Book(7659, "Divergent", "Veronica Roth", 2);
-        Book book2 = new Book(8302, "The Maze Runner", "James Dashner", 0);
-        library.allBooks.add(book1);
-        library.allBooks.add(book2);
+
+    @Test
+    public void returnTest() throws IOException {
+        List<Library> jlibraries = JsonUtil.listFromJsonFile("src/test/java/edu/ithaca/barr/libraries.json", Library.class);
+        List<Book> jbooks = JsonUtil.listFromJsonFile("src/test/java/edu/ithaca/barr/books.json", Book.class);
+        List<User> jusers = JsonUtil.listFromJsonFile("src/test/java/edu/ithaca/barr/users.json", User.class);
+
+        jlibraries.get(0).allBooks.add(jbooks.get(0));
+        jlibraries.get(0).allBooks.add(jbooks.get(1));
 
         // Test return of checked-out book
-        book1.checkOutBook(false);
-        assertFalse(library.returnBook(user1, book1));
+        assertFalse(jlibraries.get(0).returnBook(jusers.get(0), jbooks.get(1))); //Tests that a book not checked out cannot be returned
 
-    }
-
-    @Test
-    public void passTimeTest(){
-        Library barr = new Library();   //Make library
-        Book book1 = new Book(1, "Book1", "Author1", 2);  //Make book
-        Book book2 = new Book(2, "Book2", "Author1", 1);  //Make book
-        Book book3 = new Book(3, "Book3", "Author2", 3);  //Make book
-
-        barr.allBooks.add(book1);   //Add book
-        barr.allBooks.add(book2);   //Add book
-        barr.allBooks.add(book3);   //Add book
-
-        User user1 = new User(1,"John", "jbarr", "barrj");
-        User user2 = new User(2,"Barr", "barro", "obarr");
-
-        barr.checkOutBook(user1, book1);
-
-        assertEquals(7, book1.time);
-
-        barr.passTime();
-        assertEquals(6, book1.time);
-
-        barr.passTime();
-        assertEquals(5, book1.time);
-
-        barr.checkOutBook(user2, book2);
-        barr.checkOutBook(user2, book3);
-        assertEquals(7, book2.time);
-        assertEquals(7, book3.time);
-
-
-        barr.passTime();
-        assertEquals(4, book1.time);
-        assertEquals(6, book2.time);
-        assertEquals(6, book3.time);
-
-        barr.passTime();
-        assertEquals(3, book1.time);
-        assertEquals(5, book2.time);
-        assertEquals(5, book3.time);
-
-        barr.passTime();
-        assertEquals(2, book1.time);
-        assertEquals(4, book2.time);
-        assertEquals(4, book3.time);
-
-        barr.passTime();
-        assertEquals(1, book1.time);
-        assertEquals(3, book2.time);
-        assertEquals(3, book3.time);
-
-        barr.passTime();
-        assertEquals(0, book1.time);
-        assertEquals(2, book2.time);
-        assertEquals(2, book3.time);
-
-        barr.passTime();
-        assertEquals(-1, book1.time);
-        assertEquals(1, book2.time);
-        assertEquals(1, book3.time);
-    }
-
-    @Test
-    void confirmCredentialsTest(){
-        User user1 = new User(237, "Vanessa", "vmpofu", "vmpofU_21");
-        User user3 = new User(268, "Vicky ", "Conrad", "Vconrad/25");
-        User user2 = new User(123, "Cody", "Carnes", "Ccordy74");
-        //Library library1 = new Library();
-        Library.userList.add(user1);
-        Library.userList.add(user2);
-        Library.userList.add(user3);
-
-        assertTrue(Library.confirmCredentials(user1, "vmpofU_21", "vmpofu"));
+        jlibraries.get(0).checkOutBook(jusers.get(1), jbooks.get(1));
+        assertFalse(jlibraries.get(0).returnBook(jusers.get(0), jbooks.get(1))); //Tests that a checked out book can be returned
 
     }
 

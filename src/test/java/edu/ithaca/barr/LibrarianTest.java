@@ -1,8 +1,9 @@
 package edu.ithaca.barr;
+import com.fasterxml.jackson.core.JsonProcessingException;
 
-import edu.ithaca.barr.Librarian;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,144 +13,124 @@ import static org.junit.jupiter.api.Assertions.*;
 public class LibrarianTest {
 
     @Test
-    void addBookTest() {
-        Librarian barrLibrarian = new Librarian(12345);
+    void addBookTest() throws IOException {
         ArrayList<Book> bookList = new ArrayList<>();
 
-        Book book1 = new Book(1, "Book1", "John Barr", 3);
-        Book book2 = new Book(2, "Book2", "Johnny Barr", 2);
-        Book book3 = new Book(3, "Book3", "Jo Bar", 1);
+        List<Book> jbooks = JsonUtil.listFromJsonFile("src/test/java/edu/ithaca/barr/books.json", Book.class);
+        List<Librarian> jlibrarians = JsonUtil.listFromJsonFile("src/test/java/edu/ithaca/barr/librarians.json", Librarian.class);
 
-        assertEquals(bookList, barrLibrarian.getBookList());  //Test list is empty
-        bookList.add(book1);
-        barrLibrarian.addBook(book1);
+        assertEquals(bookList, jlibrarians.get(0).getBookList());  //Test list is empty
+        bookList.add(jbooks.get(3));
+        jlibrarians.get(0).addBook(jbooks.get(3));
 
-        assertEquals(bookList, barrLibrarian.getBookList());  //Test new book added
-        bookList.add(book2);
-        barrLibrarian.addBook(book2);
+        assertEquals(bookList, jlibrarians.get(0).getBookList());  //Test new book added
+        bookList.add(jbooks.get(4));
+        jlibrarians.get(0).addBook(jbooks.get(4));
 
-        assertEquals(bookList, barrLibrarian.getBookList());  //Test new book added
-        bookList.add(book3);
-        barrLibrarian.addBook(book3);
+        assertEquals(bookList, jlibrarians.get(0).getBookList());  //Test new book added
+        bookList.add(jbooks.get(5));
+        jlibrarians.get(0).addBook(jbooks.get(5));
 
-        assertEquals(bookList, barrLibrarian.getBookList());  //Test another copy of a book is added
+        assertEquals(bookList, jlibrarians.get(0).getBookList());  //Test another copy of a book is added
     }
 
     @Test
-    void removeBookTest() {
-        Librarian barrLibrarian = new Librarian(12345);
+    void removeBookTest() throws IOException {
         ArrayList<Book> bookList = new ArrayList<>();
 
-        Book book1 = new Book(1, "Book1", "John Barr", 3);
-        Book book2 = new Book(2, "Book2", "Johnny Barr", 2);
-        Book book3 = new Book(3, "Book3", "Jo Bar", 1);
+        List<Book> jbooks = JsonUtil.listFromJsonFile("src/test/java/edu/ithaca/barr/books.json", Book.class);
+        List<Librarian> jlibrarians = JsonUtil.listFromJsonFile("src/test/java/edu/ithaca/barr/librarians.json", Librarian.class);
 
-        barrLibrarian.addBook(book1);
-        barrLibrarian.addBook(book2);
-        bookList.add(book1);
-        bookList.add(book2);
+        jlibrarians.get(0).addBook(jbooks.get(3));
+        jlibrarians.get(0).addBook(jbooks.get(4));
+        bookList.add(jbooks.get(3));
+        bookList.add(jbooks.get(4));
 
-        assertEquals(bookList, barrLibrarian.getBookList());  //Test list is not empty
-        bookList.remove(book2);
-        barrLibrarian.removeBook(book2);
+        assertEquals(bookList, jlibrarians.get(0).getBookList());  //Test list is not empty
+        bookList.remove(jbooks.get(4));
+        jlibrarians.get(0).removeBook(jbooks.get(4));
 
-        assertEquals(bookList, barrLibrarian.getBookList());  //Test list removes the specified book
-        bookList.remove(book3);
-        barrLibrarian.removeBook(book3);
+        assertEquals(bookList, jlibrarians.get(0).getBookList());  //Test list removes the specified book
+        bookList.remove(jbooks.get(5));
+        jlibrarians.get(0).removeBook(jbooks.get(5));
 
-        assertEquals(bookList, barrLibrarian.getBookList());  //Test nothing happens when book that is not at library is removed
-        bookList.remove(book1);
-        barrLibrarian.removeBook(book1);
+        assertEquals(bookList, jlibrarians.get(0).getBookList());  //Test nothing happens when book that is not at library is removed
+        bookList.remove(jbooks.get(3));
+        jlibrarians.get(0).removeBook(jbooks.get(3));
 
-        assertEquals(bookList, barrLibrarian.getBookList());  //Test list removes the specified book
-        bookList.remove(book3);
-        barrLibrarian.removeBook(book3);
+        assertEquals(bookList, jlibrarians.get(0).getBookList());  //Test list removes the specified book
+        bookList.remove(jbooks.get(5));
+        jlibrarians.get(0).removeBook(jbooks.get(5));
 
-        assertEquals(bookList, barrLibrarian.getBookList());  //list remains empty when trying to remove a book from empty list
+        assertEquals(bookList, jlibrarians.get(0).getBookList());  //list remains empty when trying to remove a book from empty list
     }
 
     @Test
-    void freezeAccountTest() {
-        Librarian barr = new Librarian(1);
-        User user1 = new User(1, "Barr1", "jbarr", "password");
-        User user2 = new User(2, "Barr2", "barr", "psswrd");
-        user2.frozen = true;
+    void freezeAccountTest() throws IOException {
+        List<User> jusers = JsonUtil.listFromJsonFile("src/test/java/edu/ithaca/barr/users.json", User.class);
+        List<Librarian> jlibrarians = JsonUtil.listFromJsonFile("src/test/java/edu/ithaca/barr/librarians.json", Librarian.class);
 
-        assertFalse(barr.isFrozen(user1));
-        assertTrue(barr.isFrozen(user2));
+        jusers.get(1).frozen = true;
 
-        assertTrue(barr.freezeAccount(user1));
-        assertTrue(barr.freezeAccount(user2));
+        assertFalse(jlibrarians.get(0).isFrozen(jusers.get(0)));    //Tests that an unfrozen account is unfrozen
+        assertTrue(jlibrarians.get(0).isFrozen(jusers.get(1)));     //Tests that a frozen account is frozen
+
+        assertTrue(jlibrarians.get(0).freezeAccount(jusers.get(0)));    //Tests that an unfrozen account can be frozen
+        assertTrue(jlibrarians.get(0).freezeAccount(jusers.get(1)));    //Tests that a frozen account remains frozen
     }
 
     @Test
-    void unfreezeAccountTest() {
-        Librarian barr = new Librarian(1);
-        User user1 = new User(1, "Barr1", "jbarr", "password");
-        User user2 = new User(2, "Barr2", "barr", "psswrd");
-        user2.frozen = true;
+    void unfreezeAccountTest() throws IOException {
 
-        assertFalse(barr.isFrozen(user1));
-        assertTrue(barr.isFrozen(user2));
+        List<User> jusers = JsonUtil.listFromJsonFile("src/test/java/edu/ithaca/barr/users.json", User.class);
+        List<Librarian> jlibrarians = JsonUtil.listFromJsonFile("src/test/java/edu/ithaca/barr/librarians.json", Librarian.class);
+        jusers.get(1).frozen = true;
 
-        assertFalse(barr.unfreezeAccount(user1));
-        assertFalse(barr.unfreezeAccount(user2));
+        assertFalse(jlibrarians.get(0).isFrozen(jusers.get(0)));    //Tests that an unfrozen account is unfrozen
+        assertTrue(jlibrarians.get(0).isFrozen(jusers.get(1)));     //Tests that a frozen account is frozen
+
+        assertFalse(jlibrarians.get(0).unfreezeAccount(jusers.get(0)));     //Tests that an unfrozen account remains unfrozen
+        assertFalse(jlibrarians.get(0).unfreezeAccount(jusers.get(1)));     //Tests that a frozen account can be unfrozen
     }
 
     @Test
-    void removeAccountTest() {
-        Librarian barr = new Librarian(1);
+    void removeAccountTest() throws IOException {
+        List<User> jusers = JsonUtil.listFromJsonFile("src/test/java/edu/ithaca/barr/users.json", User.class);
+        List<Librarian> jlibrarians = JsonUtil.listFromJsonFile("src/test/java/edu/ithaca/barr/librarians.json", Librarian.class);
+
         ArrayList<User> userList = new ArrayList<>();
 
-        User user1 = new User(1, "Barr1", "jbarr", "password");
-        User user2 = new User(2, "Barr2", "barr", "psswrd");
+        userList.add(jusers.get(0));
+        userList.add(jusers.get(1));
+        userList.add(jusers.get(2));
+        userList.add(jusers.get(3));
 
-        userList.add(user1);
-        userList.add(user2);
+        assertEquals(userList, jlibrarians.get(0).getUserList()); //Tests that accounts are added when created
 
-        assertEquals(userList, barr.getUserList()); //Tests that accounts are added when created
+        jlibrarians.get(0).removeAccount(jusers.get(1));
+        userList.remove(jusers.get(1));
+        assertEquals(userList, jlibrarians.get(0).getUserList()); //Tests that a specific account can be removed
 
-        barr.removeAccount(user2);
-        userList.remove(user2);
-        assertEquals(userList, barr.getUserList()); //Tests that a specific account can be removed
-
-        User user3 = new User(3, "Barr3", "jbarro", "pass");
-        User user4 = new User(4, "Barr4", "barro", "word");
-
-        userList.add(user3);
-        userList.add(user4);
-
-        assertEquals(userList, barr.getUserList()); //Tests that accounts are added when
-
-        barr.removeAccount(user1);
-        userList.remove(user1);
-        assertEquals(userList, barr.getUserList()); //Tests that a specific account (in this case the first account) can be removed
+        jlibrarians.get(0).removeAccount(jusers.get(0));
+        userList.remove(jusers.get(0));
+        assertEquals(userList, jlibrarians.get(0).getUserList()); //Tests that a specific account (in this case the first account) can be removed
     }
 
 
     @Test
-    void searchAccountTest() {
-        Librarian barr = new Librarian(1);
-        ArrayList<User> userList = new ArrayList<>();
+    void searchAccountTest() throws IOException {
+        List<User> jusers = JsonUtil.listFromJsonFile("src/test/java/edu/ithaca/barr/users.json", User.class);
+        List<Librarian> jlibrarians = JsonUtil.listFromJsonFile("src/test/java/edu/ithaca/barr/librarians.json", Librarian.class);
 
-        User user1 = new User(1, "Barr1", "jbarr", "password");
-        User user2 = new User(2, "Barr2", "barr", "psswrd");
+        assertEquals(jusers.get(0), jlibrarians.get(0).searchAccount(jusers.get(0)));  //Tests that an account that is in the list is found
 
-        userList.add(user1);
-        userList.add(user2);
+        jlibrarians.get(0).removeAccount(jusers.get(1));
 
-        assertEquals(userList, barr.getUserList()); //Tests that accounts are added when created
+        assertNull(jlibrarians.get(0).searchAccount(jusers.get(1)));  //Tests that an account that is not in the list is not found
 
-        assertEquals(user1, barr.searchAccount(user1));  //Tests that an account that is in the list is found
+        jlibrarians.get(0).removeAccount(jusers.get(0));
 
-        barr.removeAccount(user2);
-
-        assertNull(barr.searchAccount(user2));  //Tests that an account that is not in the list is not found
-
-        barr.removeAccount(user1);
-
-        assertNull(barr.searchAccount(user1));  //Tests that an account that has been removed is not found
-
+        assertNull(jlibrarians.get(0).searchAccount(jusers.get(0)));  //Tests that an account that has been removed is not found
     }
 }
 

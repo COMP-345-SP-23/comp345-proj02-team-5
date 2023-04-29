@@ -1,5 +1,8 @@
 package edu.ithaca.barr;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 
 import java.util.HashMap;
@@ -8,8 +11,8 @@ import java.util.List;
 public class Library {
 
     public ArrayList<Book> allBooks = new ArrayList<>();
-    HashMap<Integer, Book> checkedOutBooks;
-    HashMap<User, Book> reservedBooks;
+    public HashMap<Integer, Book> checkedOutBooks;
+    public static HashMap<User, Book> reservedBooks;
     public static List<User> userList = new ArrayList<>();
     public static List<Librarian> librarianList = new ArrayList<>();
     public static List<String> usernameList = new ArrayList<>();
@@ -20,9 +23,12 @@ public class Library {
     // ArrayList<edu.ithaca.barr.Librarian> librarians = new ArrayList<>();
 
     // private String name;
+    private int id;
 
-    public Library() {
+    @JsonCreator
+    public Library(@JsonProperty("id") int id) {
         // this.name = name;
+        this.id = id;
         this.checkedOutBooks = new HashMap<>();
         this.reservedBooks = new HashMap<>();
     }
@@ -79,7 +85,7 @@ public class Library {
         if(!Library.usernameList.contains(username) && !Library.passwordList.contains(password)){
             int id = (int)Math.ceil(Math.random());
             User newUser = new User(id, name, username, password);
-            userList.add(newUser);
+//            userList.add(newUser);
             return true;
         }
         return false;
@@ -126,28 +132,21 @@ public class Library {
     }
 
     /**
-     * method checks to see if the library has a certain book
-     * 
-     * @param book
+     * method checks to see if the library has a certain book (its status)
+     * @param book book to be checked
      * @return boolean
      */
     public boolean searchBook(Book book) {
-        for (int i = 0; i < allBooks.size(); i++) {
-            if (allBooks.get(i) == book && book.getNumCopies() > 0) {
+        for (Book allBook : allBooks) {
+            if (allBook == book && book.getNumCopies() > 0) {
                 return true;
             }
         }
         return false;
     }
-        
-
-  
-
-    /**
+     /**
+     * if the reservation status of a book is false
      * the book can be reserved
-     * 
-     * @param book
-     * @return
      * @param book book being reserved
      * @return user if reserved, throws illegal argument exception if already reserved
      */
@@ -156,10 +155,7 @@ public class Library {
             // int userID = user.getID();
             reservedBooks.put(user, book);
             return user;
-
-        }
-
-        else{
+        } else{
             throw new IllegalArgumentException("book is not available for reservation");
         }
     }
@@ -168,9 +164,6 @@ public class Library {
     /**
      * method checks out a book
      * and adds it to list of all checked out books
-     * 
-     * @param user
-     * @param book
      * @param user user checking out
      * @param book book being checked out
      */
@@ -184,30 +177,17 @@ public class Library {
                     checkedOutBooks.put(userID, book);
                     user.checkedOutList.add(userID, book);
                 }
-            }
-
-            else {
+            } else {
                 throw new IllegalArgumentException("book is not available for check out");
             }
         }
 
-
-   
-
     /**
-     * Gets a list of books currently checked out
-     * return: list of books checked out
+     * returns the book checked out by the user
+     * @param user the user returning the book
+     * @param book the book being returned
+     * @return true if successful, false if not successful
      */
-    // public List<Book> getCheckedOutList(){
-    // return new ArrayList<>(CheckedOutBooks.values());
-    // }
-      
-   
-
-//    public List<Book> getCheckedOutList(){
-//        return null;
-//    }
-
     public boolean returnBook(User user, Book book) {
         int userId = user.getID();
         if (checkedOutBooks.containsKey(userId) && checkedOutBooks.get(userId) == book) {
@@ -220,18 +200,4 @@ public class Library {
             return false;
         }
     }
-
-    /**
-     * A day passes so the time for all books currently checked out decreases by 1
-     */
-    public void passTime(){
-
-    }
-
-
-
-    public static void addUser(String user, String pass) {
-    }
-
-
 }
