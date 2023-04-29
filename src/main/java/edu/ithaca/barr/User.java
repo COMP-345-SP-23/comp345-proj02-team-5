@@ -8,7 +8,7 @@ public class User {
     private int id;
     private String name;
     private String username;
-    private String password;
+    public String password;
     public boolean frozen;
     public List<Book> checkedOutList = new ArrayList<>();
     public List<Book> reservedList = new ArrayList<>();
@@ -21,9 +21,9 @@ public class User {
         this.password = password;
         boolean frozen = false;
         // Library.userList.add(this);
-        Library.userList.add(this);
-        Library.usernameList.add(username);
-        Library.passwordList.add(password);
+        //Library.userList.add(this);
+       // Library.usernameList.add(username);
+        //Library.passwordList.add(password);
     }
 
     /**

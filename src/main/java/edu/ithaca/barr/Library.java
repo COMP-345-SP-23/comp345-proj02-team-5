@@ -7,10 +7,11 @@ import java.util.List;
 
 public class Library {
 
-    ArrayList<Book> allBooks = new ArrayList<>();
+    public ArrayList<Book> allBooks = new ArrayList<>();
     HashMap<Integer, Book> checkedOutBooks;
     HashMap<User, Book> reservedBooks;
     public static List<User> userList = new ArrayList<>();
+    public static List<Librarian> librarianList = new ArrayList<>();
     public static List<String> usernameList = new ArrayList<>();
     public static List<String> passwordList = new ArrayList<>();
 
@@ -84,15 +85,24 @@ public class Library {
         return false;
     }
 
-    public static boolean confirmCredentials(String password, String username){
+    public static boolean confirmCredentials(String username, String password){
         // for loop to itereate through userlist
-        for(int i =0; i<userList.size();){
+        for(int i =0; i<userList.size();i++){
             if ((userList.get(i).getName().equals(username)) && (userList.get(i).getPassword().equals(password))){
                 return true;
             }
         }
         return false;
         
+    }
+    public static boolean confirmCredentialsAdmin(String username, String password){
+        // for loop to itereate through userlist
+        for(int i =0; i<librarianList.size();i++){
+            if ((librarianList.get(i).getName().equals(username)) && (librarianList.get(i).getPass().equals(password))){
+                return true;
+            }
+        }
+        return false;  
     }
 
     public List<Book> searchByTitle(String title) {
@@ -172,6 +182,7 @@ public class Library {
                     book.setNumCopies(book);
                     int userID = user.getID();
                     checkedOutBooks.put(userID, book);
+                    user.checkedOutList.add(userID, book);
                 }
             }
 
@@ -201,7 +212,9 @@ public class Library {
         int userId = user.getID();
         if (checkedOutBooks.containsKey(userId) && checkedOutBooks.get(userId) == book) {
             checkedOutBooks.remove(userId);
+            user.checkedOutList.remove(book);
             book.returnInfo();
+            book.numCopies++;
             return true;
         } else {
             return false;
