@@ -15,7 +15,7 @@ public class User {
     public String password;
     public boolean frozen;
     public List<Book> checkedOutList = new ArrayList<>();
-//    public List<Book> reservedList = new ArrayList<>();
+    public List<Book> reservedList = new ArrayList<>();
 
     @JsonCreator
     public User(@JsonProperty("id") int id,@JsonProperty("name") String name,
