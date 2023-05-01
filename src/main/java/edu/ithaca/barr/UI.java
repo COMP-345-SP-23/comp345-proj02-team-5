@@ -14,7 +14,7 @@ public class UI{
         lib.allBooks.add(new Book(1, "Prim", "Primrose Everdeen", 5));
         lib.allBooks.add(new Book(2, "Prim", "Ali", 5));
         lib.allBooks.add(new Book(3, "Structs", "John", 1));
-        Librarian librarian = new Librarian("Scrum", "chessgod");
+        Librarian librarian = new Librarian(2);
         Library.librarianList.add(librarian);
         User user1 = null;
         do{
