@@ -2,6 +2,9 @@
 # CS345 - Software Engineering at Ithaca College
 ## Project 01 - Library Software
 
+Start Guide:
+clone and run main in UI.java
+
 Names:
 Vicky C.
 Giovanni Cioffi
