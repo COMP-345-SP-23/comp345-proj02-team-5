@@ -7,14 +7,12 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class UserTest {
 
     @Test
     void changePasswordUsernameTest(){
-        //create a bunch of user objects
         User user1 = new User(237, "Vanessa", "vmpofu", "vmpofU_21");
         User user3 = new User(268, "Vicky ", "Conrad", "Vconrad/25");
         User user2 = new User(123, "Cody", "Carnes", "Ccordy74");
@@ -97,16 +95,11 @@ public class UserTest {
         barr.checkOutBook(user1, book1);
         assertEquals(reserved, user1.getReservedList()); //Test list is empty when a book was checked out
 
-//        barr.checkOutBook(user1, book2);
-        //Should reserve be a part of the checkOutBook method?
-//        barr.reserve(user1, book2);
         assertEquals(reserved, user1.getCheckedOutList()); //Test list one book when a book is reserved
 
         barr.checkOutBook(user2, book1);
-        //        barr.reserve(user2, book1);
 
         assertEquals(reserved, user2.getCheckedOutList()); //Test books are reserved only for the specific user
 
-//        assertThrows(IllegalArgumentException.class, ()->   barr.reserved(user2, book1));   //Test list does not change if user tries to check out a book with no copies left
     }
 }

@@ -1,7 +1,5 @@
 package edu.ithaca.barr;
-
 import java.util.ArrayList;
-
 import java.util.HashMap;
 import java.util.List;
 
@@ -14,59 +12,20 @@ public class Library {
     public static List<String> usernameList = new ArrayList<>();
     public static List<String> passwordList = new ArrayList<>();
 
-    // ArrayList<Author> authors = new ArrayList<>();
-    // ArrayList<Account> accounts = new ArrayList<>();
-    // ArrayList<edu.ithaca.barr.Librarian> librarians = new ArrayList<>();
-
-    // private String name;
 
     public Library() {
-        // this.name = name;
         this.checkedOutBooks = new HashMap<>();
         this.reservedBooks = new HashMap<>();
     }
 
+    /**
+     * method returns an arraylist of all books 
+     * in the library's system
+     */
     public ArrayList<Book> getBookList() {
         return allBooks;
     }
-    /*
-     * public ArrayList<Book> getAuthorList(){
-     * return authors;
-     * }
-     * 
-     * public ArrayList<Book> getAccountsList(){
-     * return accounts;
-     * }
-     * 
-     * public ArrayList<Book> getLibrariansList(){
-     * return librarians;
-     * }
-     * 
-     * public boolean closeAccount(){
-     * //implement
-     * }
-     * 
-     */
-
-   /*
-    public ArrayList<Book> getAuthorList(){
-        return authors;
-    }
-
-    public ArrayList<Book> getAccountsList(){
-        return accounts;
-    }
-
-    public ArrayList<Book> getLibrariansList(){
-        return librarians;
-    }
-
-    public boolean closeAccount(){
-        //implement
-    }
-
-    */
-
+   
     /**
      * creates an account
      * @param name the user's name
@@ -84,8 +43,14 @@ public class Library {
         return false;
     }
 
+    /**
+     * method confirms credentials of users
+     * @param user
+     * @param password
+     * @param username
+     * @return boolean
+     */
     public static boolean confirmCredentials(User user, String password, String username){
-        // for loop to itereate through userlist
         for(int i =0; i<userList.size();){
             if(userList.get(i) == user){
                 if(user.getPassword().equals(password) && user.getUserName().equals(username)){
@@ -104,6 +69,11 @@ public class Library {
         
     }
 
+    /**
+     * searches a book by title
+     * @param title
+     * @return
+     */
     public List<Book> searchByTitle(String title) {
         List<Book> titleResults = new ArrayList<>();
         for (Book book : this.allBooks) {
@@ -114,6 +84,11 @@ public class Library {
         return titleResults;
     }
 
+    /**
+     * searches book by author's name 
+     * @param author
+     * @return
+     */
     public List<Book> searchByAuthor(String author) {
         List<Book> authorResult = new ArrayList<>();
         for (Book book : this.allBooks) {
@@ -174,45 +149,34 @@ public class Library {
      * @param book book being checked out
      */
     public void checkOutBook(User user, Book book) {
-        // method to be implemented
-            if (reserveBook(user, book) == user) {
-                if(reservedBooks.get(user)== book){
-                    System.out.println("book checked out");
-                    book.setNumCopies(book);
-                    int userID = user.getID();
-                    checkedOutBooks.put(userID, book);
-                }
-            }
-
-            else {
-                throw new IllegalArgumentException("book is not available for check out");
+        if (reserveBook(user, book) == user) {
+            if(reservedBooks.get(user)== book){
+                System.out.println("book checked out");
+                book.setNumCopies(book);
+                int userID = user.getID();
+                checkedOutBooks.put(userID, book);
             }
         }
 
-
-   
-
+        else {
+            throw new IllegalArgumentException("book is not available for check out");
+        }
+    }
+    
     /**
-     * Gets a list of books currently checked out
-     * return: list of books checked out
+     * method returns a book that was checked out
+     * @param user
+     * @param book
+     * @return
      */
-    // public List<Book> getCheckedOutList(){
-    // return new ArrayList<>(CheckedOutBooks.values());
-    // }
-      
-   
-
-//    public List<Book> getCheckedOutList(){
-//        return null;
-//    }
-
     public boolean returnBook(User user, Book book) {
         int userId = user.getID();
         if (checkedOutBooks.containsKey(userId) && checkedOutBooks.get(userId) == book) {
             checkedOutBooks.remove(userId);
             book.returnInfo();
             return true;
-        } else {
+        } 
+        else {
             return false;
         }
     }

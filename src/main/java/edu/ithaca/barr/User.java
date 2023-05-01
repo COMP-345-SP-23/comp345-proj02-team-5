@@ -20,7 +20,6 @@ public class User {
         this.username = username;
         this.password = password;
         boolean frozen = false;
-        // Library.userList.add(this);
         Library.userList.add(this);
         Library.usernameList.add(username);
         Library.passwordList.add(password);
@@ -83,7 +82,13 @@ public class User {
     }
 
     
-
+    /**
+     * method changes the password of the user
+     * @param user
+     * @param newPassword
+     * @param oldPassword
+     * @return password 
+     */
     public String changePassword(User user, String newPassword, String oldPassword){
         if(user.getPassword().equals(oldPassword)){
             user.setPassword(newPassword);
@@ -104,7 +109,13 @@ public class User {
 
     }
     
-    
+    /**
+     * method changes username of the user
+     * @param user
+     * @param newUsername
+     * @param oldUsername
+     * @return username
+     */
     public String changeUsername(User user, String newUsername, String oldUsername){
         if(user.getUserName().equals(oldUsername)){
             setUsername(newUsername);

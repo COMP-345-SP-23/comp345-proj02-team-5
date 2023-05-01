@@ -89,23 +89,6 @@ public class Librarian {
       Library.userList.remove(account);
     }
 
-    
-
-    /**
-     * Gets a list of books currently checked out
-     * @return list of books checked out
-     */
-//    public List<Book> getCheckedOutList(){
-//      used on type library
-//    }
-
-    /**
-     * Gets a list of books the library has
-     * @return list of books at the library
-     */
-//    public List<Book> getBookList(){
-//        used on type library
-//    }
 
   /**
      * Gets a list of books the library has

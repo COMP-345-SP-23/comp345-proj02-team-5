@@ -15,7 +15,6 @@ public class LibraryTest {
     
     @Test
     public void createAccountTest(){
-        //create users and passwords, assert they are in the system and have correct values
         Library barr = new Library();
 
         assertTrue(barr.createAccount("John", "code", "123"));   //Account can be created
@@ -53,11 +52,8 @@ public class LibraryTest {
         library.allBooks.add(book5);
         library.allBooks.add(book6);
 
-        // Test search with existing title
         ArrayList<Book> result1 = (ArrayList<Book>) library.searchByTitle("Title 1");
         assertEquals(0, result1.size());
-        //assertEquals(book1, result1.get(0));
-        //assertEquals(book3, result1.get(1));
 
         // Test search with non-existing title
         ArrayList<Book> result2 = (ArrayList<Book>) library.searchByTitle("Title 4");
@@ -86,8 +82,6 @@ public class LibraryTest {
         // Test search with existing author
         ArrayList<Book> result1 = (ArrayList<Book>) library.searchByAuthor("Author 1");
         assertEquals(0, result1.size());
-        //assertEquals(book1, result1.get(0));
-        //assertEquals(book3, result1.get(1));
 
         // Test search with non-existing author
         ArrayList<Book> result2 = (ArrayList<Book>) library.searchByAuthor("Author 3");
@@ -104,8 +98,6 @@ public class LibraryTest {
         Book book4 = new Book(8302, "The Maze Runner", "James Dashner", 0);
     
 
-        // make a librarian object
-        // create user objects
         User user1 = new User(237, "Vanessa", "vmpofu", "vmpofu_21");
         User user3 = new User(268, "Vanessa", "vmpofu", "vmpofu_21");
 
@@ -120,8 +112,6 @@ public class LibraryTest {
         library.checkOutBook(user3, book3);
 
 
-        // make user object
-        //make a Library object
         assertEquals(2, library.checkedOutBooks.size());
         assertEquals(book3 , library.checkedOutBooks.get(user3.getID()));
         assertEquals(4, book2.getNumCopies());
@@ -260,7 +250,6 @@ public class LibraryTest {
         User user1 = new User(237, "Vanessa", "vmpofu", "vmpofU_21");
         User user3 = new User(268, "Vicky ", "Conrad", "Vconrad/25");
         User user2 = new User(123, "Cody", "Carnes", "Ccordy74");
-        //Library library1 = new Library();
         Library.userList.add(user1);
         Library.userList.add(user2);
         Library.userList.add(user3);
