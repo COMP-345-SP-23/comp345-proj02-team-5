@@ -103,7 +103,7 @@ public class Library {
         return false;
         
     }
-
+    //Worked on by: Christian
     public List<Book> searchByTitle(String title) {
         List<Book> titleResults = new ArrayList<>();
         for (Book book : this.allBooks) {
@@ -113,7 +113,7 @@ public class Library {
         }
         return titleResults;
     }
-
+    //Worked on by: Christian
     public List<Book> searchByAuthor(String author) {
         List<Book> authorResult = new ArrayList<>();
         for (Book book : this.allBooks) {
@@ -205,7 +205,7 @@ public class Library {
 //    public List<Book> getCheckedOutList(){
 //        return null;
 //    }
-
+    //Worked on by: Christian
     public boolean returnBook(User user, Book book) {
         int userId = user.getID();
         if (checkedOutBooks.containsKey(userId) && checkedOutBooks.get(userId) == book) {
