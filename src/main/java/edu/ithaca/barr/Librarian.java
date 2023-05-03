@@ -11,12 +11,13 @@ public class Librarian {
     
     public String username;
     public String password;
-    private String title;
+    //private String title;
     private ArrayList<Book> bookList = new ArrayList<>();
 
     @JsonCreator
-    public Librarian(@JsonProperty("id") int id){
-        this.id = id;
+    public Librarian(@JsonProperty("username") String username, @JsonProperty("password") String password){
+        this.username = username;
+        this.password = password;
     }
 
 
