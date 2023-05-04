@@ -11,7 +11,8 @@ public class Librarian {
     
     public String username;
     public String password;
-    //private String title;
+    private String title;
+    private int id;
     private ArrayList<Book> bookList = new ArrayList<>();
 
     @JsonCreator
@@ -20,6 +21,13 @@ public class Librarian {
         this.password = password;
     }
 
+    /**
+     * gets and returns the librarian's id
+     * @return the librarian's id
+     */
+    public int getId(){
+        return id;
+    }
 
     /**
      * Adds a book to the list of books at the library, or increases the number of copies

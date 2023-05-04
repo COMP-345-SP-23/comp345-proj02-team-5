@@ -104,6 +104,10 @@ public class LibrarianTest {
         userList.add(jusers.get(1));
         userList.add(jusers.get(2));
         userList.add(jusers.get(3));
+        userList.add(jusers.get(4));
+        userList.add(jusers.get(5));
+        userList.add(jusers.get(6));
+        userList.add(jusers.get(7));
 
         assertEquals(userList, jlibrarians.get(0).getUserList()); //Tests that accounts are added when created
 

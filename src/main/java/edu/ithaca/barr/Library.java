@@ -175,7 +175,7 @@ public class Library {
                     book.setNumCopies(book);
                     int userID = user.getID();
                     checkedOutBooks.put(userID, book);
-                    user.checkedOutList.add(userID, book);
+                    user.checkedOutList.add(book);
                 }
             } else {
                 throw new IllegalArgumentException("book is not available for check out");

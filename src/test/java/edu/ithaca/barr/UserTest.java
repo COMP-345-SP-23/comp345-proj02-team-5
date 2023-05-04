@@ -48,22 +48,27 @@ public class UserTest {
         List<User> jusers = JsonUtil.listFromJsonFile("src/test/java/edu/ithaca/barr/users.json", User.class);
         List<Book> jbooks = JsonUtil.listFromJsonFile("src/test/java/edu/ithaca/barr/books.json", Book.class);
 
-        List<Book> checkedOut = new ArrayList<>();
+        List<Book> checkedOut1 = new ArrayList<>();
+        List<Book> checkedOut2 = new ArrayList<>();
+
 
         jlibraries.get(0).allBooks.add(jbooks.get(10));
         jlibraries.get(0).allBooks.add(jbooks.get(12));
         jlibraries.get(0).allBooks.add(jbooks.get(9));
 
-        assertEquals(checkedOut, jusers.get(5).getCheckedOutList()); //Test list is empty when no books checked out
+        assertEquals(checkedOut1, jusers.get(5).getCheckedOutList()); //Test list is empty when no books checked out
 
+        checkedOut1.add(jbooks.get(10));
         jlibraries.get(0).checkOutBook(jusers.get(5), jbooks.get(10));
-        assertEquals(checkedOut, jusers.get(5).getCheckedOutList()); //Test list has the book that was just checked out
+        assertEquals(checkedOut1, jusers.get(5).getCheckedOutList()); //Test list has the book that was just checked out
 
+        checkedOut1.add(jbooks.get(12));
         jlibraries.get(0).checkOutBook(jusers.get(5), jbooks.get(12));
-        assertEquals(checkedOut, jusers.get(5).getCheckedOutList()); //Test list has the books that have been checked out
+        assertEquals(checkedOut1, jusers.get(5).getCheckedOutList()); //Test list has the books that have been checked out
 
+        checkedOut2.add(jbooks.get(12));
         jlibraries.get(0).checkOutBook(jusers.get(6), jbooks.get(12));
-        assertEquals(checkedOut, jusers.get(6).getCheckedOutList()); //Test books are checked out only for the specific user
+        assertEquals(checkedOut2, jusers.get(6).getCheckedOutList()); //Test books are checked out only for the specific user
 
         assertThrows(IllegalArgumentException.class, ()->   jlibraries.get(0).checkOutBook(jusers.get(6), jbooks.get(9)));   //Test list does not change if user tries to check out a book with no copies left
     }
