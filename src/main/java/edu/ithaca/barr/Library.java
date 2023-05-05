@@ -30,7 +30,7 @@ public class Library {
         // this.name = name;
         this.id = id;
         this.checkedOutBooks = new HashMap<>();
-        this.reservedBooks = new HashMap<>();
+        Library.reservedBooks = new HashMap<>();
     }
 
     public ArrayList<Book> getBookList() {

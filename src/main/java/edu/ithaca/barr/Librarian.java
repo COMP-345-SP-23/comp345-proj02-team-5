@@ -11,7 +11,6 @@ public class Librarian {
     
     public String username;
     public String password;
-    private String title;
     private int id;
     private ArrayList<Book> bookList = new ArrayList<>();
 
