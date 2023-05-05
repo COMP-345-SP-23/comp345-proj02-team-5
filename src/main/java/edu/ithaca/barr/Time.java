@@ -3,6 +3,9 @@ package edu.ithaca.barr;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * Worked on by Vicky
+ */
 public class Time {
 
     private User user;

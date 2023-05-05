@@ -4,10 +4,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
-
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * Worked on by Gio, Christian, Vanessa and Vicky
+ */
 public class Library {
 
     public ArrayList<Book> allBooks = new ArrayList<>();
@@ -33,46 +35,13 @@ public class Library {
         this.reservedBooks = new HashMap<>();
     }
 
+    /**
+     * get a list of books in the library
+     * @return the list of books in the library
+     */
     public ArrayList<Book> getBookList() {
         return allBooks;
     }
-    /*
-     * public ArrayList<Book> getAuthorList(){
-     * return authors;
-     * }
-     * 
-     * public ArrayList<Book> getAccountsList(){
-     * return accounts;
-     * }
-     * 
-     * public ArrayList<Book> getLibrariansList(){
-     * return librarians;
-     * }
-     * 
-     * public boolean closeAccount(){
-     * //implement
-     * }
-     * 
-     */
-
-   /*
-    public ArrayList<Book> getAuthorList(){
-        return authors;
-    }
-
-    public ArrayList<Book> getAccountsList(){
-        return accounts;
-    }
-
-    public ArrayList<Book> getLibrariansList(){
-        return librarians;
-    }
-
-    public boolean closeAccount(){
-        //implement
-    }
-
-    */
 
     /**
      * creates an account
@@ -85,12 +54,17 @@ public class Library {
         if(!Library.usernameList.contains(username) && !Library.passwordList.contains(password)){
             int id = (int)Math.ceil(Math.random());
             User newUser = new User(id, name, username, password);
-//            userList.add(newUser);
             return true;
         }
         return false;
     }
 
+    /**
+     * checks credentials
+     * @param username the username being checked
+     * @param password the password being checked
+     * @return true if credentials are good, false if not good
+     */
     public static boolean confirmCredentials(String username, String password){
         // for loop to itereate through userlist
         for(int i =0; i<userList.size();i++){
@@ -101,6 +75,13 @@ public class Library {
         return false;
         
     }
+
+    /**
+     * checks credentials
+     * @param username the username being checked
+     * @param password the password being checked
+     * @return true if credentials are good, false if not good
+     */
     public static boolean confirmCredentialsAdmin(String username, String password){
         // for loop to itereate through userlist
         for(int i =0; i<librarianList.size();i++){
@@ -111,6 +92,11 @@ public class Library {
         return false;  
     }
 
+    /**
+     * searches through the books by the title
+     * @param title the title being searched for
+     * @return the books with that tile
+     */
     public List<Book> searchByTitle(String title) {
         List<Book> titleResults = new ArrayList<>();
         for (Book book : this.allBooks) {
@@ -121,6 +107,11 @@ public class Library {
         return titleResults;
     }
 
+    /**
+     * searches though the books by the author
+     * @param author the author being searched for
+     * @return the books by the author
+     */
     public List<Book> searchByAuthor(String author) {
         List<Book> authorResult = new ArrayList<>();
         for (Book book : this.allBooks) {

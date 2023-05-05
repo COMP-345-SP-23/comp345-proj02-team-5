@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+/**
+ * Worked on by Gio, Vanessa and Vicky
+ */
 public class BookTest {
     
     @Test

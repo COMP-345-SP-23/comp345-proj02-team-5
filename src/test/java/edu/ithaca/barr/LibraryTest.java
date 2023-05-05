@@ -8,6 +8,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Worked on my Gio, Christian, Vanessa and Vicky
+ */
 public class LibraryTest {
     
     @Test

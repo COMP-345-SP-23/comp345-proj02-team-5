@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * Worked on by Vanessa and Vicky
+ */
 public class UserTest {
 
     @Test

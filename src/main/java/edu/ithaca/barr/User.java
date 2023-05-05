@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * Worked on by Gio, Vanessa and Vicky
+ */
 public class User {
 
     private int id;
@@ -78,14 +81,29 @@ public class User {
         return checkedOutList;
     }
 
+    /**
+     * sets the password
+     * @param newPassword the new password
+     */
     public void setPassword(String newPassword){
         this.password = newPassword;
     }
 
+    /**
+     * sets the username
+     * @param newUsername the new username
+     */
     public void setUsername(String newUsername){
         this.username = newUsername;
     }
 
+    /**
+     * changes the password
+     * @param user the user changing their password
+     * @param newPassword the new password
+     * @param oldPassword the old password
+     * @return A message if the password was changed or not
+     */
     public String changePassword(User user, String newPassword, String oldPassword){
         if(user.getPassword().equals(oldPassword)){
             user.setPassword(newPassword);
@@ -106,6 +124,13 @@ public class User {
 
     }
 
+    /**
+     * changes the username
+     * @param user the user changing their username
+     * @param newUsername new username
+     * @param oldUsername the old username
+     * @return A message if the username was changed or not
+     */
     public String changeUsername(User user, String newUsername, String oldUsername){
         if(user.getUserName().equals(oldUsername)){
             setUsername(newUsername);

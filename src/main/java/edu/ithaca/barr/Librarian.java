@@ -6,6 +6,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Worked on by Gio, Vanessa and Vicky
+ */
 public class Librarian {
 
     
@@ -111,22 +114,6 @@ public class Librarian {
     public void removeAccount(User account){
       Library.userList.remove(account);
     }
-
-    /**
-     * Gets a list of books currently checked out
-     * @return list of books checked out
-     */
-//    public List<Book> getCheckedOutList(){
-//      used on type library
-//    }
-
-    /**
-     * Gets a list of books the library has
-     * @return list of books at the library
-     */
-//    public List<Book> getBookList(){
-//        used on type library
-//    }
 
   /**
      * Gets a list of books the library has
