@@ -25,7 +25,7 @@ Sprint 2:
 Goal: A UI and a working product
 UML Diagrams:
 Previous: https://drive.google.com/file/d/1LpurxKAzJfNdzVh3yEDezRr2TdapfyVQ/view?usp=sharing
-Updated: //updated diagrams
+Updated: https://drive.google.com/file/d/1LpurxKAzJfNdzVh3yEDezRr2TdapfyVQ/view?usp=sharing
 Sprint Review/Demo Agenda:
 https://docs.google.com/document/d/1CX134jDNW67s7DmD8MuPaCkVe7I97q-M6QJkYK_qicw/edit?usp=sharing
 Sprint Retrospective Template:
