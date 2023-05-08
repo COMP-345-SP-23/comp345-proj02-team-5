@@ -16,8 +16,7 @@ public class LibraryTest {
     @Test
     public void createAccountTest() throws IOException {
         //create users and passwords, assert they are in the system and have correct values
-//        Library jlibraries = new Library(1);
-//        List<User> jusers = JsonUtil.listFromJsonFile("src/test/java/edu/ithaca/barr/jusers.json", User.class);
+
         List<Library> jlibraries = JsonUtil.listFromJsonFile("src/test/java/edu/ithaca/barr/libraries.json", Library.class);
 
         assertTrue(jlibraries.get(0).createAccount("John", "code", "123"));   //Account can be created
@@ -84,8 +83,6 @@ public class LibraryTest {
         jlibraries.get(0).checkOutBook(jusers.get(1), jbooks.get(7));
         jlibraries.get(0).checkOutBook(jusers.get(2), jbooks.get(8));
 
-        // make user object
-        //make a Library object
         assertEquals(2, jlibraries.get(0).checkedOutBooks.size()); //Tests that when two books are checked out, that two books are listed as checked out
         assertEquals(jbooks.get(8) , jlibraries.get(0).checkedOutBooks.get(jusers.get(2).getID())); //Tests that a user checked out the book they wanted to check out
         assertEquals(4, jbooks.get(7).getNumCopies()); //Tests that the number of copies decreases by one when book is checked out

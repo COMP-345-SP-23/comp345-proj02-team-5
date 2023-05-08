@@ -8,7 +8,7 @@ public class UI{
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Welcome to the Online Library\n");
         System.out.println("Type c if you would like to log in as a customer, a if you would like to log in as an admin, or q to quit\n");
-        Library lib = new Library(1);
+        Library lib = new Library("UILib","UIPass");
         Library.userList.add(0, new User(0, "jeff", "jeff", "jeff"));
         lib.allBooks.add(new Book(0, "Graphs", "Ali", 0));
         lib.allBooks.add(new Book(1, "Prim", "Primrose Everdeen", 5));

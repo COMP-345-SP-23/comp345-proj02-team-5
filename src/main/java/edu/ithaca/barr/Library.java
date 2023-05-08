@@ -19,18 +19,13 @@ public class Library {
     public static List<Librarian> librarianList = new ArrayList<>();
     public static List<String> usernameList = new ArrayList<>();
     public static List<String> passwordList = new ArrayList<>();
-
-    // ArrayList<Author> authors = new ArrayList<>();
-    // ArrayList<Account> accounts = new ArrayList<>();
-    // ArrayList<edu.ithaca.barr.Librarian> librarians = new ArrayList<>();
-
-    // private String name;
-    private int id;
+    private String username;
+    private String password;
 
     @JsonCreator
-    public Library(@JsonProperty("id") int id) {
-        // this.name = name;
-        this.id = id;
+    public Library(@JsonProperty("username") String username, @JsonProperty("password") String password) {
+        this.username = username;
+        this.password = password;
         this.checkedOutBooks = new HashMap<>();
         Library.reservedBooks = new HashMap<>();
     }
