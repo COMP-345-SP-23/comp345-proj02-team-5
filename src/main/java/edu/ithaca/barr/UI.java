@@ -354,11 +354,11 @@ public class UI{
                                         String dec = reader.readLine();
                                         try {
                                             decnum = Integer.parseInt(dec);
-                                            if (decnum<0){
+                                            if ((decnum<0) || (decnum>book.getNumCopies())){
                                                 throw new NumberFormatException();
                                             }
                                         } catch (NumberFormatException e) {
-                                            System.out.println("Decrement number has to be an integer");
+                                            System.out.println("Decrement number has to be a positive integer and less than the total copies");
                                             continue;
                                         }
                                         book.numCopies-=decnum;
