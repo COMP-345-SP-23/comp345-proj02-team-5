@@ -6,9 +6,10 @@ Start Guide:
 clone and run main in UI.java
 
 Names:
-Vicky C.
+Vicky Conrad
 Giovanni Cioffi
 Christian Leach
+Vanessa Mpofu
 
 Sprint 1:
 Goal: Create libraian/admin & let them interact with books
