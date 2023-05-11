@@ -3,7 +3,7 @@
 ## Project 01 - Library Software
 
 Start Guide:
-clone and run main in UI.java
+Run main in UI.java. if you want to login as a user, enter "jeff","jeff" and if you want to log in as an admin enter "Scrum","chessgod".
 
 Names:
 Vicky Conrad
@@ -31,6 +31,9 @@ Sprint Review/Demo Agenda:
 https://docs.google.com/document/d/1CX134jDNW67s7DmD8MuPaCkVe7I97q-M6QJkYK_qicw/edit?usp=sharing
 Sprint Retrospective Template:
 https://docs.google.com/document/d/1K5GB95esUZfsY62G854C9NpxnqImj_K7Mokwnw17mnI/edit?usp=sharing
+
+Final Submission:
+https://drive.google.com/file/d/1LpurxKAzJfNdzVh3yEDezRr2TdapfyVQ/view?usp=sharing
 
 
 Three Use Cases that you will implement first:
